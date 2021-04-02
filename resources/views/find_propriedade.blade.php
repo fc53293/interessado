@@ -115,7 +115,7 @@
                                           <th scope="row">{{$propInfo['IdPropriedade']}}</th>
                                           <td>{{$propInfo['TipoPropriedade']}}</td>
                                           <td>{{$propInfo['Localizacao']}}</td>
-                                          <td>{{$propInfo['AreaMetros']}}</td>
+                                          <td>{{$propInfo['AreaMetros']}} m<sup>2</sup></td>
                                         </tr>
                                       @endforeach
                                     @else

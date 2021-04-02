@@ -105,7 +105,7 @@ class InteressadoController extends Controller
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
             ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
             //->where('AreaMetros', '<',(int)$search_data3)
-            ->paginate(2);
+            ->paginate(5);
         }
         else{
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
