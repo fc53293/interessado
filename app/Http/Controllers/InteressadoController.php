@@ -74,7 +74,7 @@ class InteressadoController extends Controller
     //Updates Inqilino
     public function updateInquilino(Request $req, $username)
     {
-        $data = Inquilino::find('goncalo');
+        $data = Utilizador::find('goncalo');
         $data->Username=$req->input('nomeUser');
         $data->PrimeiroNome=$req->input('primeiroNome');
         $data->UltimoNome=$req->input('ultimoNome');
@@ -105,7 +105,7 @@ class InteressadoController extends Controller
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
             ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
             //->where('AreaMetros', '<',(int)$search_data3)
-            ->paginate(5);
+            ->paginate(1);
         }
         else{
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
