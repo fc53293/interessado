@@ -117,7 +117,12 @@ class InteressadoController extends Controller
 
         return view('find_propriedade',compact('proprerties'));
     }
+
+    public function propertyInfo($id)
+    {
+        $property = Propriedade::where('IdPropriedade', $id)->get();
+
+        return view('propInfo',compact('property'));
+    }
 }
-
-
 ?>

@@ -38,6 +38,9 @@ Route::get('findPropriedade', 'InteressadoController@findPropriedade');
 
 Route::post('edit/{username}', 'InquilinoController@updateInquilino');
 
+Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
+
+//Testes:
 Route::get('testar/{username}', 'InquilinoController@inquilinoAluguerInfo');
 
 Route::get('users/{username}','InquilinoController@showUserByUsername');

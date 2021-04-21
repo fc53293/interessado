@@ -109,13 +109,15 @@
 
                             @if(isset($proprerties))
 
-                            <div class="container profile-container__searchOptions text-center p-2 position-relative">
+                            <div id="divResultsProp" class="container profile-container__searchOptions text-center p-2 position-relative">
                                 @if(count($proprerties)>0)
 
                                 @foreach($proprerties as $propInfo)
                                 <div class="row">
                                     <div class="col h-25">
-                                        <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults">
+                                        <a href="{{ url('propertyInfo/' . $propInfo->IdPropriedade) }}">
+                                            <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
+                                        </a>
                                     </div> 
                                     <div class="col">
                                         <div class="row">
@@ -144,7 +146,11 @@
                                 
                                 @endif
                             </div>
-
+                            <!--<div id="divResultsPropTeste" class="container profile-container__searchOptions p-2">
+                              <div id="gridItem"></div>
+                              <div id="gridItem"></div>
+                              <div id="gridItem"></div>
+                            </div>-->
                             @endif
                             <!-- <table class="table">
                                 //@if(count($proprerties) > 0)

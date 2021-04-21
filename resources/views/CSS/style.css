@@ -87,7 +87,8 @@ h3 {
 }
 
 .profile-container {
-  margin: 35px !important;
+  margin-top: 130px !important;
+  margin-bottom: 35px !important;
   padding: 15px !important;
   border-radius: 10px !important;
   background-color: #f8f8f89c !important;
@@ -99,13 +100,6 @@ h3 {
   margin-right: 20px;
   margin-bottom: 5px;
   padding: 15px !important;
-  border-radius: 10px !important;
-  background-color: white !important;
-  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-}
-
-.profile-container__searchOptions {
   border-radius: 10px !important;
   background-color: white !important;
   -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
@@ -133,82 +127,6 @@ h3 {
   text-decoration-thickness: 0.125em !important;
   text-underline-offset: 1.5px !important;
 }
-
-#divResultsProp{
-  position: relative;
-  height: 30%;
-}
-
-#divResultsPropTeste{
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-areas: "area1 area2 area3";
-  height: 30%;
-}
-
-/******************** SIDEBAR ************************/
-.sidebar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.widget {
-  padding: 0.75rem 1.25rem;
-  width: 278px;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: white;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.widget h2 {
-  background-color: whitesmoke;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  margin-top: -0.75rem;
-  margin-left: -1.25rem;
-  margin-right: -1.25rem;
-  padding: 0.75rem 1.25rem;
-  text-align: center;
-  cursor: default;
-}
-
-.widget form label {
-  width: 100%;
-  text-align: center;
-}
-
-.widget:hover h2 {
-  background-color: #ebebeb;
-}
-
-#user_age_handler_min, #user_age_handler_max {
-  width: 3em;
-  margin-left: -1.5em;
-  height: 1.6em;
-  top: 50%;
-  margin-top: -.8em;
-  text-align: center;
-  line-height: 1.6em;
-}
-/*# sourceMappingURL=style.css.map */
-
-
-/*# Form Find Propriedades */
-#propertyImgOnResults{
-  width: 35%;
-  
-}
-
-/*# Info Propriedade */
 
 .starrating > input {
   display: none;
