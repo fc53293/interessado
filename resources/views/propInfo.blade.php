@@ -49,7 +49,7 @@
         <div class="row" id="parteCima">
             <div class="col" id="dataCasa">
                 <div class="row" id="dataCasa__imagens">
-                    <img class="img-fluid" id="imgCasa" src="img/QUARTO.jpg">
+                    <img class="img-fluid" id="imgCasa" src="/img/QUARTO.jpg">
                 </div>
                 <div class="row" id="dataCasa__starts">
                     <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
@@ -64,14 +64,19 @@
             @foreach($property as $propInfo)
             <div class="col" id="infoCasa">
                 <div class="row infoCasa__Border m-3">
-                    <h2 class="infoCasa__Preco text-center p-3">400€/Mês</h2>
+                    <h2 class="infoCasa__Preco text-center p-3">{{$propInfo['Preco']}}€/Mês</h2>
                 </div>
                 <div class="row infoCasa__Border m-3">
                     <div class="infoCasa__localizacao px-3 pt-3">
-                        <h2>Lisboa, Portugal</h2>
+                        <h2>Localização: {{$propInfo['Localizacao']}}</h2>
                     </div>
-                    <div  class="infoCasa__Descricao px-3 py-1"">
+                    <div  class="infoCasa__Descricao px-3 py-1">
+                        <h2>Descrição: </h2>
                         <p>{{$propInfo['Descricao']}}</p>
+                    </div>
+                    <div  class="infoCasa__Descricao px-3 py-1">
+                        <h2>Area: </h2>
+                        <p>{{$propInfo['AreaMetros']}}</p>
                     </div>
                 </div>
                 <div class="row d-grid gap-2 col-6 mx-auto">
@@ -89,7 +94,7 @@
                     <h2>Localização</h2>
                 </div>
                 <div class="p-3">
-                    <img class="img-fluid" src="img/mapa.png">
+                    <img class="img-fluid" src="/img/mapa.png">
                 </div> 
             </div>
         </div>
