@@ -45,10 +45,16 @@
                         <a class="nav-link text-black text-end" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="login.html">Sign In</a>
+                        <a class="nav-link text-black text-end" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="register.html">Sign Up</a>
+                        <a class="nav-link text-black text-end" href="#">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="#">Wallet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="#">Sign Out</a>
                     </li>
                 </ul>
             </div>

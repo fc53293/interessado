@@ -4,6 +4,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  background: rgba(0, 133, 255, 0.19);
 }
 
 h1 {
@@ -134,18 +135,6 @@ h3 {
   text-underline-offset: 1.5px !important;
 }
 
-#divResultsProp{
-  position: relative;
-  height: 30%;
-}
-
-#divResultsPropTeste{
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-areas: "area1 area2 area3";
-  height: 30%;
-}
-
 /******************** SIDEBAR ************************/
 .sidebar {
   display: -webkit-box;
@@ -200,53 +189,3 @@ h3 {
   line-height: 1.6em;
 }
 /*# sourceMappingURL=style.css.map */
-
-
-/*# Form Find Propriedades */
-#propertyImgOnResults{
-  width: 35%;
-  
-}
-
-/*# Info Propriedade */
-
-.starrating > input {
-  display: none;
-}
-
-/* Remove radio buttons */
-.starrating > label:before {
-  content: "\f005";
-  /* Star */
-  margin: 8px;
-  font-size: 30px;
-  font-family: FontAwesome;
-  display: inline-block;
-}
-
-.starrating > label {
-  color: #bac06367;
-  /* Start color when not clicked */
-}
-
-.starrating > input:checked ~ label {
-  color: #ffca08;
-}
-
-/* Set yellow color when star checked */
-.starrating > input:hover ~ label {
-  color: #ffca08;
-}
-
-/* Set yellow color when star hover */
-.infoCasa__Border {
-  border-radius: 10px !important;
-  background-color: white !important;
-  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-}
-/*# sourceMappingURL=style.css.map */
-
-#imgCasa{
-  width: auto;
-}
