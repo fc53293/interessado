@@ -80,7 +80,9 @@
                     </div>
                 </div>
                 <div class="row d-grid gap-2 col-6 mx-auto">
-                    <button type="button" class="btn btn-primary mt-3">Rent Me!</button>
+                    <form action="/startNewRent" method="post" name="form">
+                      <button type="submit" class="btn btn-primary mt-3">Rent Me!</button>
+                    </form>
                 </div>
                 <div class="row d-grid gap-2 col-6 mx-auto">
                     <button type="button" class="btn btn-primary mt-3">Contactar Proprietário</button>

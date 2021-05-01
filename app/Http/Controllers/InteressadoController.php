@@ -7,6 +7,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Interessado;
 use App\Models\Utilizador;
 use App\Models\Propriedade;
+use App\Models\Message;
 use App\routes\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -33,11 +34,12 @@ class InteressadoController extends Controller
 
     public function allInquilinos()
     {
-        $inquilino = Inquilino::all();
-        //$inquilino = $this->model->all();
+        $my_username = 1;
+        //$inquilino = Inquilino::all();
+        $messages = Message::where('id',1)->get();
 
-        return response()->json($inquilino);
-        
+        return response()->json($messages);
+        //return view('messages.messagesContent',compact('messages'));
         //return response()->json('Mostra todas os inquilinos');
         
     }
@@ -123,6 +125,38 @@ class InteressadoController extends Controller
         $property = Propriedade::where('IdPropriedade', $id)->get();
 
         return view('propInfo',compact('property'));
+    }
+
+    public function starNewRent()
+    {
+        $values = array('IdInquilino' => 2,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
+        DB::table('inquilino')->insert($values);
+        //return view('propInfo',compact('property'));
+    }
+
+
+    public function showChat()
+    {
+        $users = Utilizador::all();
+
+        return view('homeChat',compact('users'));
+    }
+
+    public function getMessage($user_username)
+    {
+        $my_username = "fabio";
+        //user_username is the person who we want to see the messages
+        //get all messages from a selected user
+
+        //$messages = Message::where(function ($query) use ($user_username,$my_username){
+        //    $query->where('from',$my_username)->where('to',$user_username);
+        //})->orWhere(function ($query) use ($user_username,$my_username){
+        //    $query->where('from',$user_username)->where('to',$my_username);
+       // })->get();
+        $messages = Message::where('id',1)->get();
+        return $user_username;
+
+        //return view('messages.messagesContent',compact('messages'));
     }
 }
 ?>

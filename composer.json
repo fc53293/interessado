@@ -6,7 +6,11 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
-        "laravel/lumen-framework": "^8.0"
+        "laravel/legacy-factories": "^1.1",
+        "laravel/lumen-framework": "^8.0",
+        "laravel/tinker": "^2.6",
+        "vluzrmos/tinker": "^1.4",
+        "wn/lumen-generators": "^1.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

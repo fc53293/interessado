@@ -2,8 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+
+//User::factory()->count(50)->make();
+
+
 
 class UserFactory extends Factory
 {
@@ -12,7 +18,7 @@ class UserFactory extends Factory
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Message::class;
 
     /**
      * Define the model's default state.
@@ -21,9 +27,18 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        do{
+            $from = rand(1,15);
+            $to = rand(1,15);
+            $is_read = rand(0,1);
+        }while ($from === $to);
+
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'from' => $this->faker->numberBetween(1, 20),
+            'to' => $this->faker->numberBetween(1, 20),
+            'message' => $this->faker->realText(180),
+            'is_read' => $this->faker->numberBetween(0, 1)
+            
         ];
     }
 }

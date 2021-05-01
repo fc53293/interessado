@@ -21,7 +21,7 @@ $router->group(['prefix' => 'api'], function($router)
 {
     $router->post('user/add','InquilinoController@createInquilino');
     
-    $router->get('inquilino/all','InquilinoController@allInquilinos');
+    $router->get('inquilino/all','InteressadoController@allInquilinos');
     
     //$router->get('users/{username}','InquilinoController@showUserByUsername');
     
@@ -39,6 +39,14 @@ Route::get('findPropriedade', 'InteressadoController@findPropriedade');
 Route::post('edit/{username}', 'InquilinoController@updateInquilino');
 
 Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
+
+Route::post('startNewRent', 'InteressadoController@starNewRent');
+
+
+Route::get('chat', 'InteressadoController@showChat');
+
+Route::get('message/{username}', 'InteressadoController@getMessage');
+
 
 //Testes:
 Route::get('testar/{username}', 'InquilinoController@inquilinoAluguerInfo');

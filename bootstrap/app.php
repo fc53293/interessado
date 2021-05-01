@@ -106,6 +106,7 @@ $app->configure('app');
 |
 */
 //$app->register(Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class);
+$app->register(Laravel\Tinker\TinkerServiceProvider::class);
 
 $app->router->group(['namespace' => 'App\Http\Controllers',], function ($router) {
     require __DIR__.'/../routes/web.php';
