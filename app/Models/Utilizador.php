@@ -20,7 +20,7 @@ class Utilizador extends Model
      */
 
     protected $table = 'utilizadores';
-    protected  $primaryKey = 'Username';
-    public $incrementing = false;
+    protected  $primaryKey = 'IdUser';
+    public $incrementing = true;
     public $timestamps=false;
 }

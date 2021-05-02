@@ -11,6 +11,7 @@ use App\Models\Message;
 use App\routes\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Pusher\Pusher;
 
 class InteressadoController extends Controller
 {
@@ -74,24 +75,25 @@ class InteressadoController extends Controller
     }
 
     //Updates Inqilino
-    public function updateInquilino(Request $req, $username)
+    public function updateInquilino(Request $req, $id)
     {
-        $data = Utilizador::find('goncalo');
+        $data = Utilizador::find($id);
         $data->Username=$req->input('nomeUser');
         $data->PrimeiroNome=$req->input('primeiroNome');
         $data->UltimoNome=$req->input('ultimoNome');
         $data->Email=$req->input('mail');
         $data->Morada=$req->input('morada');
+        $data->Nascimento=$req->input('dateNascimento');
         $data->save();
         
         return response()->json('Updated successfully.');
     }
 
-    public function interessadoProfile($username)
+    public function interessadoProfile($id)
     {
-        $user = Utilizador::where('username','=' ,$username)->where('TipoConta','=' ,'Interessado')->get();
-
-        return view('profile_interessado',['data'=>$user]);
+        $data = Utilizador::where('IdUser','=' ,$id)->where('TipoConta','=' ,'Interessado')->get();
+        //$data = Utilizador::find($id)->get();
+        return view('profile_interessado',compact('data'));
     }
 
     public function findPropriedade(Request $request)
@@ -129,7 +131,7 @@ class InteressadoController extends Controller
 
     public function starNewRent()
     {
-        $values = array('IdInquilino' => 2,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
+        $values = array('IdInquilino' => 2,'IdUser'=> 3,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
         DB::table('inquilino')->insert($values);
         //return view('propInfo',compact('property'));
     }
@@ -142,21 +144,70 @@ class InteressadoController extends Controller
         return view('homeChat',compact('users'));
     }
 
-    public function getMessage($user_username)
+    public function getMessage($user_id)
     {
-        $my_username = "fabio";
+        $my_id = 1;
         //user_username is the person who we want to see the messages
         //get all messages from a selected user
 
-        //$messages = Message::where(function ($query) use ($user_username,$my_username){
-        //    $query->where('from',$my_username)->where('to',$user_username);
-        //})->orWhere(function ($query) use ($user_username,$my_username){
-        //    $query->where('from',$user_username)->where('to',$my_username);
-       // })->get();
-        $messages = Message::where('id',1)->get();
-        return $user_username;
+        $messages = Message::where(function ($query) use ($user_id,$my_id){
+            $query->where('from',$my_id)->where('to',$user_id);
+        })->orWhere(function ($query) use ($user_id,$my_id){
+            $query->where('from',$user_id)->where('to',$my_id);
+        })->get();
 
-        //return view('messages.messagesContent',compact('messages'));
+        //$messages = Message::where('id',1)->get();
+
+        //return $user_username;
+        //return response()->json('OPla');
+        return view('messages.messagesContent',compact('messages'));
+    }
+
+    
+
+    public function sendMessage(Request $request)
+    {
+        
+        $from = 1;
+        $to = $request->receiver_id;
+        $message = $request->message;
+        
+        //$data2 = new Message();
+        //$data2->from = 1;
+        //$data2->to = 2;
+        //$date2->message = $message;
+       //$data2->id_read = 0;
+        //$data2->save();
+
+        
+        $data = array('from' => $from, 'to' => $to, 'message' => $message, 'is_read' => 0);
+        Message::create($data);    
+
+        // pusher
+         $options = array(
+             'cluster' => 'eu',
+             'useTLS' => true
+         );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+        
+        // $app_id = 1197400;
+        // $app_key = b9767ecdf7ebd85a488a;
+        // $app_secret = 44d7fbdc4e3878fe58ca;
+        // $app_cluster = eu;
+        
+        // $pusher = new Pusher\Pusher( $app_key, $app_secret, $app_id, array('cluster' => $app_cluster) );
+
+        $data= "string do gui";
+        //$data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
+        //$data = array('from' => $from, 'to' => $to);
+        $pusher->trigger('my-channel', 'my-event', $data);
+
     }
 }
 ?>

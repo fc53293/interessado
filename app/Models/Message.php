@@ -19,6 +19,6 @@ class Message extends Model
      * @var array
      */
 
-    protected $table = 'messages';
+    //protected $table = 'messages';
     protected $fillable = ['from', 'to', 'message','is_read'];
 }

@@ -80,7 +80,7 @@
           <div class="col profile-container__information">
 
             @foreach ($data as $user)
-              <form action="/edit/{{ $user['Username'] }}" method="POST">
+              <form action="/edit/{{ $user['IdUser'] }}" method="POST">
                   
                   <input type="hidden" name="username" value="{{$user['Username']}}">
 
@@ -126,7 +126,7 @@
                     <div class="form-group col">
                       <h2 class="p-2">Data de Nascimento:</h2>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control mt-2" id="inputPassword" placeholder="CHANGE ME!" value="{{ $user['Nascimento'] }}">
+                        <input type="text" class="form-control mt-2" id="inputPassword" placeholder="CHANGE ME!" name="dateNascimento" value="{{ $user['Nascimento'] }}">
                       </div>
                     </div>
                   </div>

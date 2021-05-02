@@ -9,6 +9,7 @@
         "laravel/legacy-factories": "^1.1",
         "laravel/lumen-framework": "^8.0",
         "laravel/tinker": "^2.6",
+        "pusher/pusher-php-server": "^6.1",
         "vluzrmos/tinker": "^1.4",
         "wn/lumen-generators": "^1.3"
     },
