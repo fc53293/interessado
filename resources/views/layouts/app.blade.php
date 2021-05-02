@@ -181,31 +181,88 @@
     </main>
 </div>
  
-<scrip src="https://js.pusher.com/5.0/pusher.min.js"></scrip>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
     var receiver_id = '';
-    var my_id = "1";
+    var my_id = 1;
     $(document).ready(function () {
+
+
+        // ajax setup form csrf token
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content')
+            }
+        });
+
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('b9767ecdf7ebd85a488a', {
+            cluster: 'eu',
+        
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind("pusher:subscription_succeeded", function(data) {
+            alert(JSON.stringify(data));
+        });
+
+        
         $('.user').click(function () {
             $('.user').removeClass('activate');
             $(this).addClass('active');
 
             receiver_id = $(this).attr('id');
-            alert(receiver_id);
+            //alert(receiver_id);
             $.ajax({
                 type: "get",
-                url: "message/" + receiver_id, //need to create this route
+                url: "/message/" + receiver_id, //need to create this route
                 data: "",
                 cache: false,
                 success: function (data) {
-                    //$('#messages').html(data);
-                    alert(data);
+                    $('#messages').html(data);
+                    //alert(data);
                 }
-            });
+            })
+        });
+
+        $(document).on('keyup', '.input-text input', function (e) {
+            var message = $(this).val();
+            console.log("msg ",message);
+            // check if enter key is pressed and message is not null also receiver is selected
+            if (e.keyCode == 13 && message != '' && receiver_id != '') {
+                $(this).val(''); // while pressed enter text box will be empty
+                
+                var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+                console.log("datastr ",datastr);
+                $.ajax({
+                    type: "post",
+                    url: "message", // need to create this post route
+                    data: datastr,
+                    cache: false,
+                    success: function (data) {
+
+                    },
+                    error: function (jqXHR, status, err) {
+                    },
+                    complete: function () {
+                        scrollToBottomFunc();
+                    }
+                })
+            }
         });
     });
+
+    // make a function to scroll down auto
+    function scrollToBottomFunc() {
+        $('.message-wrapper').animate({
+            scrollTop: $('.message-wrapper').get(0).scrollHeight
+        }, 50);
+    }
 </script>
 
 </body>

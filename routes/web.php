@@ -32,21 +32,22 @@ $router->group(['prefix' => 'api'], function($router)
     $router->get('users/all','InquilinoController@showAllUsers');
 }); 
 
-Route::get('interessadoProfile/{username}', 'InteressadoController@interessadoProfile');
+Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
 
 Route::get('findPropriedade', 'InteressadoController@findPropriedade');
 
-Route::post('edit/{username}', 'InquilinoController@updateInquilino');
+Route::post('edit/{id}', 'InteressadoController@updateInquilino');
 
 Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
 
 Route::post('startNewRent', 'InteressadoController@starNewRent');
 
 
-Route::get('chat', 'InteressadoController@showChat');
+Route::get('/chat', 'InteressadoController@showChat');
 
-Route::get('message/{username}', 'InteressadoController@getMessage');
+Route::get('/message/{user_id}', 'InteressadoController@getMessage');
 
+Route::post('message', 'InteressadoController@sendMessage');
 
 //Testes:
 Route::get('testar/{username}', 'InquilinoController@inquilinoAluguerInfo');
