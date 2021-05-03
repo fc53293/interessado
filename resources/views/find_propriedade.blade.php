@@ -42,16 +42,16 @@
                 <div class="mx-auto"></div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="#">Home</a>
+                        <a class="nav-link text-black text-end" href="{{ url('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="#">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/{id}') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="#">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="#">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('wallet/{id}') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
