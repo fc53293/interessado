@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 use DB;
 use Spatie\QueryBuilder\QueryBuilder;
-
+use App\Models\Propriedade;
 use App\Models\Interessado;
 use App\Models\Utilizador;
-use App\Models\Propriedade;
 use App\Models\Message;
 use App\routes\web;
 use App\Http\Controllers\Controller;
@@ -37,9 +36,9 @@ class InteressadoController extends Controller
     {
         $my_username = 1;
         //$inquilino = Inquilino::all();
-        $messages = Message::where('id',1)->get();
+        $proprerties = Propriedade::all();
 
-        return response()->json($messages);
+        return response()->json($proprerties);
         //return view('messages.messagesContent',compact('messages'));
         //return response()->json('Mostra todas os inquilinos');
         
@@ -119,6 +118,7 @@ class InteressadoController extends Controller
         }
         $proprerties->appends($request->all());
 
+        
         return view('find_propriedade',compact('proprerties'));
     }
 
