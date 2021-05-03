@@ -19,6 +19,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function($router)
 {
+    
     $router->post('user/add','InquilinoController@createInquilino');
     
     $router->get('inquilino/all','InteressadoController@allInquilinos');
@@ -32,22 +33,30 @@ $router->group(['prefix' => 'api'], function($router)
     $router->get('users/all','InquilinoController@showAllUsers');
 }); 
 
-Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
+Route::group(['prefix' => ''], function () {
 
-Route::get('findPropriedade', 'InteressadoController@findPropriedade');
+    Route::get('home', 'InteressadoController@goHome');
 
-Route::post('edit/{id}', 'InteressadoController@updateInquilino');
+    Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
 
-Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
+    Route::get('findPropriedade', 'InteressadoController@findPropriedade');
 
-Route::post('startNewRent', 'InteressadoController@starNewRent');
+    Route::post('edit/{id}', 'InteressadoController@updateInquilino');
 
+    Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
 
-Route::get('/chat', 'InteressadoController@showChat');
+    Route::post('startNewRent', 'InteressadoController@starNewRent');
 
-Route::get('/message/{user_id}', 'InteressadoController@getMessage');
+    Route::get('wallet/{id}', 'InteressadoController@showWallet');
 
-Route::post('message', 'InteressadoController@sendMessage');
+    Route::post('walletAdd/{id}', 'InteressadoController@addSaldo');
+
+    Route::get('/chat', 'InteressadoController@showChat');
+
+    Route::get('/message/{user_id}', 'InteressadoController@getMessage');
+
+    Route::post('message', 'InteressadoController@sendMessage');
+});
 
 //Testes:
 Route::get('testar/{username}', 'InquilinoController@inquilinoAluguerInfo');

@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 use DB;
 use Spatie\QueryBuilder\QueryBuilder;
-
+use App\Models\Propriedade;
 use App\Models\Interessado;
 use App\Models\Utilizador;
-use App\Models\Propriedade;
+use App\Models\HistoricoSaldo;
 use App\Models\Message;
 use App\routes\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Pusher\Pusher;
+Use Carbon\Carbon;
 
 class InteressadoController extends Controller
 {
@@ -36,8 +37,8 @@ class InteressadoController extends Controller
     public function allInquilinos()
     {
         $my_username = 1;
-        //$inquilino = Inquilino::all();
-        $messages = Message::where('id',1)->get();
+        $inquilino = Propriedade::all();
+        //$messages = Message::where('id',1)->get();
 
         return response()->json($messages);
         //return view('messages.messagesContent',compact('messages'));
@@ -163,7 +164,38 @@ class InteressadoController extends Controller
         return view('messages.messagesContent',compact('messages'));
     }
 
-    
+    //Adiciona uma quantidade de saldo ao saldo atual do inquilino
+    public function addSaldo($id, Request $amount){
+        $user = Utilizador::find($id);
+        $user->Saldo=$amount->input('amountToAdd')+$user->Saldo;
+        $user->save();
+
+        $histSaldo = new HistoricoSaldo();
+        $user->IdSaldo=1;
+        $histSaldo->IdUser=$id;
+        $histSaldo->Username=$amount->input('nameUser');
+        $histSaldo->Valor=$amount->input('amountToAdd');
+        $histSaldo->Data=Carbon::now();
+        $histSaldo->save();
+    }
+
+    //Apresenta a pagina da wallet desse inquilino
+    public function showWallet($id)
+    {
+        $user = Utilizador::where('IdUser','=',$id)->get();
+
+        $userHist = HistoricoSaldo::where('IdUser','=',$id)->orderBy('IdSaldo', 'desc')->limit(4)->get();
+
+        return view('wallet',['data'=>$user],['data2'=>$userHist]);
+    }
+
+    //Vai para a home page
+    public function goHome()
+    {
+        //$user = Utilizador::where('username','=' ,$username)->get();
+
+        return view('home');
+    }
 
     public function sendMessage(Request $request)
     {
