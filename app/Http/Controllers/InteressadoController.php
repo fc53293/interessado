@@ -6,10 +6,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Propriedade;
 use App\Models\Interessado;
 use App\Models\Utilizador;
-<<<<<<< HEAD
-=======
+use App\Models\Inquilino;
 use App\Models\HistoricoSaldo;
->>>>>>> novo
 use App\Models\Message;
 use App\routes\web;
 use App\Http\Controllers\Controller;
@@ -40,13 +38,8 @@ class InteressadoController extends Controller
     public function allInquilinos()
     {
         $my_username = 1;
-<<<<<<< HEAD
-        //$inquilino = Inquilino::all();
-        $proprerties = Propriedade::all();
-=======
         $inquilino = Propriedade::all();
         //$messages = Message::where('id',1)->get();
->>>>>>> novo
 
         return response()->json($proprerties);
         //return view('messages.messagesContent',compact('messages'));
@@ -139,11 +132,25 @@ class InteressadoController extends Controller
         return view('propInfo',compact('property'));
     }
 
-    public function starNewRent()
+    public function starNewRent($idProp)
     {
-        $values = array('IdInquilino' => 2,'IdUser'=> 3,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
-        DB::table('inquilino')->insert($values);
+        // $values = array('IdInquilino' => 2,'IdUser'=> 3,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
+        // DB::table('inquilino')->insert($values);
         //return view('propInfo',compact('property'));
+        $userLoged = 1;
+        $data = Utilizador::where('IdUser','=' ,$userLoged)->get();
+        foreach ($data as $dataz) {
+        
+        
+        $user = new Inquilino();
+        //$user->IdSenhorio=1;
+        $user->IdUser=$userLoged;
+        $user->Username=$dataz->Username;
+        $user->IdPropriedade=$idProp;
+        $user->InicoiContrato=Carbon::now();
+        $user->FimContrato=Carbon::now();
+        $user->save();
+        }
     }
 
 

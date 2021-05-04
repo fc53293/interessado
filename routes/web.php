@@ -33,30 +33,6 @@ $router->group(['prefix' => 'api'], function($router)
     $router->get('users/all','InquilinoController@showAllUsers');
 }); 
 
-<<<<<<< HEAD
-
-
-// Routes BACANOS
-Route::group(['prefix' => ''], function () {
-    
-    Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
-
-    Route::get('findPropriedade', 'InteressadoController@findPropriedade');
-    
-    Route::post('edit/{id}', 'InteressadoController@updateInquilino');
-    
-    Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
-    
-    Route::post('startNewRent', 'InteressadoController@starNewRent');
-    
-    
-    Route::get('/chat', 'InteressadoController@showChat');
-    
-    Route::get('/message/{user_id}', 'InteressadoController@getMessage');
-    
-    Route::post('message', 'InteressadoController@sendMessage');
-    
-=======
 Route::group(['prefix' => ''], function () {
 
     Route::get('home', 'InteressadoController@goHome');
@@ -69,7 +45,7 @@ Route::group(['prefix' => ''], function () {
 
     Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
 
-    Route::post('startNewRent', 'InteressadoController@starNewRent');
+    Route::post('startNewRent/{idProp}', 'InteressadoController@starNewRent');
 
     Route::get('wallet/{id}', 'InteressadoController@showWallet');
 
@@ -80,7 +56,6 @@ Route::group(['prefix' => ''], function () {
     Route::get('/message/{user_id}', 'InteressadoController@getMessage');
 
     Route::post('message', 'InteressadoController@sendMessage');
->>>>>>> novo
 });
 
 //Testes:

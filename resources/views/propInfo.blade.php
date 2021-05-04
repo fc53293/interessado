@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="row d-grid gap-2 col-6 mx-auto">
-                    <form action="/startNewRent" method="post" name="form">
+                    <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
                       <button type="submit" class="btn btn-primary mt-3">Rent Me!</button>
                     </form>
                 </div>
