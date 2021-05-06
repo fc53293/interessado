@@ -54,6 +54,7 @@ h3 {
 /**************/
 /*** CUSTOM ***/
 /**************/
+.bg-navbar,
 .banner-image {
   background: rgba(0, 133, 255, 0.19);
   mix-blend-mode: normal;
