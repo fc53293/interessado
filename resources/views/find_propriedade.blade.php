@@ -103,6 +103,12 @@
                                         <small id="emailHelp" class="p-1 form-text text-muted">Selecione o tamanho do
                                             seu aluguer</small>
                                     </div>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="50" max="2000" value="400" class="slider" id="myRange">
+                                        <p>Value: <span id="priceFilter"></span></p>
+                                        <input type="hidden" id="priceFilter2" name="lprice" >
+                                    </div>
+                                    
                                     <div class="col text-center mt-5 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>
                                     </div>

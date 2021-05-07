@@ -13,8 +13,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/', function (){
+    //session()->put('Name','Gony');
+    return view('home');
 });
 
 $router->group(['prefix' => 'api'], function($router)

@@ -106,17 +106,22 @@ class InteressadoController extends Controller
         $search_data1 = $request->input('tipoProp');
         $search_data2 = $request->input('query2');
         $search_data3 = $request->input('areaMetros');
-
+        $search_data4 = $request->input('lprice');
+        
+        //dd($search_data4);
+        
         if ($search_data3 == ""){
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
             ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
             //->where('AreaMetros', '<',(int)$search_data3)
+            ->where('Preco', '<',(int)$search_data4)
             ->paginate(1);
         }
         else{
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
             ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
             ->where('AreaMetros', '<',(int)$search_data3)
+            ->where('Preco', '<',(int)$search_data4)
             ->get();
         }
         $proprerties->appends($request->all());
