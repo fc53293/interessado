@@ -110,12 +110,18 @@ class InteressadoController extends Controller
         $search_data4 = $request->input('lprice');
         
         //dd($search_data4);
-        
-        if ($search_data3 == ""){
+        if ($search_data3 == "" && $search_data2 == "" && $search_data3 == "" && $search_data3 == ""){
             $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
             ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
             //->where('AreaMetros', '<',(int)$search_data3)
             ->where('Preco', '<',(int)$search_data4)
+            ->paginate(1);
+        }
+        else if ($search_data3 == ""){
+            $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
+            ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
+            //->where('AreaMetros', '<',(int)$search_data3)
+            //->where('Preco', '<',(int)$search_data4)
             ->paginate(1);
         }
         else{
@@ -157,6 +163,8 @@ class InteressadoController extends Controller
         $user->FimContrato=Carbon::now();
         $user->save();
         }
+        return redirect('home');
+
     }
 
 
