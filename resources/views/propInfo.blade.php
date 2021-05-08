@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+    <script src="/js/scripts.js"></script>
 </head>
 
 <body>
@@ -84,7 +85,7 @@
                     </div>
                     <div class="row text-center">
                         <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
-                            <button type="submit" class="btn btn-primary mt-3">Alugar!</button>
+                            <button type="button" class="btn btn-primary mt-3" onclick="div_show2()">Alugar!</button>
                         </form>
                     </div>
                     <div class="row text-center">
@@ -93,8 +94,11 @@
                         </form>
                     </div>
                 </div>
-                @endforeach
+                
             </div>
+
+
+            
             <div class="row p-3 profile-container" id="parteBaixo">
                 <div class="col">
                     <div class="p-3">
@@ -108,6 +112,23 @@
             </div>
         </div>
     </div>
+    <div id="abc2">
+                <!-- Popup Div Starts Here -->
+                <div id="popupContact">
+                    <!-- Contact Us Form -->
+                    <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" onsubmit="return check_empty()" id="form" method="post" name="form">
+                        <img id="close" src="/img/closeButton.png" onclick ="div_hide2()">
+                        <h1>Start Renting</h1>
+                        <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="">
+                        <input id="name" name="amountToAdd" placeholder="Amount" type="number" value="{{$propInfo['Preco']}}" disabled>
+                        <br><br><br>
 
-
+                        <!--<a href="javascript:%20check_empty()" id="submit" >Add</a>-->
+                        <button id="submitWallet" type="submit" name="sub" href="javascript:%20check_empty()">Pay</button>
+                    </form>
+                    </div>
+                    <!-- Popup Div Ends Here -->
+                </div>
+    </div>
+                @endforeach
 </body>

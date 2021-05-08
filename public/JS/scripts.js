@@ -18,6 +18,15 @@ function check_empty() {
     document.getElementById('abc').style.display = "none";
     }
 
+    //Function To Display Popup2
+    function div_show2() {
+    document.getElementById('abc2').style.display = "block";
+    }
+    //Function to Hide Popup2
+    function div_hide2(){
+    document.getElementById('abc2').style.display = "none";
+    }
+
     // $(document).ready(function(){
     //     $('#submitWallet').click(function(){
     //         check_empty();

@@ -9,6 +9,7 @@ use App\Models\Utilizador;
 use App\Models\Inquilino;
 use App\Models\HistoricoSaldo;
 use App\Models\Message;
+use App\Models\Likes;
 use App\routes\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -192,12 +193,14 @@ class InteressadoController extends Controller
         $user->save();
 
         $histSaldo = new HistoricoSaldo();
-        $user->IdSaldo=1;
+        //$user->IdSaldo=1;
         $histSaldo->IdUser=$id;
         $histSaldo->Username=$amount->input('nameUser');
         $histSaldo->Valor=$amount->input('amountToAdd');
         $histSaldo->Data=Carbon::now();
         $histSaldo->save();
+
+        //return view('wallet');
     }
 
     //Apresenta a pagina da wallet desse inquilino
@@ -216,6 +219,16 @@ class InteressadoController extends Controller
         //$user = Utilizador::where('username','=' ,$username)->get();
 
         return view('home');
+    }
+
+    //Atribuir interesse a uma propriedade, dando like
+    public function likeProp($id)
+    {
+        $prop2like = new Likes();
+        $prop2like->IdUser=$id;
+        $prop2like->IdPropriedade=2;
+        $prop2like->Data=Carbon::now();
+        $prop2like->save();
     }
 
     public function sendMessage(Request $request)
