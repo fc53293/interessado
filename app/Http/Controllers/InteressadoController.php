@@ -230,13 +230,16 @@ class InteressadoController extends Controller
     }
 
     //Atribuir interesse a uma propriedade, dando like
-    public function likeProp($id)
+    public function likeProp($idProp)
     {
-        $prop2like = new Likes();
-        $prop2like->IdUser=$id;
-        $prop2like->IdPropriedade=2;
-        $prop2like->Data=Carbon::now();
-        $prop2like->save();
+        $proplike = new Likes();
+        $proplike->IdUser=1;
+        $proplike->IdPropriedade=$idProp;
+        $proplike->Data=Carbon::now();
+        $proplike->save();
+
+        return response()->json('Deu like na propriedade');
+
     }
 
     public function sendMessage(Request $request)

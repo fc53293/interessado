@@ -52,6 +52,8 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('walletAdd/{id}', 'InteressadoController@addSaldo');
 
+    Route::post('/likeProperty/{idProp}', 'InteressadoController@likeProp');
+
     Route::get('/chat', 'InteressadoController@showChat');
 
     Route::get('/message/{user_id}', 'InteressadoController@getMessage');

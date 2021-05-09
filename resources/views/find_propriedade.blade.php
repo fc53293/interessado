@@ -147,7 +147,11 @@
                                         <div class="row p-2 position-relative" id="row4">
                                             <label class="fs-10">Metros quadrados: {{$propInfo['AreaMetros']}}</label>
                                         </div>
+                                        <form action="/likeProperty/{{$propInfo['IdPropriedade']}}" method="post" >
+                                        <button type="submit">like</button>
+                                        </form>
                                     </div>
+                                    
                                 </div>
                                 @endforeach
 
