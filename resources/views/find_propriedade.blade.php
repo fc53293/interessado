@@ -136,16 +136,20 @@
                                             <br>
                                         </div>
                                         <div class="row p-2 position-relative" id="row1">
-                                            <label class="fs-10">ID PROPRIEDADE: {{$propInfo['IdPropriedade']}}</label>
+                                            <label class="fs-10"><strong>ID PROPRIEDADE: </strong>{{$propInfo['IdPropriedade']}}</label>
                                         </div>
                                         <div class="row p-2 position-relative" id="row2">
-                                            <label class="fs-10">TIPO PROPRIEDADE: {{$propInfo['TipoPropriedade']}}</label>
+                                            <label class="fs-10"><strong>TIPO PROPRIEDADE: </strong>{{$propInfo['TipoPropriedade']}}</label>
                                         </div>
                                         <div class="row p-2 position-relative" id="row3">
-                                            <label class="fs-10">LOCALIZAÇÃO: {{$propInfo['Localizacao']}}</label>
+                                            <label class="fs-10"><strong>LOCALIZAÇÃO: </strong>{{$propInfo['Localizacao']}}</label>
                                         </div>
                                         <div class="row p-2 position-relative" id="row4">
-                                            <label class="fs-10">Metros quadrados: {{$propInfo['AreaMetros']}}</label>
+                                            <label class="fs-10"><strong>Metros quadrados: </strong>{{$propInfo['AreaMetros']}}</label>
+                                        </div>
+                                        <div class="row py-2 px-5" id="row5">
+                                            <button type="button" class="btn btn-outline-primary">Like me!</button>
+                                            <button type="button" class="btn btn-primary">Liked!</button>
                                         </div>
                                         <form action="/likeProperty/{{$propInfo['IdPropriedade']}}" method="post" >
                                         <button type="submit">like</button>
