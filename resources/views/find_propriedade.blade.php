@@ -121,17 +121,26 @@
                                         <p>Value: <span id="priceFilter"></span></p>
                                         <input type="hidden" id="priceFilter2" name="lprice" >
                                     </div>
-
                                     <div class="col p-2">
-                                        <input type="checkbox" id="vehicle1" name="oriSolar1" value="N">
-                                        <label for="vehicle1"> N</label><br>
-                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="S">
-                                        <label for="vehicle2"> S</label><br>
-                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="E">
-                                        <label for="vehicle2"> E</label><br>
-                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="O">
-                                        <label for="vehicle2"> O</label><br>
-                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="checkbox" id="vehicle1" name="oriSolar1" value="N">
+                                                <label for="vehicle1"> N</label><br>
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="S">
+                                                <label for="vehicle2"> S</label><br>
+
+                                            </div>
+
+                                            <div class="col-md-4">
+                            
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="E">
+                                                <label for="vehicle2"> E</label><br>
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="O">
+                                                <label for="vehicle2"> O</label><br>
+                                            </div>
+                                            <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
+
+                                        </div>
                                     </div>
                                     <div class="col text-center mt-5 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>
