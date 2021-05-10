@@ -156,8 +156,19 @@
 
                             <div id="divResultsProp" class="container profile-container__searchOptions text-center p-2 position-relative">
                                 @if(count($proprerties)>0)
-
+                                @php
+                                    $ckeckLike = False
+                                @endphp
                                 @foreach($proprerties as $propInfo)
+                                    @foreach($dataLike as $dataLikeCheck)
+                                        <!-- <p>{{$dataLikeCheck->IdPropriedade}}= {{$propInfo['IdPropriedade'] }}</p> -->
+
+                                        @if($dataLikeCheck->IdPropriedade == $propInfo['IdPropriedade'])
+                                            @php 
+                                                $ckeckLike = True
+                                            @endphp
+                                        @endif
+                                    @endforeach
                                 <div class="row">
                                     <div class="col h-25">
                                         <a href="{{ url('propertyInfo/' . $propInfo->IdPropriedade) }}">
@@ -182,7 +193,7 @@
                                         </div>
                                         <!--<div class="{{ $propInfo->IdPropriedade == 1 ? 'btn btn-primary' : 'btn btn-outline-primary' }}">-->
                                         <div class="row py-2 px-5" id="row5">
-                                            <button type="button" class="{{ $propInfo->IdPropriedade == 4 ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like!</button>
+                                            <button type="button" class="{{ $ckeckLike == True ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like!</button>
                                             <!--<button type="button" class="btn btn-primary">Liked!</button>-->
                                         </div>
                                         <form action="/likeProperty/{{$propInfo['IdPropriedade']}}" method="post" >
