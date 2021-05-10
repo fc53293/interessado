@@ -108,6 +108,10 @@ class InteressadoController extends Controller
         $search_data2 = $request->input('query2');
         $search_data3 = $request->input('areaMetros');
         $search_data4 = $request->input('lprice');
+        $search_data5 = $request->input('nquartos');
+        $search_data6 = $request->input('oriSolar1');
+        //$search_data7 = $request->input('oriSolar2');
+
         $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
         if (!$search_data1 && !$search_data2 && !$search_data3 && !$search_data4){
             $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
@@ -127,6 +131,19 @@ class InteressadoController extends Controller
             $proprerties = $proprerties->where('Preco', '<',(int)$search_data4);
 
         }
+
+        if ($search_data5){
+            $proprerties = $proprerties->where('NumeroQuartos',(int)$search_data5);
+
+        }
+
+        if ($search_data6){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('OrientacaoSolar',$search_data6);
+
+        }
+
+
         // else if ($search_data3 == ""){
         //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
         //     ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')

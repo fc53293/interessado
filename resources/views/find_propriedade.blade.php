@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
     <script type="text/javascript" src="/JS/sidebar.js"></script>
+    <script type="text/javascript" src="/JS/scripts.js"></script>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -92,6 +93,18 @@
                                             localidade</small>
                                     </div>
                                     <div class="col p-2">
+                                        <select class="form-control search-slt" name="nquartos"
+                                            id="exampleFormControlSelect1">
+                                            <option name="query5" value="">Numero de quartos</option>
+                                            <option name="query3" value="1">1</option>
+                                            <option name="query4" value="2">2</option>
+                                            <option name="query4" value="3">3</option>
+                                            <option name="query4" value="4">4</option>
+                                            <option name="query4" value="5">5</option>
+                                        </select>
+                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecionar o número de quartos</small>
+                                    </div>
+                                    <div class="col p-2">
                                         <select class="form-control search-slt" name="areaMetros" id="exampleFormControlSelect1">
                                             <option name="query5" value="">Qualquer área</option>
                                             <option name="query3" value="7">Até 7 m2</option>
@@ -108,7 +121,18 @@
                                         <p>Value: <span id="priceFilter"></span></p>
                                         <input type="hidden" id="priceFilter2" name="lprice" >
                                     </div>
-                                    
+
+                                    <div class="col p-2">
+                                        <input type="checkbox" id="vehicle1" name="oriSolar1" value="N">
+                                        <label for="vehicle1"> N</label><br>
+                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="S">
+                                        <label for="vehicle2"> S</label><br>
+                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="E">
+                                        <label for="vehicle2"> E</label><br>
+                                        <input type="checkbox" id="vehicle2" name="oriSolar1" value="O">
+                                        <label for="vehicle2"> O</label><br>
+                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
+                                    </div>
                                     <div class="col text-center mt-5 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>
                                     </div>
