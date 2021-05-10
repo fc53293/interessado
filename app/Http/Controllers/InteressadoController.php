@@ -160,8 +160,8 @@ class InteressadoController extends Controller
         // }
         //$proprerties->appends($request->all());
         $proprerties = $proprerties->where('Disponibilidade','disponivel')->paginate(1)->appends(request()->query());
-        
-        return view('find_propriedade',compact('proprerties'));
+        //return response()->json($dataLike);
+        return view('find_propriedade',compact('proprerties','dataLike'));
     }
 
     public function propertyInfo($id)
@@ -196,8 +196,8 @@ class InteressadoController extends Controller
        ->update([
            'Disponibilidade' => 'indisponivel'
         ]);
-        return response()->json($prop);
-        //return redirect('home');
+        //return response()->json($prop);
+        return redirect('home');
 
     }
 
