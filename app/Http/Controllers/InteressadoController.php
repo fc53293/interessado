@@ -159,7 +159,7 @@ class InteressadoController extends Controller
         //     ->get();
         // }
         //$proprerties->appends($request->all());
-        $proprerties = $proprerties->paginate(1)->appends(request()->query());
+        $proprerties = $proprerties->where('Disponibilidade','disponivel')->paginate(1)->appends(request()->query());
         
         return view('find_propriedade',compact('proprerties'));
     }
@@ -190,7 +190,14 @@ class InteressadoController extends Controller
         $user->FimContrato=Carbon::now();
         $user->save();
         }
-        return redirect('home');
+
+        //$prop = Propriedade::where('IdPropriedade','=',$idProp)->get();
+        $prop = Propriedade::where('IdPropriedade', $idProp)
+       ->update([
+           'Disponibilidade' => 'indisponivel'
+        ]);
+        return response()->json($prop);
+        //return redirect('home');
 
     }
 
