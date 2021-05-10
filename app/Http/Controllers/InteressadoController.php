@@ -102,37 +102,47 @@ class InteressadoController extends Controller
     public function findPropriedade(Request $request)
     {
         //$user = Utilizador::where('username','=' ,$username)->where('TipoConta','=' ,'Interessado')->get();
-        //$search_data1 = $_GET['query'];
+        $dataLike = Likes::where('IdUser','=' ,1)->get();
         //$search_data2 = $_GET['query'];
         $search_data1 = $request->input('tipoProp');
         $search_data2 = $request->input('query2');
         $search_data3 = $request->input('areaMetros');
         $search_data4 = $request->input('lprice');
-        
+        $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
+        if (!$search_data1 && !$search_data2 && !$search_data3 && !$search_data4){
+            $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
+        }
         //dd($search_data4);
-        if ($search_data3 == "" && $search_data2 == "" && $search_data3 == "" && $search_data3 == ""){
-            $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
-            ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
-            //->where('AreaMetros', '<',(int)$search_data3)
-            ->where('Preco', '<',(int)$search_data4)
-            ->paginate(1);
-        }
-        else if ($search_data3 == ""){
-            $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
-            ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
-            //->where('AreaMetros', '<',(int)$search_data3)
-            //->where('Preco', '<',(int)$search_data4)
-            ->paginate(1);
-        }
-        else{
-            $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
-            ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
-            ->where('AreaMetros', '<',(int)$search_data3)
-            ->where('Preco', '<',(int)$search_data4)
-            ->get();
-        }
-        $proprerties->appends($request->all());
+        if ($search_data1){
+            $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%');
 
+        }
+
+        if ($search_data2){
+            $proprerties = $proprerties->where('Localizacao', 'LIKE', '%'.$search_data2.'%');
+
+        }
+
+        if ($search_data4){
+            $proprerties = $proprerties->where('Preco', '<',(int)$search_data4);
+
+        }
+        // else if ($search_data3 == ""){
+        //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
+        //     ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
+        //     //->where('AreaMetros', '<',(int)$search_data3)
+        //     //->where('Preco', '<',(int)$search_data4)
+        //     ->paginate(1);
+        // }
+        // else{
+        //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
+        //     ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
+        //     ->where('AreaMetros', '<',(int)$search_data3)
+        //     ->where('Preco', '<',(int)$search_data4)
+        //     ->get();
+        // }
+        //$proprerties->appends($request->all());
+        $proprerties = $proprerties->paginate(1)->appends(request()->query());
         
         return view('find_propriedade',compact('proprerties'));
     }
