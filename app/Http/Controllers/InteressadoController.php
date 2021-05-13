@@ -10,6 +10,7 @@ use App\Models\Inquilino;
 use App\Models\HistoricoSaldo;
 use App\Models\Message;
 use App\Models\Likes;
+use App\Models\Rating;
 use App\routes\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -273,6 +274,15 @@ class InteressadoController extends Controller
         $proplike->save();
 
         return response()->json('Deu like na propriedade');
+
+    }
+
+
+    public function deleteLikeProp($idProp)
+    {
+        $proplike=Likes::where('IdPropriedade',$idProp)->delete();
+
+        return response()->json('Like retirado com sucesso');
 
     }
 

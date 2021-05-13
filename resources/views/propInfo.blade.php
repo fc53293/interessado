@@ -54,6 +54,8 @@
             </div>
         </div>
     </nav>
+    
+
     <!-- END Nav bar -->
 
     <div class="banner-image justify-content-center d-flex ">

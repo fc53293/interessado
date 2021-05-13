@@ -54,6 +54,8 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('/likeProperty/{idProp}', 'InteressadoController@likeProp');
 
+    Route::post('/nolikeProperty/{idProp}', 'InteressadoController@deleteLikeProp');
+
     Route::get('/chat', 'InteressadoController@showChat');
 
     Route::get('/message/{user_id}', 'InteressadoController@getMessage');

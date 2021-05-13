@@ -147,6 +147,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                             <!-- Fim Search Form -->
                         </div>
                         <div class="col-9">
@@ -157,7 +158,8 @@
                             <div id="divResultsProp" class="container profile-container__searchOptions text-center p-2 position-relative">
                                 @if(count($proprerties)>0)
                                 @php
-                                    $ckeckLike = False
+                                    $piaa = "False";
+                                    $ckeckLike = "False";
                                 @endphp
                                 @foreach($proprerties as $propInfo)
                                     @foreach($dataLike as $dataLikeCheck)
@@ -165,7 +167,7 @@
 
                                         @if($dataLikeCheck->IdPropriedade == $propInfo['IdPropriedade'])
                                             @php 
-                                                $ckeckLike = True
+                                                $ckeckLike = "True";
                                             @endphp
                                         @endif
                                     @endforeach
@@ -191,16 +193,42 @@
                                         <div class="row p-2 position-relative" id="row4">
                                             <label class="fs-10"><strong>Metros quadrados: </strong>{{$propInfo['AreaMetros']}} m2</label>
                                         </div>
-                                        <!--<div class="{{ $propInfo->IdPropriedade == 1 ? 'btn btn-primary' : 'btn btn-outline-primary' }}">-->
+                                        <!--<div class="{{ $propInfo->IdPropriedade == 1 ? 'btn btn-primary' : 'btn btn-outline-primary' }}">
                                         <div class="row py-2 px-5" id="row5">
-                                            <button type="button" class="{{ $ckeckLike == True ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like!</button>
-                                            <!--<button type="button" class="btn btn-primary">Liked!</button>-->
-                                        </div>
-                                        <form action="/likeProperty/{{$propInfo['IdPropriedade']}}" method="post" >
-                                        <button type="submit">like</button>
+                                            <button type="button" class="{{ $ckeckLike == 'True' ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like!</button>
+                                            <button type="button" class="btn btn-primary">Liked!</button>
+                                        </div>-->
+                                        <form  method="post" id="formLike">
+                                            <div class="row py-2 px-5" id="row5">
+                                                <button type="submit" class="{{ $ckeckLike == 'True' ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like</button>
+                                            </div>
                                         </form>
                                     </div>
+                                    <script>
+
                                     
+    
+                                    $(document).ready(function(){
+                                    
+                                    $('#formLike').on('click', function(event){
+                                        
+                                        // var a = $(this);
+                                        // var form = $('#formLike');
+                                        // var action = a.attr('id');
+                                        var var_verLike = "<?php echo $ckeckLike; ?>";
+                                        //alert(var_verLike);
+                                        if (var_verLike == "True"){
+                                            $("#formLike").attr('action', "/nolikeProperty/{{$propInfo['IdPropriedade']}}"); //Se ja tiver like faz isto (vai buscar a func pa tirar like)
+                                            form.submit();
+                                        }else{
+                                            $("#formLike").attr('action', "/likeProperty/{{$propInfo['IdPropriedade']}}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
+                                            form.submit(); 
+                                        }
+                                        //action="/likeProperty/{{$propInfo['IdPropriedade']}}"
+                                    });
+
+                                    });
+                                    </script>
                                 </div>
                                 @endforeach
 
