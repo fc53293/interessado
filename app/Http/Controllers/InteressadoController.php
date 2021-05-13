@@ -168,8 +168,12 @@ class InteressadoController extends Controller
     public function propertyInfo($id)
     {
         $property = Propriedade::where('IdPropriedade', $id)->get();
+        $ratingGiven = Rating::where('IdPropriedade', $id)->where('IdUser',1)->get();
+        $avgStar = Rating::where('IdPropriedade', $id)->avg('Rating');
 
-        return view('propInfo',compact('property'));
+
+        //return response()->json($avgStar);
+        return view('propInfo',compact('property','ratingGiven','avgStar'));
     }
 
     public function starNewRent($idProp)
@@ -296,7 +300,11 @@ class InteressadoController extends Controller
         $proplike->Data=Carbon::now();
         $proplike->save();
 
-        return response()->json('Classificou a propriedade');
+        $avgStar = Rating::where('IdPropriedade', $idProp)->avg('Rating');
+
+
+        //return compact('medStar');
+        return response()->json(['res'=>$avgStar]);
 
     }
 

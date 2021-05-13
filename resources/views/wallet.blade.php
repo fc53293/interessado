@@ -87,7 +87,7 @@
                     <!-- Popup Div Starts Here -->
                     <div id="popupContact">
                         <!-- Contact Us Form -->
-                        <form action="/walletAdd/{{ $info['IdUser'] }}" onsubmit="return check_empty()" id="form" method="post" name="form">
+                        <form action="/walletAdd/{{ $info['IdUser'] }}" onsubmit="return check_empty()" id="form" method="POST" name="form">
                             <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
                             <h1>Amount</h1>
                             <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
@@ -101,6 +101,29 @@
                         <!-- Popup Div Ends Here -->
                     </div>
                 </div>
+                <script>
+                    
+                    $('#submitWallet').on('click', function(e) {
+                    alert("ola");
+                    req = $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'JSON',
+                        url: $('#form').attr('action'),
+                        data: {},
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+                    req.done(function(data){
+                        //$('#totalAVGrating').fadeOut(500).fadeIn(500);
+                        //$('#valorRate').text(data.res);
+                        alert("feito");
+                    });
+                    
+
+                    });
+                </script>
             
         </div>
     </div>

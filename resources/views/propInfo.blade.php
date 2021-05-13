@@ -70,18 +70,23 @@
                             
                         @foreach($property as $propInfo) 
                         <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
-                        <fieldset class="rating">
-                            <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                            <input type="radio" id="star4half" name="star" value="4.5" classe="fa"><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                            <input type="radio" id="star4" name="star" value="4" classe="fa"><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                            <input type="radio" id="star3half" name="star" value="3.5" classe="fa"><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                            <input type="radio" id="star3" name="star" value="3" classe="fa"><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                            <input type="radio" id="star2half" name="star" value="2.5" classe="fa"><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                            <input type="radio" id="star2" name="star" value="2" classe="fa"><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1half" name="star" value="1.5" classe="fa"><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                            <input type="radio" id="star1" name="star" value="1" classe="fa"><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                            <input type="radio" id="starhalf" name="star" value="0.5" classe="fa"><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                        </fieldset>
+                            <div class="mt-3 p-2 star-icon d-flex justify-content-center">
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="star" value="4.5" classe="fa"><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="star" value="4" classe="fa"><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="star" value="3.5" classe="fa"><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="star" value="3" classe="fa"><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="star" value="2.5" classe="fa"><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="star" value="2" classe="fa"><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="star" value="1.5" classe="fa"><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="star" value="1" classe="fa"><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="star" value="0.5" classe="fa"><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                            </div>
+                            <div class="mt-3 p-2 star-icon d-flex justify-content-center">
+                                <label >Media Rating: </label> <h3 id="totalAVGrating"><b id="valorRate">{{$avgStar}}</b> </h3><i class="fa fa-star" data-rating="2" style="font-size:20px;color:#ff9f00;"></i>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -118,11 +123,106 @@
                 </div>
 
             </div>
+            @if(count($ratingGiven)>0)
+                @foreach($ratingGiven as $specificRating)
+                    @if($specificRating['Rating'] == 5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star5").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 4.5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star4half").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 4)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star4").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 3.5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star3half").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 3)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star3").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 2.5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star2half").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 2)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star2").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 1.5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star1half").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 1)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#star1").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @elseif($specificRating['Rating'] == 0.5)
+                    <script>
+                    //alert({{$specificRating['Rating']}});
+                        $(document).ready(function(){
+                            $(() => { 
+                                $("#starhalf").prop("checked", true) 
+                            });
+                        });
+                    </script>
+                    @endif
 
+                @endforeach
+            @endif
             <script>
                 $('#addStar').change('.fa', function(e) {
                 //alert("ola");
-                $.ajax({
+                req = $.ajax({
                     type: 'POST',
                     cache: false,
                     dataType: 'JSON',
@@ -132,6 +232,13 @@
                     console.log(data);
                     }
                 });
+                req.done(function(data){
+                    //$('#totalAVGrating').fadeOut(500).fadeIn(500);
+                    $('#valorRate').text(data.res);
+                    //console.log(res);
+                });
+                
+
                 });
             </script>
 
