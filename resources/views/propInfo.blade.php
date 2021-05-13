@@ -5,6 +5,8 @@
     <meta name="author" content="UniRent">
     <title> House | UniRent</title>
     <link rel="shortcut icon" type="image/jpg" href="img/logo/UniRent-V2.png" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/CSS/style.css">
@@ -57,7 +59,7 @@
     
 
     <!-- END Nav bar -->
-
+    
     <div class="banner-image justify-content-center d-flex ">
         <div class="container profile-container">
             <div class="row p-3 profile-container" id="parteCima">
@@ -65,21 +67,26 @@
                     <div class="row d-flex justify-content-center" id="dataCasa__imagens">
                         <img class="img-fluid" id="imgCasa" src="/img/QUARTO.jpg"
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
-                        <div class="mt-3 p-2 star-icon d-flex justify-content-center">
-                            <input type="radio" name="rating1" id="rating1">
-                            <label for="rating1" class="fa fa-star"></label>
-                            <input type="radio" name="rating1" id="rating2">
-                            <label for="rating2" class="fa fa-star"></label>
-                            <input type="radio" name="rating1" id="rating3">
-                            <label for="rating3" class="fa fa-star"></label>
-                            <input type="radio" name="rating1" id="rating4">
-                            <label for="rating4" class="fa fa-star"></label>
-                            <input type="radio" name="rating1" id="rating5">
-                            <label for="rating5" class="fa fa-star"></label>
-                        </div>
+                            
+                        @foreach($property as $propInfo) 
+                        <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="star" value="4.5" classe="fa"><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="star" value="4" classe="fa"><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="star" value="3.5" classe="fa"><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="star" value="3" classe="fa"><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="star" value="2.5" classe="fa"><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="star" value="2" classe="fa"><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="star" value="1.5" classe="fa"><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="star" value="1" classe="fa"><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="star" value="0.5" classe="fa"><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+                        </form>
                     </div>
                 </div>
-                @foreach($property as $propInfo)
+                
+                
                 <div class="col" id="infoCasa">
                     <div class="row infoCasa__Border m-3">
                         <h1 class="infoCasa__Preco text-center p-3">{{$propInfo['Preco']}}€/Mês</h1>
@@ -112,7 +119,21 @@
 
             </div>
 
-
+            <script>
+                $('#addStar').change('.fa', function(e) {
+                //alert("ola");
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    dataType: 'JSON',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                    console.log(data);
+                    }
+                });
+                });
+            </script>
 
             <div class="row p-3 profile-container" id="parteBaixo">
                 <div class="col">

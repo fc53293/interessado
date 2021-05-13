@@ -277,12 +277,26 @@ class InteressadoController extends Controller
 
     }
 
-
+    //Retirar o like dado anteriormente 
     public function deleteLikeProp($idProp)
     {
         $proplike=Likes::where('IdPropriedade',$idProp)->delete();
 
         return response()->json('Like retirado com sucesso');
+
+    }
+
+    //Atribuir pontuação a uma propriedade
+    public function rateProp(Request $req, $idProp)
+    {
+        $proplike = new Rating();
+        $proplike->IdUser=1;
+        $proplike->IdPropriedade=$idProp;
+        $proplike->Rating=$req->input('star');
+        $proplike->Data=Carbon::now();
+        $proplike->save();
+
+        return response()->json('Classificou a propriedade');
 
     }
 
