@@ -311,7 +311,7 @@ h3 {
     transform: translate(-50%, -50%);
 }
 
-  #form > img#close {
+  #formAddSaldo > img#close {
     position: absolute;
     top: -10;
     cursor: pointer;
@@ -329,7 +329,7 @@ h3 {
       transform: translate(-50%, -50%);
   }
   
-    #form {
+    #formAddSaldo {
     max-width:300px;
     min-width:250px;
     padding:10px 50px;
@@ -345,7 +345,7 @@ h3 {
     border-top:1px solid #ccc
     }
     
-    #form input[type=text] {
+    #formAddSaldo input[type=text] {
     width:82%;
     padding:10px;
     margin-top:30px;

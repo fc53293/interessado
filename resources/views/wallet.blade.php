@@ -87,7 +87,7 @@
                     <!-- Popup Div Starts Here -->
                     <div id="popupContact">
                         <!-- Contact Us Form -->
-                        <form action="/walletAdd/{{ $info['IdUser'] }}" onsubmit="return check_empty()" id="form" method="POST" name="form">
+                        <form action="{{url('/walletAdd/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form">
                             <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
                             <h1>Amount</h1>
                             <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
@@ -95,7 +95,7 @@
                             <br><br><br>
 
                             <!--<a href="javascript:%20check_empty()" id="submit" >Add</a>-->
-                            <button id="submitWallet" type="submit" name="sub" href="javascript:%20check_empty()">Add</button>
+                            <button id="submitWallet" name="sub" type="submit" onclick="return check_empty()" href="javascript:%20check_empty()">Add</button>
                         </form>
                         </div>
                         <!-- Popup Div Ends Here -->
@@ -103,22 +103,29 @@
                 </div>
                 <script>
                     
-                    $('#submitWallet').on('click', function(e) {
-                    alert("ola");
+                    $('#formAddSaldo').submit(function(e) {
+                    //alert("ola");
+                    e.preventDefault();
                     req = $.ajax({
                         type: 'POST',
                         cache: false,
                         dataType: 'JSON',
-                        url: $('#form').attr('action'),
-                        data: {},
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
                         success: function(data) {
                             console.log(data);
                         }
                     });
+                    
                     req.done(function(data){
                         //$('#totalAVGrating').fadeOut(500).fadeIn(500);
-                        //$('#valorRate').text(data.res);
-                        alert("feito");
+                        div_hide();
+                        $('.amount-box').fadeOut(1000).fadeIn(1000);
+                        setTimeout(function(){
+                            $('.amount').text(data.res+" €");
+                        }, 1000);
+                        
+                        //alert("feito");
                     });
                     
 

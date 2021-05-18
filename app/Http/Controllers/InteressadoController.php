@@ -247,7 +247,7 @@ class InteressadoController extends Controller
         $histSaldo->Data=Carbon::now();
         $histSaldo->save();
 
-        //return view('wallet');
+        return response()->json(['res'=>$user->Saldo]);
     }
 
     //Apresenta a pagina da wallet desse inquilino
