@@ -64,17 +64,32 @@
     
 
     <!-- END Nav bar -->
-    
+    @foreach($property as $propInfo)
     <div class="banner-image justify-content-center d-flex ">
         <div class="container profile-container">
             <div class="row p-3 profile-container" id="parteCima">
                 <div class="col align-middle" id="dataCasa">
                     <div class="row d-flex justify-content-center" id="dataCasa__imagens">
-                        <img class="img-fluid" id="imgCasa" src="/img/QUARTO.jpg"
+                        <img class="img-fluid mt-2" id="imgCasa" src="/img/QUARTO.jpg"
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
                         <form class="foodstars" action="{{ url('/rateProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" id="addStar" method="POST">
+                        <div class=" px-3 pt-3 profile-container text-center">
+                            <h2>Orientação Solar</h2>
+                            <h3>
+                            @if(($propInfo['OrientacaoSolar']) == "N")
+                                Norte
+                            @elseif(($propInfo['OrientacaoSolar']) == "S")
+                                Sul
+                            @elseif(($propInfo['OrientacaoSolar']) == "E")
+                                Este
+                            @elseif(($propInfo['OrientacaoSolar']) == "O")
+                                Oeste
+                            @endif                          
+                            </h3>
+                        </div>
+                        <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -111,7 +126,7 @@
                             <p>{{$propInfo['Descricao']}}</p>
                         </div>
                         <div class="infoCasa__Descricao px-3 py-1">
-                            <h2>Area: </h2>
+                            <h2>Área: </h2>
                             <p>{{$propInfo['AreaMetros']}} m2</p>
                         </div>
                     </div>
@@ -124,8 +139,47 @@
                         <form action="" method="post" name="form">
                             <button type="submit" class="btn btn-primary mt-3">Contactar Proprietário</button>
                         </form>
+                        <div class="infoCasa__Descricao px-3 py-1">
+                            <h2>Número de quartos: </h2>
+                            <p>{{$propInfo['NumeroQuartos']}}
+                            @if(($propInfo['NumeroQuartos']) == 1)
+                                quarto
+                            @else
+                                quartos
+                            @endif
+                            </p>
+                        </div>
+                        <div class="infoCasa__Descricao px-3 py-1">
+                            <h2>Casas de banho: </h2>
+                            <p>{{$propInfo['CasasBanho']}}</p>
+                        </div>
+                        <div class="infoCasa__Descricao px-3 py-1">
+                            <h2>Estado do alojamento: </h2>
+                            <p>{{$propInfo['EstadoConservacao']}}</p>
+                        </div>
+                        <div class="infoCasa__Descricao px-3 py-1">
+                            <h2>Lotação: </h2>
+                            <p>{{$propInfo['Lotacao']}}</p>
+                        </div>
+                        <div class="infoCasa__Descricao px-3 py-1">
+                            <h2>Duração Aluguer: </h2>
+                            <p>{{$propInfo['DuracaoAluger']}} meses</p>
+                        </div>
+                        <div class="px-3">
+                            <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="div_show2()">Alugar!</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
+            <div class="d-flex flex-row justify-content-start">
+                <div class="p-2">
+                    <form action="" method="post" name="form">
+                        <button type="submit" class="btn btn-outline-primary">Contactar Proprietário</button>
+                    </form>
+                </div>
+            </div>
 
             </div>
             @if(count($ratingGiven)>0)
