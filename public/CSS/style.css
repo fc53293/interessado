@@ -402,7 +402,12 @@ h3 {
     .slidecontainer {
       width: 100%;
     }
-    
+
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+
     .slider {
       -webkit-appearance: none;
       width: 100%;
