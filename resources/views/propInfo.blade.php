@@ -22,6 +22,7 @@
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
     <script src="/js/scripts.js"></script>
+    <script src="/js/mapsAPI.js"></script>
 </head>
 
 <body>
@@ -248,9 +249,23 @@
                         <h1>Localização</h1>
                     </div>
                     <div class="p-3 d-flex justify-content-center">
-                        <img class="img-fluid" src="/img/mapa.png"
-                            style="max-width: 500px; width:100%;  border-radius: 50px !important;">
+                        <div id="map"></div>
+
+
                     </div>
+                    <script>
+                        function initMap() {
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 14,
+                            center: { lat: {{ $propInfo['Latitude'] }}, lng: {{ $propInfo['Longitude'] }} },
+                        });
+                        new google.maps.Marker({
+                        position: map['center'],
+                        map,
+                        title: "Hello World!",
+                        });
+                        }
+                    </script>
                 </div>
             </div>
         </div>
