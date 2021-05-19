@@ -22,7 +22,7 @@
 
 <body>
 
-
+{{$data}}
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -128,7 +128,7 @@ END Comments -->
     </div>
 </div>
 
-<script>
-    console.log("Teste data contrato",{{$result}});
-</script>
+<!-- <script>
+    console.log("Teste data contrato",{{$data}});
+</script> -->
 </body>

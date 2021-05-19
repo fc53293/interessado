@@ -267,7 +267,7 @@ class InteressadoController extends Controller
         $myDate = '2021-05-19 01:11:43';
         $result = Carbon::createFromFormat('Y-m-d H:i:s', $myDate)->isPast();
 
-        return view('home',compact('result'));
+        return view('home',['data'=>$result]);
     }
 
     //Atribuir interesse a uma propriedade, dando like
