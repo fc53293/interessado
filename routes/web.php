@@ -40,23 +40,23 @@ Route::group(['prefix' => ''], function () {
 
     Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
 
-    Route::get('findPropriedade', 'InteressadoController@findPropriedade');
+    Route::get('findPropriedade/{idUser}', 'InteressadoController@findPropriedade');
 
     Route::post('edit/{id}', 'InteressadoController@updateInquilino');
 
     Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
 
-    Route::post('startNewRent/{idProp}', 'InteressadoController@starNewRent');
+    Route::post('startNewRent/{idProp}/user/{idUser}', 'InteressadoController@starNewRent');
 
     Route::get('wallet/{id}', 'InteressadoController@showWallet');
 
     Route::post('walletAdd/{id}', 'InteressadoController@addSaldo');
 
-    Route::post('/likeProperty/{idProp}', 'InteressadoController@likeProp');
+    Route::post('/likeProperty/{idProp}/user/{idUser}', 'InteressadoController@likeProp');
 
-    Route::post('/nolikeProperty/{idProp}', 'InteressadoController@deleteLikeProp');
+    Route::post('/nolikeProperty/{idProp}/user/{idUser}', 'InteressadoController@deleteLikeProp');
 
-    Route::post('/rateProperty/{idProp}', 'InteressadoController@rateProp');
+    Route::post('/rateProperty/{idProp}/user/{idUser}', 'InteressadoController@rateProp');
 
     Route::get('/chat', 'InteressadoController@showChat');
 
@@ -64,7 +64,7 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('message', 'InteressadoController@sendMessage');
 
-    Route::post('/storeImg', 'InteressadoController@storeProfileImg');
+    Route::post('/storeImg/{id}', 'InteressadoController@storeProfileImg');
 
 });
 

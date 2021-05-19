@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <head>
     <!DOCTYPE html>
     <html lang="en">
@@ -42,13 +46,13 @@
                         <a class="nav-link text-black text-end" href="{{ url('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/{id}') }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade/'.$_SESSION['id']) }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('wallet/{id}') }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('wallet/'.$_SESSION['id']) }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -70,7 +74,7 @@
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
-                        <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
+                        <form class="foodstars" action="{{ url('/rateProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" id="addStar" method="POST">
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -92,7 +96,7 @@
                     </div>
                 </div>
                 
-                
+
                 <div class="col" id="infoCasa">
                     <div class="row infoCasa__Border m-3">
                         <h1 class="infoCasa__Preco text-center p-3">{{$propInfo['Preco']}}€/Mês</h1>
@@ -112,7 +116,7 @@
                         </div>
                     </div>
                     <div class="row text-center">
-                        <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
+                        <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" method="POST" name="form">
                             <button type="button" class="btn btn-primary mt-3" onclick="div_show2()">Alugar!</button>
                         </form>
                     </div>
@@ -274,7 +278,7 @@
         <!-- Popup Div Starts Here -->
         <div id="popupContact">
             <!-- Contact Us Form -->
-            <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" onsubmit="return check_empty()" id="form"
+            <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" onsubmit="return check_empty()" id="form"
                 method="post" name="form">
                 <img id="close" src="/img/closeButton.png" onclick="div_hide2()">
                 <h1>Start Renting</h1>

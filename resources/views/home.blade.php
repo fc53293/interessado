@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <head>
     <html lang="en">
     <meta charset="UTF-8">
@@ -22,7 +26,10 @@
 
 <body>
 
-
+<?php
+$_SESSION['id'] = 2;
+//echo $_SESSION['id'];
+?>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -38,13 +45,13 @@
                     <a class="nav-link text-black text-end" href="{{ url('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/{id}') }}">Profile</a>
+                    <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('findPropriedade') }}">Search</a>
+                    <a class="nav-link text-black text-end" href="{{ url('findPropriedade/'.$_SESSION['id']) }}">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('wallet/{id}') }}">Wallet</a>
+                    <a class="nav-link text-black text-end" href="{{ url('wallet/'.$_SESSION['id']) }}">Wallet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-black text-end" href="#">Sign Out</a>

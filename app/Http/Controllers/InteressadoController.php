@@ -20,7 +20,7 @@ Use Carbon\Carbon;
 class InteressadoController extends Controller
 {
  
-
+    
     //Create a new Inquilino
 
     public function createInquilino(Request $request)
@@ -100,10 +100,10 @@ class InteressadoController extends Controller
         return view('profile_interessado',compact('data'));
     }
 
-    public function findPropriedade(Request $request)
+    public function findPropriedade(Request $request, $idUser)
     {
         //$user = Utilizador::where('username','=' ,$username)->where('TipoConta','=' ,'Interessado')->get();
-        $dataLike = Likes::where('IdUser','=' ,1)->get();
+        $dataLike = Likes::where('IdUser',$idUser)->get();
         //$search_data2 = $_GET['query'];
         $search_data1 = $request->input('tipoProp');
         $search_data2 = $request->input('query2');
@@ -176,23 +176,22 @@ class InteressadoController extends Controller
         return view('propInfo',compact('property','ratingGiven','avgStar'));
     }
 
-    public function starNewRent($idProp)
+    public function starNewRent(Request $request, $idProp,$idUser)
     {
-        // $values = array('IdInquilino' => 2,'IdUser'=> 3,'Username' => 'tobias','IdPropriedade' => 2,'InicoiContrato' => '2021-03-16 16:22:55','FimContrato' => '2021-03-16 16:22:55');
-        // DB::table('inquilino')->insert($values);
-        //return view('propInfo',compact('property'));
-        $userLoged = 1;
-        $data = Utilizador::where('IdUser','=' ,$userLoged)->get();
+
+        $userLoged = $idUser;
+        
+        $data = Utilizador::where('IdUser',$userLoged)->get();
+        $prop = Propriedade::where('IdPropriedade',$idProp)->value('DuracaoAluguer');
         foreach ($data as $dataz) {
         
         
         $user = new Inquilino();
-        //$user->IdSenhorio=1;
         $user->IdUser=$userLoged;
         $user->Username=$dataz->Username;
         $user->IdPropriedade=$idProp;
         $user->InicoiContrato=Carbon::now();
-        $user->FimContrato="2021-05-18 03:25:36";
+        $user->FimContrato=Carbon::now()->addMonthsNoOverflow((int)$prop);
         $user->save();
         }
 
@@ -271,10 +270,12 @@ class InteressadoController extends Controller
     }
 
     //Atribuir interesse a uma propriedade, dando like
-    public function likeProp($idProp)
+    public function likeProp(Request $request,$idProp,$idUser)
     {
+        $userLoged = $idUser;
+
         $proplike = new Likes();
-        $proplike->IdUser=1;
+        $proplike->IdUser=$userLoged;
         $proplike->IdPropriedade=$idProp;
         $proplike->Data=Carbon::now();
         $proplike->save();
@@ -284,19 +285,19 @@ class InteressadoController extends Controller
     }
 
     //Retirar o like dado anteriormente 
-    public function deleteLikeProp($idProp)
+    public function deleteLikeProp($idProp,$idUser)
     {
-        $proplike=Likes::where('IdPropriedade',$idProp)->delete();
+        $proplike=Likes::where('IdPropriedade',$idProp)->where('IdUser',$idUser)->delete();
 
         return response()->json('Like retirado com sucesso');
 
     }
 
     //Atribuir pontuação a uma propriedade
-    public function rateProp(Request $req, $idProp)
+    public function rateProp(Request $req, $idProp, $idUser)
     {
         $proplike = new Rating();
-        $proplike->IdUser=1;
+        $proplike->IdUser=$idUser;
         $proplike->IdPropriedade=$idProp;
         $proplike->Rating=$req->input('star');
         $proplike->Data=Carbon::now();
@@ -354,7 +355,7 @@ class InteressadoController extends Controller
     }
 
     //Guardar a imagem de perfil
-    public function storeProfileImg(Request $req)
+    public function storeProfileImg(Request $req, $id)
     {
         //Methods we can use on Request
         //guessExtension()
@@ -379,7 +380,7 @@ class InteressadoController extends Controller
 
         $req->imgProfile->move('img',$newImgName);
 
-        $user = Utilizador::find(1);
+        $user = Utilizador::find($id);
         $user->imagem=$newImgName;
         $user->save();
     }

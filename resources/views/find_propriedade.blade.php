@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <head>
     <!DOCTYPE html>
     <html lang="en">
@@ -30,6 +34,7 @@
 </head>
 
 <body>
+    
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -46,13 +51,13 @@
                         <a class="nav-link text-black text-end" href="{{ url('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/{id}') }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade'.$_SESSION['id']) }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('wallet/{id}') }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('wallet/'.$_SESSION['id']) }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -74,7 +79,7 @@
                         <div class="col-3 pt-2">
                             <!-- Inicio Search Form-->
                             <br>
-                            <form action="{{url('/findPropriedade')}}" type="get" novalidate="novalidate">
+                            <form action="{{url('/findPropriedade/'.$_SESSION['id'])}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
@@ -218,10 +223,10 @@
                                         var var_verLike = "<?php echo $ckeckLike; ?>";
                                         //alert(var_verLike);
                                         if (var_verLike == "True"){
-                                            $("#formLike").attr('action', "/nolikeProperty/{{$propInfo['IdPropriedade']}}"); //Se ja tiver like faz isto (vai buscar a func pa tirar like)
+                                            $("#formLike").attr('action', "{{ url('/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}"); 
                                             form.submit();
                                         }else{
-                                            $("#formLike").attr('action', "/likeProperty/{{$propInfo['IdPropriedade']}}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
+                                            $("#formLike").attr('action', "{{ url('/likeProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
                                             form.submit(); 
                                         }
                                         //action="/likeProperty/{{$propInfo['IdPropriedade']}}"
