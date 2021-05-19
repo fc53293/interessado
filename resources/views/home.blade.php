@@ -1,5 +1,4 @@
 <head>
-    <!DOCTYPE html>
     <html lang="en">
     <meta charset="UTF-8">
     <meta name="author" content="UniRent">
@@ -129,7 +128,7 @@ END Comments -->
     </div>
 </div>
 
-
-
-
+<script>
+    console.log("Teste data contrato",{{$result}});
+</script>
 </body>

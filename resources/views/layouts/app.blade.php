@@ -239,7 +239,7 @@
                 
                 var datastr = "receiver_id=" + receiver_id + "&message=" + message;
                 console.log("datastr ",datastr);
-                $.ajax({
+                req = $.ajax({
                     type: "post",
                     url: "message", // need to create this post route
                     data: datastr,
@@ -249,10 +249,21 @@
                     },
                     error: function (jqXHR, status, err) {
                     },
+                    
                     complete: function () {
                         scrollToBottomFunc();
                     }
+
                 })
+
+                req.done(function(data){
+                    $('.message-wrapper').fadeOut(800, function(){
+                            this.html(data).fadeIn().delay(2000);
+
+                        });
+                });
+
+                
             }
         });
     });

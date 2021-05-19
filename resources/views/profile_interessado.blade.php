@@ -71,9 +71,45 @@
                 <h6>{{ $user['PrimeiroNome'] }} {{ $user['UltimoNome'] }}</h6>
                 <p class="designation">{{ $user['TipoConta'] }}</p>
               </div>
-            </div>
+              <form action="{{url('/storeImg') }}" method="POST" enctype="multipart/form-data" id="formFotoPerfil">
+                            <label for="formFileLg" class="form-label">Image input</label>
+                            <input class="form-control form-control-lg" id="formFileLg" type="file" name="imgProfile">
+                            <button type="submit">Submit</button>
+              </form>
+              </div>
           </div>
+          <script>
+            var data = new FormData();
+            jQuery.each(jQuery('#file')[0].files, function(i, file) {
+                data.append('file-'+i, file);
+            });    
 
+            $('#formFotoPerfil').submit(function(e) {
+            alert("ola");
+            e.preventDefault();
+            req = $.ajax({
+              url: $(this).attr('action'),
+              data: data,
+              cache: false,
+              contentType: false,
+              processData: false,
+              type: 'POST', // For jQuery < 1.9
+              success: function(data){
+                  alert(data);
+              }
+            });
+            req.done(function(data){
+   
+              $('.advisor_thumb').fadeOut(1000).fadeIn(1000);
+              setTimeout(function(){
+                  $('.designation').text("biralas");
+              }, 1000);
+              
+              //alert("feito");
+            });
+
+            });
+            </script>
         <div class="col-8">
           <div class="row">
             <div class="col">
@@ -86,7 +122,7 @@
           <div class="col profile-container__information">
 
             @foreach ($data as $user)
-              <form action="/edit/{{ $user['IdUser'] }}" method="POST">
+              <form action="/edit/{{ $user['IdUser'] }}" method="POST" id="formPerfil">
                   
                   <input type="hidden" name="username" value="{{$user['Username']}}">
 
@@ -140,7 +176,35 @@
                   <button type="submit" class="m-2 btn btn-primary " >Make Changes!</button>
                 </form>
             @endforeach
+            <script>
+                    $('#formPerfil').submit(function(e) {
+                    //alert("ola");
+                    e.preventDefault();
+                    req = $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'JSON',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+                    
+                    req.done(function(data){
+                        //$('#totalAVGrating').fadeOut(500).fadeIn(500);
+                        
+                        $('.form-group').fadeOut(1000).fadeIn(1000);
+                        // setTimeout(function(){
+                        //     $('.amount').text(data.res+" €");
+                        // }, 1000);
+                        
+                        //alert("feito");
+                    });
+                    
 
+                    });
+            </script>
               <h2 class="mt-5 p-2 font-effect__blue">Recentes:</h2>
       
                 <!--<div class="row mx-2 text-center profile-container__recentViewed">

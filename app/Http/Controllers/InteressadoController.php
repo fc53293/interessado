@@ -192,7 +192,7 @@ class InteressadoController extends Controller
         $user->Username=$dataz->Username;
         $user->IdPropriedade=$idProp;
         $user->InicoiContrato=Carbon::now();
-        $user->FimContrato=Carbon::now();
+        $user->FimContrato="2021-05-18 03:25:36";
         $user->save();
         }
 
@@ -264,8 +264,10 @@ class InteressadoController extends Controller
     public function goHome()
     {
         //$user = Utilizador::where('username','=' ,$username)->get();
+        $myDate = '2021-05-19 01:11:43';
+        $result = Carbon::createFromFormat('Y-m-d H:i:s', $myDate)->isPast();
 
-        return view('home');
+        return view('home',compact('result'));
     }
 
     //Atribuir interesse a uma propriedade, dando like
@@ -346,11 +348,40 @@ class InteressadoController extends Controller
         
         // $pusher = new Pusher\Pusher( $app_key, $app_secret, $app_id, array('cluster' => $app_cluster) );
 
-        $data= "string do gui";
-        //$data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
-        //$data = array('from' => $from, 'to' => $to);
+        $data = ['from' => $from, 'to' => $to]; // sending from and to user id when pressed enter
         $pusher->trigger('my-channel', 'my-event', $data);
 
+    }
+
+    //Guardar a imagem de perfil
+    public function storeProfileImg(Request $req)
+    {
+        //Methods we can use on Request
+        //guessExtension()
+        //getMimeType()
+        //store()
+        //asStore()
+        //storePublicly()
+        //move
+        //getClientOriginalName()
+        //getClientMimeType()
+        //guessClientExtension()
+
+        //dd($req->all());
+        $this->validate($req,[
+            'imgProfile' => 'required|mimes:jpg,png,jpeg,|max:5048'
+        ]);
+        $file = $req->imgProfile->getClientOriginalName();
+        $fileName = pathinfo($file,PATHINFO_FILENAME);
+
+        $newImgName = time() . '-' . $fileName . '.' . 
+        $req->imgProfile->extension();
+
+        $req->imgProfile->move('img',$newImgName);
+
+        $user = Utilizador::find(1);
+        $user->imagem=$newImgName;
+        $user->save();
     }
 }
 ?>

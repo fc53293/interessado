@@ -63,6 +63,9 @@ Route::group(['prefix' => ''], function () {
     Route::get('/message/{user_id}', 'InteressadoController@getMessage');
 
     Route::post('message', 'InteressadoController@sendMessage');
+
+    Route::post('/storeImg', 'InteressadoController@storeProfileImg');
+
 });
 
 //Testes:
