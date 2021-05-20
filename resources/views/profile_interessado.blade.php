@@ -65,12 +65,14 @@
         <div class="col-3 pt-2">
             <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <!-- Team Thumb-->
-              <div class="advisor_thumb"><img src="/img/blankProfileImg.png" alt="img profile">
+            @foreach ($data as $user)
+              <!-- <div class="advisor_thumb"><img src="/img/blankProfileImg.png" alt="img profile"> -->
+              <div class="advisor_thumb"><img src="/img/{{$user['imagem']}}" alt="img profile" width="259" height="400">
                 <!-- Social Info-->
                 <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
               </div>
               <!-- Team Details-->
-            @foreach ($data as $user)
+            
               <div class="single_advisor_details_info">
                 <h6>{{ $user['PrimeiroNome'] }} {{ $user['UltimoNome'] }}</h6>
                 <p class="designation">{{ $user['TipoConta'] }}</p>

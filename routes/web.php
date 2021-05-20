@@ -44,7 +44,7 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('edit/{id}', 'InteressadoController@updateInquilino');
 
-    Route::get('propertyInfo/{id}', 'InteressadoController@propertyInfo');
+    Route::get('propertyInfo/{id}/user/{idUser}', 'InteressadoController@propertyInfo');
 
     Route::post('startNewRent/{idProp}/user/{idUser}', 'InteressadoController@starNewRent');
 

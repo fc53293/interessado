@@ -26,7 +26,7 @@
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
     <script src="/js/scripts.js"></script>
-    <script src="/js/mapsAPI.js"></script> 
+    <script src="/js/mapsAPI.js"></script>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
     
 
     <!-- END Nav bar -->
-    @foreach($property as $propInfo)
+    
     <div class="banner-image justify-content-center d-flex ">
         <div class="container profile-container">
             <div class="row p-3 profile-container" id="parteCima">
@@ -111,7 +111,6 @@
                     </div>
                 </div>
                 
-
                 <div class="col" id="infoCasa">
                     <div class="row infoCasa__Border m-3">
                         <h1 class="infoCasa__Preco text-center p-3">{{$propInfo['Preco']}}€/Mês</h1>
@@ -163,11 +162,11 @@
                         </div>
                         <div class="infoCasa__Descricao px-3 py-1">
                             <h2>Duração Aluguer: </h2>
-                            <p>{{$propInfo['DuracaoAluger']}} meses</p>
+                            <p>{{$propInfo['DuracaoAluguer']}} meses</p>
                         </div>
                         <div class="px-3">
                             <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="div_show2()">Alugar!</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="div_show2();check_money({{'$result'}});">Alugar!</button>
                             </form>
                         </div>
                     </div>

@@ -26,6 +26,15 @@ function check_empty() {
     function div_hide2(){
     document.getElementById('abc2').style.display = "none";
     }
+    function check_money(val) {
+   
+      if (value == True) {
+          
+              alert("No Money !");
+      }else {
+    
+      }
+  }
 
     $(document).ready(function(){
 
