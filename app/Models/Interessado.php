@@ -19,7 +19,7 @@ class Interessado extends Model
      * @var array
      */
 
-    protected $table = 'interessado';
+    protected $table = 'Interessado';
     protected  $primaryKey = 'IdInteressado';
     public $incrementing = false;
     public $timestamps=false;

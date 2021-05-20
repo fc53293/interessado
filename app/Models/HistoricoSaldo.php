@@ -19,7 +19,7 @@ class HistoricoSaldo extends Model
      * @var array
      */
 
-    protected $table = 'historicoSaldo';
+    protected $table = 'HistoricoSaldo';
     protected  $primaryKey = 'IdSaldo';
     public $incrementing = true;
     public $timestamps=false;

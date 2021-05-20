@@ -19,7 +19,7 @@ class Utilizador extends Model
      * @var array
      */
 
-    protected $table = 'utilizadores';
+    protected $table = 'Utilizadores';
     protected  $primaryKey = 'IdUser';
     public $incrementing = true;
     public $timestamps=false;

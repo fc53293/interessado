@@ -19,7 +19,7 @@ class Propriedade extends Model
      * @var array
      */
 
-    protected $table = 'propriedades';
+    protected $table = 'Propriedades';
     protected  $primaryKey = 'IdPropriedade';
     public $incrementing = true;
     public $timestamps=false;
