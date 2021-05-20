@@ -4,7 +4,6 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  background: rgba(0, 133, 255, 0.19);
 }
 
 h1 {
@@ -24,6 +23,10 @@ h3 {
 :root {
   --main-dark-blue: rgba(19, 82, 139, 1);
   --main-light-blue: rgba(24, 144, 255, 1);
+}
+
+.navbarPropInfo{
+  background-color: rgba(0, 133, 255, 0.19) !important;
 }
 
 .nav-link {
@@ -54,7 +57,6 @@ h3 {
 /**************/
 /*** CUSTOM ***/
 /**************/
-.bg-navbar,
 .banner-image {
   background: rgba(0, 133, 255, 0.19);
   mix-blend-mode: normal;
@@ -107,13 +109,6 @@ h3 {
           box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
 }
 
-.profile-container__searchOptions {
-  border-radius: 10px !important;
-  background-color: white !important;
-  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
-}
-
 .recentViewed {
   margin-left: 15px !important;
   margin-right: 15px !important;
@@ -135,60 +130,8 @@ h3 {
   text-decoration-thickness: 0.125em !important;
   text-underline-offset: 1.5px !important;
 }
+/*# sourceMappingURL=style.css.map */
 
-/******************** SIDEBAR ************************/
-.sidebar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.widget {
-  padding: 0.75rem 1.25rem;
-  width: 278px;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: white;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.widget h2 {
-  background-color: whitesmoke;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  margin-top: -0.75rem;
-  margin-left: -1.25rem;
-  margin-right: -1.25rem;
-  padding: 0.75rem 1.25rem;
-  text-align: center;
-  cursor: default;
-}
-
-.widget form label {
-  width: 100%;
-  text-align: center;
-}
-
-.widget:hover h2 {
-  background-color: #ebebeb;
-}
-
-#user_age_handler_min, #user_age_handler_max {
-  width: 3em;
-  margin-left: -1.5em;
-  height: 1.6em;
-  top: 50%;
-  margin-top: -.8em;
-  text-align: center;
-  line-height: 1.6em;
-}
 
 /************/
 /* Profile card */
@@ -325,8 +268,6 @@ h3 {
 }
 
 
-
-
 /************/
 /* Wallet Style */
 .wallet-container {
@@ -436,18 +377,6 @@ h3 {
   overflow:auto
   }
 
-  #abc2 {
-    width: 50%;
-    height: 50%;
-    top: 50%;
-    left: 50%;
-    display: none;
-    position: fixed;
-    background-color: rgb(232 242 251);
-    overflow: auto;
-    transform: translate(-50%, -50%);
-}
-
   #formAddSaldo > img#close {
     position: absolute;
     top: -10;
@@ -460,12 +389,9 @@ h3 {
       display: flex;
       justify-content: center;
       align-content: center;
+      margin-top: 50%;
       position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
-  
+    }
     #formAddSaldo {
     max-width:300px;
     min-width:250px;
@@ -475,7 +401,7 @@ h3 {
     font-family:raleway;
     background-color:#fff
     }
-
+ 
     hr {
     margin:10px -50px;
     border:0;
@@ -530,21 +456,135 @@ h3 {
     border-radius:5px
     }
     span {
-    color:rgb(0, 0, 0);
+    color:red;
     font-weight:700
     }
+
+
+    /* PAGINA PAGAMENTOS */
+
+    /**************/
+/*** CUSTOM ***/
+/**************/
+.banner-image {
+  background: rgba(0, 133, 255, 0.19);
+  mix-blend-mode: normal;
+}
+
+.blue-font {
+  color: var(--main-dark-blue) !important;
+  font-weight: bold;
+  font-size: 70px !important;
+}
+
+#forgot-psswd {
+  text-transform: lowercase !important;
+  color: black !important;
+  text-decoration: underline !important;
+  -webkit-text-decoration-color: #219aea !important;
+          text-decoration-color: #219aea !important;
+}
+
+.btn-host {
+  border: 1px solid #1890ff !important;
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25) !important;
+          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 9px !important;
+  font-weight: 500 !important;
+  color: var(--main-dark-blue) !important;
+}
+
+.btn-host:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}
+
+.profile-container {
+  margin: 35px !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  background-color: #f8f8f89c !important;
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.profile-container__information {
+  margin-right: 20px;
+  margin-bottom: 5px;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  background-color: white !important;
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+}
+  /* Set the size of the div element that contains the map */
+  #map {
+    height: 200px;
+  
+    width: 100%;
+  
+  }
+
+.recentViewed {
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  background-color: #f8f8f89c !important;
+  -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+          box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.recentViewed__image {
+  border-radius: 10px !important;
+}
+
+.font-effect__blue {
+  text-decoration: underline !important;
+  -webkit-text-decoration-color: #219aea !important;
+          text-decoration-color: #219aea !important;
+  text-decoration-thickness: 0.125em !important;
+  text-underline-offset: 1.5px !important;
+}
+/*# sourceMappingURL=style.css.map */
+.payment{
+  background-color:white;
+  width: 500px;
+  height: 520px;
+  border: 1px solid #e4e2e5;
+}
+.form_content{
+  text-align: left;
+}
+label{
+  padding: 15px;
+  padding-left: 20px;
+}
+.formAmountInput{
+  position: relative;
+  left: 45px;
+  border-radius: 5px;
+}
+.formInput{
+  width: 450px;
+  position: relative;
+  left: 20px;
+  border-radius: 5px;
+}
+.formbttn{
+  position: relative;
+  top: 30px;
+  border-radius: 5px;
+  background-color:turquoise;
+  width: 450px;
+}
 
     /* Slider Price Range*/
 
     .slidecontainer {
       width: 100%;
     }
-
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-
+    
     .slider {
       -webkit-appearance: none;
       width: 100%;
