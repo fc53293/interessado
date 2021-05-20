@@ -94,7 +94,7 @@
                             <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
                             <h1>Amount</h1>
                             <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
-                            <input id="name" name="amountToAdd" placeholder="Amount" type="number" require>
+                            <input id="name" name="amountToAdd" placeholder="Amount" type="number" min="0" require>
                             <br><br><br>
 
                             <!--<a href="javascript:%20check_empty()" id="submit" >Add</a>-->
