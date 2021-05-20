@@ -15,7 +15,7 @@
 
 $router->get('/', function (){
     //session()->put('Name','Gony');
-    return view('home');
+    return view('homeInteressado');
 });
 
 $router->group(['prefix' => 'api'], function($router)
@@ -50,7 +50,7 @@ Route::group(['prefix' => ''], function () {
 
     Route::get('walletInteressado/{id}', 'InteressadoController@showWallet');
 
-    Route::post('walletAdd/{id}', 'InteressadoController@addSaldo');
+    Route::post('walletAddInteressado/{id}', 'InteressadoController@addSaldo');
 
     Route::post('/likeProperty/{idProp}/user/{idUser}', 'InteressadoController@likeProp');
 

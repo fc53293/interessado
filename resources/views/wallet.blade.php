@@ -90,7 +90,7 @@
                     <!-- Popup Div Starts Here -->
                     <div id="popupContact">
                         <!-- Contact Us Form -->
-                        <form action="{{url('/walletAdd/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form">
+                        <form action="{{url('http://myunirent.pt/walletAddInteressado/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form">
                             <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
                             <h1>Amount</h1>
                             <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
