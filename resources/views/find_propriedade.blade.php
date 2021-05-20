@@ -178,7 +178,7 @@
                                     @endforeach
                                 <div class="row">
                                     <div class="col h-25">
-                                        <a href="{{ url('propertyInfo/' . $propInfo->IdPropriedade) }}">
+                                        <a href="{{ url('propertyInfo/' . $propInfo->IdPropriedade.'/user/'.$_SESSION['id']) }}">
                                             <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
                                         </a>
                                     </div> 
