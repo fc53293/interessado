@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <nav class="navbar bg-navbar navbar-expand-lg navbar-dark p-md-3">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="/img/logo/UniRent-V2.png" alt="" width="100">
@@ -65,8 +65,8 @@
 
     <!-- END Nav bar -->
     
-    <div class="banner-image justify-content-center d-flex ">
-        <div class="container profile-container">
+    <div class="banner-image d-flex justify-content-center align-items-center pt-5">
+        <div class="container profile-container m-5">
             <div class="row p-3 profile-container" id="parteCima">
                 <div class="col align-middle" id="dataCasa">
                     <div class="row d-flex justify-content-center" id="dataCasa__imagens">
@@ -128,16 +128,7 @@
                             <h2>Área: </h2>
                             <p>{{$propInfo['AreaMetros']}} m2</p>
                         </div>
-                    </div>
-                    <div class="row text-center">
-                        <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" method="POST" name="form">
-                            <button type="button" class="btn btn-primary mt-3" onclick="div_show2()">Alugar!</button>
-                        </form>
-                    </div>
-                    <div class="row text-center">
-                        <form action="" method="post" name="form">
-                            <button type="submit" class="btn btn-primary mt-3">Contactar Proprietário</button>
-                        </form>
+                    
                         <div class="infoCasa__Descricao px-3 py-1">
                             <h2>Número de quartos: </h2>
                             <p>{{$propInfo['NumeroQuartos']}}
@@ -162,7 +153,7 @@
                         </div>
                         <div class="infoCasa__Descricao px-3 py-1">
                             <h2>Duração Aluguer: </h2>
-                            <p>{{$propInfo['DuracaoAluguer']}} meses</p>
+                            <p>{{$propInfo['DuracaoAluguer']}}</p>
                         </div>
                         <div class="px-3">
                             <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">

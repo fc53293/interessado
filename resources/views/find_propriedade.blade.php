@@ -160,7 +160,7 @@
 
                             @if(isset($proprerties))
 
-                            <div id="divResultsProp" class="container profile-container__searchOptions text-center p-2 position-relative">
+                            <div id="divResultsProp" class="container profile-container__searchOptions text-center p-2 mb-2 position-relative">
                                 @if(count($proprerties)>0)
                                 @php
                                     $piaa = "False";
