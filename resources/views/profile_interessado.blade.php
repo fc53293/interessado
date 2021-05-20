@@ -53,7 +53,7 @@
   <!-- END Nav bar -->
   
   <!-- Banner -->
-  <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+  <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center pt-5 ">
     <div class="container profile-container"> 
       <div class="row">
         <!--<div class="col-4 profile-container__icon">
@@ -62,7 +62,7 @@
 
         <!-- Cartão do gajo-->
         
-        <div class="col-12 col-sm-6 col-lg-3">
+        <div class="col-3 pt-2">
             <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <!-- Team Thumb-->
               <div class="advisor_thumb"><img src="/img/blankProfileImg.png" alt="img profile">
@@ -75,10 +75,10 @@
                 <h6>{{ $user['PrimeiroNome'] }} {{ $user['UltimoNome'] }}</h6>
                 <p class="designation">{{ $user['TipoConta'] }}</p>
               </div>
-              <form action="{{url('/storeImg/'.$_SESSION['id']) }}" method="POST" enctype="multipart/form-data" id="formFotoPerfil">
-                            <label for="formFileLg" class="form-label">Image input</label>
-                            <input class="form-control form-control-lg" id="formFileLg" type="file" name="imgProfile">
-                            <button type="submit">Submit</button>
+              <form class="p-2" action="{{url('/storeImg/'.$_SESSION['id']) }}" method="POST" enctype="multipart/form-data" id="formFotoPerfil">
+                            <label for="formFileLg" class="form-label pt-2 px-1"><h2>Alterar imagem</h2></label>
+                            <input class="form-control" id="formFileLg" type="file" name="imgProfile">
+                            <button type="submit" class="btn btn-primary mt-2">Submit</button>
               </form>
               </div>
           </div>
@@ -177,7 +177,7 @@
                     </div>
                   </div>
 
-                  <button type="submit" class="m-2 btn btn-primary " >Make Changes!</button>
+                  <button type="submit" class="mt-3 btn btn-primary " >Make Changes!</button>
                 </form>
             @endforeach
             <script>
