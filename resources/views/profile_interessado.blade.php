@@ -157,7 +157,7 @@
                       </div>
                     </div>
                     <div class="form-group col">
-                        <h2 class="p-2">Utimo Nome: </h2>
+                        <h2 class="p-2">Último Nome: </h2>
                         <div class="col-sm-4">
                           <input type="text" class="form-control mt-2" id="inputPassword" name="ultimoNome" value="{{ $user['UltimoNome'] }}">
                         </div>
