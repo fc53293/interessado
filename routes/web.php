@@ -36,19 +36,19 @@ $router->group(['prefix' => 'api'], function($router)
 
 Route::group(['prefix' => ''], function () {
 
-    Route::get('home', 'InteressadoController@goHome');
+    Route::get('homeInteressado', 'InteressadoController@goHome');
 
     Route::get('interessadoProfile/{id}', 'InteressadoController@interessadoProfile');
 
-    Route::get('findPropriedade/{idUser}', 'InteressadoController@findPropriedade');
+    Route::get('findPropriedadeInteressado/{idUser}', 'InteressadoController@findPropriedade');
 
-    Route::post('edit/{id}', 'InteressadoController@updateInquilino');
+    Route::post('editInteressado/{id}', 'InteressadoController@updateInquilino');
 
     Route::get('propertyInfo/{id}/user/{idUser}', 'InteressadoController@propertyInfo');
 
     Route::post('startNewRent/{idProp}/user/{idUser}', 'InteressadoController@starNewRent');
 
-    Route::get('wallet/{id}', 'InteressadoController@showWallet');
+    Route::get('walletInteressado/{id}', 'InteressadoController@showWallet');
 
     Route::post('walletAdd/{id}', 'InteressadoController@addSaldo');
 

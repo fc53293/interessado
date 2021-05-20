@@ -10,6 +10,7 @@ use App\Models\Inquilino;
 use App\Models\HistoricoSaldo;
 use App\Models\Message;
 use App\Models\Likes;
+use App\Models\Senhorio;
 use App\Models\Rating;
 use App\routes\web;
 use App\Http\Controllers\Controller;
@@ -184,6 +185,9 @@ class InteressadoController extends Controller
         $data = Utilizador::where('IdUser',$userLoged)->get();
         $prop = Propriedade::where('IdPropriedade',$idProp)->value('DuracaoAluguer');
         $prop2 = Propriedade::where('IdPropriedade',$idProp)->value('Preco');
+        $prop3IdSenhorio = Propriedade::where('IdPropriedade',$idProp)->value('IdSenhorio');
+        $prop4IdUser = Senhorio::where('IdSenhorio',$prop3IdSenhorio)->value('IdUser');
+        // dd($prop4IdUser);
         $guardaSaldo = null;
         //$guardaPreco = null;
         foreach ($data as $data1){
@@ -221,6 +225,12 @@ class InteressadoController extends Controller
                 ->update([
                     'Saldo' => $guardaSaldo-$prop2
                  ]);
+
+                $data2 = Utilizador::where('IdUser',$prop4IdUser)
+                ->update([
+                    'Saldo' => +$prop2
+                ]);
+
                 //return response()->json($prop);
                 return redirect('home');
         }

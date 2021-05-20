@@ -32,16 +32,16 @@
         <div class="mx-auto"></div>
         <ul class="navbar-nav">
         <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('home') }}">Home</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('findPropriedade/'.$_SESSION['id']) }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/'.$_SESSION['id']) }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('wallet/'.$_SESSION['id']) }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/'.$_SESSION['id']) }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -128,7 +128,7 @@
           <div class="col profile-container__information">
 
             @foreach ($data as $user)
-              <form action="/edit/{{ $user['IdUser'] }}" method="POST" id="formPerfil">
+              <form action="/editInteressado/{{ $user['IdUser'] }}" method="POST" id="formPerfil">
                   
                   <input type="hidden" name="username" value="{{$user['Username']}}">
 
