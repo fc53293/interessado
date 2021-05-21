@@ -358,7 +358,7 @@
         <!-- Popup Div Starts Here -->
         <div id="popupContact">
             <!-- Contact Us Form -->
-            <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/2') }}" onsubmit="return check_empty()" id="form"
+            <form action="{{ url('http://myunirent.pt/startNewRent/'.$propInfo['IdPropriedade'].'/user/2') }}" onsubmit="return check_empty()" id="form"
                 method="post" name="form">
                 <img id="close" src="/img/closeButton.png" onclick="div_hide2()">
                 <h1>Start Renting</h1>
