@@ -74,7 +74,7 @@
                 <h6>{{ $user['PrimeiroNome'] }} {{ $user['UltimoNome'] }}</h6>
                 <p class="designation">{{ $user['TipoConta'] }}</p>
               </div>
-              <form class="p-2" action="{{url('/storeImg/'.$_SESSION['id']) }}" method="POST" enctype="multipart/form-data" id="formFotoPerfil">
+              <form class="p-2" action="{{url('/storeImg/2') }}" method="POST" enctype="multipart/form-data" id="formFotoPerfil">
                             <label for="formFileLg" class="form-label pt-2 px-1"><h2>Alterar imagem</h2></label>
                             <input class="form-control" id="formFileLg" type="file" name="imgProfile">
                             <button type="submit" class="btn btn-primary mt-2">Submit</button>
