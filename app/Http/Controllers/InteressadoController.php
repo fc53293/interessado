@@ -80,7 +80,7 @@ class InteressadoController extends Controller
     }
 
     //Updates Inqilino
-    public function updateInquilino(Request $req, $id)
+    public function updateInteressado(Request $req, $id)
     {
         $data = Utilizador::find($id);
         $data->Username=$req->input('nomeUser');

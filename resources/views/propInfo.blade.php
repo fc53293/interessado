@@ -74,7 +74,7 @@
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
-                        <form class="foodstars" action="{{ url('/rateProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" id="addStar" method="POST">
+                        <form class="foodstars" action="{{ url('http://myunirent.pt/rateProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" id="addStar" method="POST">
                         <div class=" px-3 pt-3 profile-container text-center">
                             <h2>Orientação Solar</h2>
                             <h3>

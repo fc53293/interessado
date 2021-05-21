@@ -42,7 +42,7 @@ Route::group(['prefix' => ''], function () {
 
     Route::get('findPropriedadeInteressado/{idUser}', 'InteressadoController@findPropriedade');
 
-    Route::post('editInteressado/{id}', 'InteressadoController@updateInquilino');
+    Route::post('editInteressado/{id}', 'InteressadoController@updateInteressado');
 
     Route::get('propertyInfo/{id}/user/{idUser}', 'InteressadoController@propertyInfo');
 
