@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 
 <head>
     <html lang="en">
@@ -27,8 +24,8 @@
 <body>
 
 <?php
-$_SESSION['id'] = 2;
-//echo $_SESSION['id'];
+$userAtual = 2;
+
 ?>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
     <div class="container">
@@ -41,21 +38,21 @@ $_SESSION['id'] = 2;
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="mx-auto"></div>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/'.$_SESSION['id']) }}">Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/'.$_SESSION['id']) }}">Wallet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black text-end" href="#">Sign Out</a>
-                </li>
+            <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black text-end" href="#">Sign Out</a>
+                    </li>
             </ul>
         </div>
     </div>

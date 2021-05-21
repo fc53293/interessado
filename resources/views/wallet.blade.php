@@ -1,6 +1,4 @@
-<?php
-    session_start();
-?>
+
 
 <head>
     <!DOCTYPE html>
@@ -26,7 +24,7 @@
 </head>
 <?php
 
-//echo $_SESSION['id'];
+
 ?>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
@@ -44,13 +42,13 @@
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/'.$_SESSION['id']) }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/'.$_SESSION['id']) }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>

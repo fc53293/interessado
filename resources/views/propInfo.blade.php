@@ -1,6 +1,4 @@
-<?php
-    session_start();
-?>
+
 
 <head>
     <!DOCTYPE html>
@@ -42,17 +40,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="mx-auto"></div>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                <li class="nav-item">
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/'.$_SESSION['id']) }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/'.$_SESSION['id']) }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -74,7 +72,7 @@
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
-                        <form class="foodstars" action="{{ url('http://myunirent.pt/rateProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" id="addStar" method="POST">
+                        <form class="foodstars" action="{{ url('http://myunirent.pt/rateProperty/'.$propInfo['IdPropriedade'].'/user/2') }}" id="addStar" method="POST">
                         <div class=" px-3 pt-3 profile-container text-center">
                             <h2>Orientação Solar</h2>
                             <h3>
@@ -322,7 +320,7 @@
         <!-- Popup Div Starts Here -->
         <div id="popupContact">
             <!-- Contact Us Form -->
-            <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}" onsubmit="return check_empty()" id="form"
+            <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/2') }}" onsubmit="return check_empty()" id="form"
                 method="post" name="form">
                 <img id="close" src="/img/closeButton.png" onclick="div_hide2()">
                 <h1>Start Renting</h1>

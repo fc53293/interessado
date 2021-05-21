@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 
 <head>
     <!DOCTYPE html>
@@ -51,13 +48,13 @@
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/'.$_SESSION['id']) }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado'.$_SESSION['id']) }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/'.$_SESSION['id']) }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -79,7 +76,7 @@
                         <div class="col-3 pt-2">
                             <!-- Inicio Search Form-->
                             <br>
-                            <form action="{{url('http://myunirent.pt/findPropriedadeInteressado/'.$_SESSION['id'])}}" type="get" novalidate="novalidate">
+                            <form action="{{url('findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
@@ -122,9 +119,9 @@
                                             seu aluguer</small>
                                     </div>
                                     <div class="slidecontainer">
-                                        <input type="range" min="50" max="2000" value="400" class="slider" id="myRange">
+                                        <input type="range" min="50" max="2000" value="400" class="slider" id="myRange" name="lprice">
                                         <p>Value: <span id="priceFilter"></span></p>
-                                        <input type="hidden" id="priceFilter2" name="lprice" >
+                                        <input type="hidden" id="priceFilter2"  >
                                     </div>
                                     <div class="col p-2">
                                         <div class="row">
@@ -178,7 +175,7 @@
                                     @endforeach
                                 <div class="row">
                                     <div class="col h-25">
-                                        <a href="{{ url('http://myunirent.pt/propertyInfo/' . $propInfo->IdPropriedade.'/user/'.$_SESSION['id']) }}">
+                                        <a href="{{ url('http://myunirent.pt/propertyInfo/' . $propInfo->IdPropriedade.'/user/2') }}">
                                             <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
                                         </a>
                                     </div> 
@@ -223,10 +220,10 @@
                                         var var_verLike = "<?php echo $ckeckLike; ?>";
                                         //alert(var_verLike);
                                         if (var_verLike == "True"){
-                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}"); 
+                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); 
                                             form.submit();
                                         }else{
-                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/likeProperty/'.$propInfo['IdPropriedade'].'/user/'.$_SESSION['id']) }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
+                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/likeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
                                             form.submit(); 
                                         }
                                         //action="/likeProperty/{{$propInfo['IdPropriedade']}}"
