@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
-    <script src="/js/scripts.js"></script>
+    <script src="/JS/scripts.js"></script>
 </head>
 <?php
 
@@ -73,7 +73,7 @@
             </div>
             
             <div class="btn-group text-center">
-                <button type="button" class="btn btn-outline-primary" onclick="div_show()">Add Money</button>
+                <button type="button" class="btn btn-outline-primary" onclick="div_show();">Add Money</button>
             </div>
 
             <div class="txn-history">
@@ -89,7 +89,7 @@
                     <div id="popupContact">
                         <!-- Contact Us Form -->
                         <form action="{{url('http://myunirent.pt/walletAddInteressado/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form">
-                            <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
+                            <img id="close" src="/img/closeButton.png" onclick ="div_hide();">
                             <h1>Amount</h1>
                             <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
                             <input id="name" name="amountToAdd" placeholder="Amount" type="number" min="0" max="10000" require>
