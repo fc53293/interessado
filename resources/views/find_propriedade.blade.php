@@ -76,7 +76,7 @@
                         <div class="col-3 pt-2">
                             <!-- Inicio Search Form-->
                             <br>
-                            <form action="{{url('findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
+                            <form action="{{url('http://myunirent.pt/findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
