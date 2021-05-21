@@ -23,8 +23,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
-    <script src="/js/scripts.js"></script>
-    <script src="/js/mapsAPI.js"></script>
+    <script src="/JS/scripts.js"></script>
+    <script src="/JS/mapsAPI.js"></script>
 </head>
 
 <body>
@@ -168,7 +168,45 @@
                     </form>
                 </div>
             </div>
+            <script>
 
+                function check_empty() {
+                    if (document.getElementById('name').value == "") {
+                        
+                            alert("Fill All Fields !");
+                        return false;
+                    }else {
+                        return true;
+                    }
+                    }
+                    //Function To Display Popup
+                    function div_show() {
+                    document.getElementById('abc').style.display = "block";
+                    }
+                    //Function to Hide Popup
+                    function div_hide(){
+                    document.getElementById('abc').style.display = "none";
+                    }
+
+                    //Function To Display Popup2
+                    function div_show2() {
+                    document.getElementById('abc2').style.display = "block";
+                    }
+                    //Function to Hide Popup2
+                    function div_hide2(){
+                    document.getElementById('abc2').style.display = "none";
+                    }
+                    function check_money(val) {
+                
+                    if (value == True) {
+                        
+                            alert("No Money !");
+                    }else {
+                    
+                    }
+                }
+
+            </script>
             </div>
             @if(count($ratingGiven)>0)
                 @foreach($ratingGiven as $specificRating)
