@@ -267,7 +267,7 @@
                             </table> -->
                            
 
-                            <div>
+                            <div>{{ $proprerties }}
                                 {{ $proprerties->links('pagination::bootstrap-4') }}
                             </div>
                         </div>

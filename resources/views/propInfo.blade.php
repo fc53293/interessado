@@ -87,7 +87,7 @@
                             @endif                          
                             </h3>
                         </div>
-                        <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
+                        <!-- <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST"> -->
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -154,7 +154,7 @@
                             <p>{{$propInfo['DuracaoAluguer']}}</p>
                         </div>
                         <div class="px-3">
-                            <form action="/startNewRent/{{$propInfo['IdPropriedade']}}" method="post" name="form">
+                            <form action="{{url('http://myunirent.pt/startNewRent/'.$propInfo['IdPropriedade'].'/user/2')}}" method="post" name="form">
                                 <button type="button" class="btn btn-primary btn-lg" onclick="div_show2();check_money({{'$result'}});">Alugar!</button>
                             </form>
                         </div>
