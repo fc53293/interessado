@@ -35,7 +35,7 @@
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
@@ -125,7 +125,7 @@
           <div class="col profile-container__information">
 
             @foreach ($data as $user)
-              <form action="http://myunirent.pt/editInteressado/{{ $user['IdUser'] }}" method="POST" id="formPerfil">
+              <form action="/editInteressado/{{ $user['IdUser'] }}" method="POST" id="formPerfil">
                   
                   <input type="hidden" name="username" value="{{$user['Username']}}">
 

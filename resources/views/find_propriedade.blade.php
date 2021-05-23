@@ -45,16 +45,16 @@
                 <div class="mx-auto"></div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/walletInteressado/2') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>
@@ -76,7 +76,7 @@
                         <div class="col-3 pt-2">
                             <!-- Inicio Search Form-->
                             <br>
-                            <form action="{{url('http://myunirent.pt/findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
+                            <form action="{{url('/findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
@@ -175,7 +175,7 @@
                                     @endforeach
                                 <div class="row">
                                     <div class="col h-25">
-                                        <a href="{{ url('http://myunirent.pt/propertyInfo/' . $propInfo->IdPropriedade.'/user/2') }}">
+                                        <a href="{{ url('/propertyInfo/' . $propInfo->IdPropriedade.'/user/2') }}">
                                             <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
                                         </a>
                                     </div> 
@@ -220,10 +220,10 @@
                                         var var_verLike = "<?php echo $ckeckLike; ?>";
                                         //alert(var_verLike);
                                         if (var_verLike == "True"){
-                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); 
+                                            $("#formLike").attr('action', "{{ url('t/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); 
                                             form.submit();
                                         }else{
-                                            $("#formLike").attr('action', "{{ url('http://myunirent.pt/likeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
+                                            $("#formLike").attr('action', "{{ url('/likeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
                                             form.submit(); 
                                         }
                                         //action="/likeProperty/{{$propInfo['IdPropriedade']}}"

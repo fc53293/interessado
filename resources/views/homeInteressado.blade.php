@@ -45,7 +45,7 @@ $userAtual = 2;
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>

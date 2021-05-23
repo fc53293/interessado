@@ -72,7 +72,7 @@
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
-                        <form class="foodstars" action="{{ url('http://myunirent.pt/rateProperty/'.$propInfo['IdPropriedade'].'/user/2') }}" id="addStar" method="POST">
+                        <form class="foodstars" action="{{ url('/rateProperty/'.$propInfo['IdPropriedade'].'/user/2') }}" id="addStar" method="POST">
                         <div class=" px-3 pt-3 profile-container text-center">
                             <h2>Orientação Solar</h2>
                             <h3>
@@ -154,7 +154,7 @@
                             <p>{{$propInfo['DuracaoAluguer']}}</p>
                         </div>
                         <div class="px-3">
-                            <form action="{{url('http://myunirent.pt/startNewRent/'.$propInfo['IdPropriedade'].'/user/2')}}" method="post" name="form">
+                            <form action="{{url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/2')}}" method="post" name="form">
                                 <button type="button" class="btn btn-primary btn-lg" onclick="div_show2();check_money({{'$result'}});">Alugar!</button>
                             </form>
                         </div>
@@ -343,7 +343,7 @@
                             zoom: 14,
                             center: { lat: {{ $propInfo['Latitude'] }}, lng: {{ $propInfo['Longitude'] }} },
                         });
-                        new google.maps.Marker({
+                        maker = new google.maps.Marker({
                         position: map['center'],
                         map,
                         title: "Hello World!",
@@ -352,14 +352,49 @@
                     </script>
                 </div>
             </div>
+            <div class="row">
+            @for ($i = 0; $i < 12; $i++)
+                <div class="col-lg-2 col-md-3 col-xs-6 ">        
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded h-75">
+                        <h2 align="center">{{ $data->format('F,Y') }}</h2>
+                        <div id="boxInfo{{$i}}" align="center">
+                        <script>
+                        document.getElementById("boxInfo{{$i}}").innerHTML = 
+                        "<h3><br>Disponivel<h3>" +
+                        "<form action='/disponiveis/add/{{ $property[0]['IdPropriedade'] }}' name='_method' method='POST'>" +
+                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>" +
+                        "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
+                        </script>
+                            @foreach ($arrendamentos as $arrendamento)
+                                @if ($arrendamento['MesContrato']==$data->format('m-y'))
+                                <script>
+                                document.getElementById("boxInfo{{$i}}").innerHTML =
+                                "<br><h3>Alugado</h3><h3>Inquilino: {{ $arrendamento['IdInquilino']}}</h3>"
+                                </script>
+                                    
+                                @endif
+                            @endforeach
+                            @foreach ($indisponiveis as $indisponivel)
+                                @if ($indisponivel['Mes']==$data->format('m-y'))
+                                <script>
+                                document.getElementById("boxInfo{{$i}}").innerHTML =
+                                "<br><h3>Indisponivel</h3>"
+                                </script>
+                                @endif
+                            @endforeach        
+                        </div>
+                    </div>
+                </div>
+                <p hidden>{{ $data->addMonths(1) }}</p>
+            @endfor
+
+
         </div>
     </div>
     <div id="abc2">
-        <!-- Popup Div Starts Here -->
         <div id="popupContact">
-            <!-- Contact Us Form -->
-            <form action="{{ url('http://myunirent.pt/startNewRent/'.$propInfo['IdPropriedade'].'/user/2') }}" onsubmit="return check_empty()" id="form"
-                method="post" name="form">
+            
+            <form action="{{ url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/2') }}" onsubmit="return check_empty()" id="form" method="post" name="form">
                 <img id="close" src="/img/closeButton.png" onclick="div_hide2()">
                 <h1>Start Renting</h1>
                 <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="">
@@ -367,11 +402,10 @@
                     disabled>
                 <br><br><br>
 
-                <!--<a href="javascript:%20check_empty()" id="submit" >Add</a>-->
                 <button id="submitWallet" type="submit" name="sub" href="javascript:%20check_empty()">Pay</button>
             </form>
+            
         </div>
-        <!-- Popup Div Ends Here -->
     </div>
     </div>
     @endforeach
