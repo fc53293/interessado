@@ -39,10 +39,10 @@ function check_empty() {
     $(document).ready(function(){
 
        
-        $('[type="checkbox"]').change(function(){
+        $('.ckeckJust1').change(function(){
         
           if(this.checked){
-             $('[type="checkbox"]').not(this).prop('checked', false);
+             $('.ckeckJust1').not(this).prop('checked', false);
           }    
         });
           

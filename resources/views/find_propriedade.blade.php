@@ -126,22 +126,56 @@
                                     <div class="col p-2">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <input type="checkbox" id="vehicle1" name="oriSolar1" value="N">
+                                                <input type="checkbox" id="vehicle1" name="oriSolar1" value="N" class="ckeckJust1">
                                                 <label for="vehicle1"> N</label><br>
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="S">
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="S" class="ckeckJust1">
                                                 <label for="vehicle2"> S</label><br>
 
                                             </div>
 
                                             <div class="col-md-4">
                             
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="E">
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="E" class="ckeckJust1">
                                                 <label for="vehicle2"> E</label><br>
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="O">
+                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="O" class="ckeckJust1">
                                                 <label for="vehicle2"> O</label><br>
                                             </div>
                                             <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
 
+                                        </div>
+                                    </div>
+
+                                    <div class="col p-2">
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="checkbox" id="vehicle1" name="extra1" value="1">
+                                                    <label for="vehicle1"> Internet</label><br>
+                                                    <input type="checkbox" id="vehicle2" name="extra2" value="1">
+                                                    <label for="vehicle2"> Limpeza</label><br>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="checkbox" id="vehicle1" name="restricao1" value="1">
+                                                    <label for="vehicle1"> Fumadores</label><br>
+                                                    <input type="checkbox" id="vehicle2" name="restricao2" value="1">
+                                                    <label for="vehicle2"> Animais</label><br>
+                                                </div>
+                                            <small id="emailHelp" class="p-1 form-text text-muted">Selecione opções extra</small>
+                                        </div>
+                                    </div>
+                                    <div class="col p-2">
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="checkbox" id="vehicle1" name="restricao3" value="1">
+                                                    <label for="vehicle1"> Masculino</label><br>
+                                                    <input type="checkbox" id="vehicle2" name="restricao4" value="1">
+                                                    <label for="vehicle2"> Feminino</label><br>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="vehicle2"> Fiaxa Etária</label><br>
+                                                    <div id="slider-range"></div>
+                                                    </div>
+                                                </div>
+                                    
                                         </div>
                                     </div>
                                     <div class="col text-center mt-5 p-2">
@@ -149,7 +183,32 @@
                                     </div>
                                 </div>
                             </form>
-                            
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+                            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                            <link rel="stylesheet" href="/resources/demos/style.css">
+                            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                            <script>
+                            $( function() {
+                                $( "#faixaEtariaMin" ).val( {{$proprerties[0]['faixaEtariaMin']}} );
+                                $( "#faixaEtariaMax" ).val( {{$proprerties[0]['faixaEtariaMax']}} );
+                                $( "#slider-range" ).slider({
+                                range: true,
+                                min: 14,
+                                max: 88,
+                                values: [ {{$proprerties[0]['faixaEtariaMin']}}, {{$proprerties[0]['faixaEtariaMax']}} ],
+                                slide: function( event, ui ) {
+                                    $( "#idades" ).val( ui.values[ 0 ] +" - "+ ui.values[ 1 ] );
+                                    $( "#faixaEtariaMin" ).val( ui.values[ 0 ] );
+                                    $( "#faixaEtariaMax" ).val( ui.values[ 1 ] );
+                                }
+                                
+                                });
+                                $( "#idades" ).val( "" + $( "#slider-range" ).slider( "values", 0 ) +
+                                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                            } );
+                            </script>
                             <!-- Fim Search Form -->
                         </div>
                         <div class="col-9">
@@ -220,7 +279,7 @@
                                         var var_verLike = "<?php echo $ckeckLike; ?>";
                                         //alert(var_verLike);
                                         if (var_verLike == "True"){
-                                            $("#formLike").attr('action', "{{ url('t/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); 
+                                            $("#formLike").attr('action', "{{ url('/nolikeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); 
                                             form.submit();
                                         }else{
                                             $("#formLike").attr('action', "{{ url('/likeProperty/'.$propInfo['IdPropriedade'].'/user/2') }}"); //Se nao tiver like faz isto (vai buscar a func pa por like)
@@ -231,9 +290,9 @@
 
                                     });
                                     </script>
-                                </div>
+                                </div><br><br>
                                 @endforeach
-
+                                
                                 @else
                                 <div class="row">
                                     <h1>No results found</h1>

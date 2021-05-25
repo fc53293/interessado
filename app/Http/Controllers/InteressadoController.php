@@ -84,6 +84,10 @@ class InteressadoController extends Controller
     //Updates Inqilino
     public function updateInteressado(Request $req, $id)
     {
+        if((Carbon::createFromFormat('Y-m-d', $req->input('dateNascimento'))->isPast()) == 0){
+            echo ("n passou");
+        }
+
         $data = Utilizador::find($id);
         $data->Username=$req->input('nomeUser');
         $data->PrimeiroNome=$req->input('primeiroNome');
@@ -99,8 +103,9 @@ class InteressadoController extends Controller
     public function interessadoProfile($id)
     {
         $data = Utilizador::where('IdUser','=' ,$id)->where('TipoConta','=' ,'Interessado')->get();
+        $dataHoje = Carbon::now();
         //$data = Utilizador::find($id)->get();
-        return view('profile_interessado',compact('data'));
+        return view('profile_interessado',compact('data','dataHoje'));
     }
 
     public function findPropriedade(Request $request, $idUser)
@@ -114,7 +119,12 @@ class InteressadoController extends Controller
          $search_data4 = $request->input('lprice');
          $search_data5 = $request->input('nquartos');
          $search_data6 = $request->input('oriSolar1');
-         //$search_data7 = $request->input('oriSolar2');
+         $search_data7 = $request->input('extra1');
+         $search_data8 = $request->input('extra2');
+         $search_data9 = $request->input('restricao1');
+         $search_data10 = $request->input('restricao2');
+         $search_data11 = $request->input('restricao3');
+         $search_data12 = $request->input('restricao4');
  
          $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
          if (!$search_data1 && !$search_data2 && !$search_data3 && !$search_data4){
@@ -146,7 +156,42 @@ class InteressadoController extends Controller
              $proprerties = $proprerties->where('OrientacaoSolar',$search_data6);
  
          }
+
+         if ($search_data7){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('internetAcess',$search_data7);
+
+        }
+
+        if ($search_data8){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('limpeza',$search_data8);
+
+        }
+
+        if ($search_data9){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('aceitaFumadores',$search_data9);
+
+        }
+
+        if ($search_data10){
+             //dd($search_data6);
+             $proprerties = $proprerties->where('aceitaAnimais',$search_data10);
  
+         }
+
+        if ($search_data11){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('generoMasc',$search_data11);
+
+        }
+
+        if ($search_data12){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('generoFemin',$search_data12);
+
+        }
  
          // else if ($search_data3 == ""){
          //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
@@ -163,7 +208,7 @@ class InteressadoController extends Controller
          //     ->get();
          // }
          //$proprerties->appends($request->all());
-         $proprerties = $proprerties->where('Disponibilidade','disponivel')->paginate(1)->appends(request()->query());
+         $proprerties = $proprerties->paginate(2)->appends(request()->query());
          //return response()->json($dataLike);
          return view('find_propriedade',compact('proprerties','dataLike'));
      }

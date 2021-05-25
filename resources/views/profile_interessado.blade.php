@@ -171,7 +171,7 @@
                     <div class="form-group col">
                       <h2 class="p-2">Data de Nascimento:</h2>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control mt-2" id="inputPassword" placeholder="CHANGE ME!" name="dateNascimento" value="{{ $user['Nascimento'] }}">
+                        <input type="date" class="form-control mt-2" id="inputNasci" placeholder="CHANGE ME!" name="dateNascimento" value="{{ $user['Nascimento'] }}" min="1900-01-01" max="{{$dataHoje}}">
                       </div>
                     </div>
                   </div>
@@ -180,6 +180,15 @@
                 </form>
             @endforeach
             <script>
+                  var inputBirth = document.getElementById("inputNasci");
+                  var today = new Date();
+                  var dd = String(today.getDate()).padStart(2, '0');
+                  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                  var yyyy = today.getFullYear();
+
+                  today = yyyy + '-' + mm + '-' + dd ;
+                  inputBirth.setAttribute("max",today); 
+
                     $('#formPerfil').submit(function(e) {
                     //alert("ola");
                     e.preventDefault();
