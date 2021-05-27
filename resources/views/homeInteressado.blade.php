@@ -39,16 +39,16 @@ $userAtual = 2;
             <div class="mx-auto"></div>
             <ul class="navbar-nav">
             <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/interessadoProfile/2') }}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/walletInteressado/2') }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>

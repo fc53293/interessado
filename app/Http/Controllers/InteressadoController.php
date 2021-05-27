@@ -95,6 +95,44 @@ class InteressadoController extends Controller
         $data->Email=$req->input('mail');
         $data->Morada=$req->input('morada');
         $data->Nascimento=$req->input('dateNascimento');
+        
+        
+        //Limpamos eventuais espaços a mais
+        $nif=trim($req->input('NIF'));
+        $ignoreFirst=true;
+        //Verificamos se é numérico e tem comprimento 9
+        if (!is_numeric($nif) || strlen($nif)!=9) {
+            return response()->json('NIF Invalido');
+        } else {
+            $nifSplit=str_split($nif);
+            //O primeiro digíto tem de ser 1, 2, 3, 5, 6, 8 ou 9
+            //Ou não, se optarmos por ignorar esta "regra"
+            if (
+                in_array($nifSplit[0], array(1, 2, 3, 5, 6, 8, 9))
+                ||
+                $ignoreFirst
+            ) {
+                //Calculamos o dígito de controlo
+                $checkDigit=0;
+                for($i=0; $i<8; $i++) {
+                    $checkDigit+=$nifSplit[$i]*(10-$i-1);
+                }
+                $checkDigit=11-($checkDigit % 11);
+                //Se der 10 então o dígito de controlo tem de ser 0
+                if($checkDigit>=10) $checkDigit=0;
+                //Comparamos com o último dígito
+                if ($checkDigit==$nifSplit[8]) {
+                    $data->NIF=$req->input('NIF');
+                } else {
+                    return response()->json('NIF Invalido');
+                }
+            } else {
+                return response()->json('NIF Invalido');
+            }
+        }
+
+        $data->Nacionalidade=$req->input('Nacionalidade');
+        $data->Telefone=$req->input('Telefone');
         $data->save();
         
         return response()->json('Updated successfully.');
@@ -102,14 +140,16 @@ class InteressadoController extends Controller
 
     public function interessadoProfile($id)
     {
+        $user = Utilizador::where('IdUser','=',$id)->get();
         $data = Utilizador::where('IdUser','=' ,$id)->where('TipoConta','=' ,'Interessado')->get();
         $dataHoje = Carbon::now();
         //$data = Utilizador::find($id)->get();
-        return view('profile_interessado',compact('data','dataHoje'));
+        return view('profile_interessado',compact('data','dataHoje','user'));
     }
 
     public function findPropriedade(Request $request, $idUser)
     {
+        $user = Utilizador::where('IdUser','=',$idUser)->get();
          //$user = Utilizador::where('username','=' ,$username)->where('TipoConta','=' ,'Interessado')->get();
          $dataLike = Likes::where('IdUser',$idUser)->get();
          //$search_data2 = $_GET['query'];
@@ -208,13 +248,14 @@ class InteressadoController extends Controller
          //     ->get();
          // }
          //$proprerties->appends($request->all());
-         $proprerties = $proprerties->paginate(2)->appends(request()->query());
+         $proprerties = $proprerties->paginate(1)->appends(request()->query());
          //return response()->json($dataLike);
-         return view('find_propriedade',compact('proprerties','dataLike'));
+         return view('find_propriedade',compact('proprerties','dataLike','user'));
      }
 
     public function propertyInfo($id,$idUser)
     {
+        $user = Utilizador::where('IdUser','=',$idUser)->get();
         $property = Propriedade::where('IdPropriedade', $id)->get();
         $ratingGiven = Rating::where('IdPropriedade', $id)->where('IdUser',$idUser)->get();
         $avgStar = Rating::where('IdPropriedade', $id)->avg('Rating');
@@ -223,7 +264,7 @@ class InteressadoController extends Controller
         $data = Carbon::now();
 
         //return response()->json($avgStar);
-        return view('propInfo',compact('property','ratingGiven','avgStar','arrendamentos','indisponiveis','data'));
+        return view('propInfo',compact('property','ratingGiven','avgStar','arrendamentos','indisponiveis','data','user'));
     }
 
     public function starNewRent(Request $request, $idProp,$idUser)
@@ -319,11 +360,10 @@ class InteressadoController extends Controller
         $user = Utilizador::find($id);
         $user->Saldo=$amount->input('amountToAdd')+$user->Saldo;
         $user->save();
-
         $histSaldo = new HistoricoSaldo();
         //$user->IdSaldo=1;
         $histSaldo->IdUser=$id;
-        $histSaldo->Username=$amount->input('nameUser');
+        $histSaldo->Descricao=$amount->input('Descricao');
         $histSaldo->Valor=$amount->input('amountToAdd');
         $histSaldo->Data=Carbon::now();
         $histSaldo->save();

@@ -28,8 +28,8 @@
 ?>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
-    <div class="container">
-      <a class="navbar-brand" href="#">
+<div class="container">
+      <a class="navbar-brand" href="/senhorio/home">
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
       <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,21 +38,101 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="mx-auto"></div>
         <ul class="navbar-nav">
-        <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/homeInteressado') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/interessadoProfile/2') }}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/findPropriedadeInteressado/2') }}">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('http://myunirent.pt/walletInteressado/2') }}">Wallet</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="#">Sign Out</a>
-                    </li>
+
+                    <style>
+                      .dropbtn {
+                        
+                        background: url('/img/{{$data[0]['imagem']}}') no-repeat;
+                        background-size: 50px 50px;
+                        color: white;
+                        font-size: 16px;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 50%;
+                        padding: 25px 25px;
+                        
+                      }
+
+                      .dropbtn:hover, .dropbtn:focus {
+                        background-color: #2980B9;
+                      }
+
+                      .dropdown {
+                        position: relative;
+                        
+                        display: inline-block;
+                      }
+
+                      .dropdown-content {
+                        right: 0px;
+                        top: 55px;
+                        display: none;
+                        position: absolute;
+                        background-color: #f1f1f1;
+                        min-width: 160px;
+                        overflow: auto;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                      }
+
+                      .dropdown-content a {
+                        color: black;
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        display: block;
+                      }
+
+                      .outro {
+                        color: black;
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        display: block;
+                        border-bottom: 1px outset rgba(0,0,0,0.2);
+                        text-align: right;
+                        margin: 0px;
+                      }
+
+                      
+
+                      .dropdown a:hover {background-color: #ddd;}
+
+                      .show {display: block;}
+                      </style>
+
+                      <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn"></button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <p class="outro">Hi, {{$data[0]['PrimeiroNome']}}!</p>
+                          <a href="{{ url('/homeInteressado') }}">Home</a>
+                          <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                          <a href="{{ url('/chat') }}">Messages</a>
+                          <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
+                          <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                          <a href="#">Sign Out</a>
+                        </div>
+                      </div>
+
+                      <script>
+                      /* When the user clicks on the button, 
+                      toggle between hiding and showing the dropdown content */
+                      function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                      }
+
+                      // Close the dropdown if the user clicks outside of it
+                      window.onclick = function(event) {
+                        if (!event.target.matches('.dropbtn')) {
+                          var dropdowns = document.getElementsByClassName("dropdown-content");
+                          var i;
+                          for (i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (openDropdown.classList.contains('show')) {
+                              openDropdown.classList.remove('show');
+                            }
+                          }
+                        }
+                      }
+                      </script>        
         </ul>
       </div>
     </div>
@@ -88,16 +168,22 @@
                     <!-- Popup Div Starts Here -->
                     <div id="popupContact">
                         <!-- Contact Us Form -->
-                        <form action="{{url('/walletAddInteressado/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form">
+                        <!-- <form action="{{url('/walletAddInteressado/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form"> -->
                             <img id="close" src="/img/closeButton.png" onclick ="div_hide();">
-                            <h1>Amount</h1>
-                            <input id="name2" name="nameUser" placeholder="Amount" type="hidden" value="{{ $info['Username'] }}">
-                            <input id="name" name="amountToAdd" placeholder="Amount" type="number" min="0" max="10000" require>
-                            <br><br><br>
+                            <div id="smart-button-container">
+                                <div style="text-align: center"><label for="description">Descrição: </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+                                <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
+                                <div style="text-align: center"><label for="amount">Montante: </label><input name="amountInput" type="number" id="amount" value="" ><span> EUR</span></div>
+                                <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
+                                <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
+                                <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+                                <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+                            </div>
+                            
 
                             <!--<a href="javascript:%20check_empty()" id="submit" >Add</a>-->
-                            <button id="submitWallet" name="sub" type="submit" onclick="return check_empty()" href="javascript:%20check_empty()">Add</button>
-                        </form>
+                            <!-- <button id="submitWallet" name="sub" type="submit" onclick="return check_empty()" href="javascript:%20check_empty()">Add</button> -->
+                        <!-- </form> -->
                     </div>
                         <!-- Popup Div Ends Here -->
                 </div>
@@ -131,6 +217,122 @@
                     
 
                     });
+                </script>
+                <script src="https://www.paypal.com/sdk/js?client-id=AYJGD5inw4UzvP97ZAF5D7I0z_oQXv5QXAfwQSGk_UogddNFuZsEZw6NkCD5Kaxz2vfJGZlrCyn4q4JD&currency=EUR" data-sdk-integration-source="button-factory"></script>
+                <script>
+                function initPayPalButton() {
+                    var description = document.querySelector('#smart-button-container #description');
+                    var amount = document.querySelector('#smart-button-container #amount');
+                    var descriptionError = document.querySelector('#smart-button-container #descriptionError');
+                    var priceError = document.querySelector('#smart-button-container #priceLabelError');
+                    var invoiceid = document.querySelector('#smart-button-container #invoiceid');
+                    var invoiceidError = document.querySelector('#smart-button-container #invoiceidError');
+                    var invoiceidDiv = document.querySelector('#smart-button-container #invoiceidDiv');
+
+                    var elArr = [description, amount];
+
+                    if (invoiceidDiv.firstChild.innerHTML.length > 1) {
+                    invoiceidDiv.style.display = "block";
+                    }
+
+                    var purchase_units = [];
+                    purchase_units[0] = {};
+                    purchase_units[0].amount = {};
+
+                    function validate(event) {
+                    return event.value.length > 0;
+                    }
+
+                    paypal.Buttons({
+                    style: {
+                        color: 'gold',
+                        shape: 'rect',
+                        label: 'paypal',
+                        layout: 'vertical',
+                        
+                    },
+
+                    onInit: function (data, actions) {
+                        actions.disable();
+
+                        if(invoiceidDiv.style.display === "block") {
+                        elArr.push(invoiceid);
+                        }
+
+                        elArr.forEach(function (item) {
+                        item.addEventListener('keyup', function (event) {
+                            var result = elArr.every(validate);
+                            if (result) {
+                            actions.enable();
+                            } else {
+                            actions.disable();
+                            }
+                        });
+                        });
+                    },
+
+                    onClick: function () {
+                        if (description.value.length < 1) {
+                        descriptionError.style.visibility = "visible";
+                        } else {
+                        descriptionError.style.visibility = "hidden";
+                        }
+
+                        if (amount.value.length < 1) {
+                        priceError.style.visibility = "visible";
+                        } else {
+                        priceError.style.visibility = "hidden";
+                        }
+
+                        if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
+                        invoiceidError.style.visibility = "visible";
+                        } else {
+                        invoiceidError.style.visibility = "hidden";
+                        }
+
+                        purchase_units[0].description = description.value;
+                        purchase_units[0].amount.value = amount.value;
+
+                        if(invoiceid.value !== '') {
+                        purchase_units[0].invoice_id = invoiceid.value;
+                        }
+                    },
+
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                        purchase_units: purchase_units,
+                        });
+                    },
+
+                    onApprove: function (data, actions) {
+                        return actions.order.capture().then(function (details) {
+                            alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                            let jsonInfos = {"Descricao":details.purchase_units[0].description,"amountToAdd":details.purchase_units[0].amount.value};
+                            console.log(jsonInfos);
+                            var data = new FormData();
+                            data.append( "json", JSON.stringify( jsonInfos ) );
+                            //$.post( '/senhorio/wallet/add', data ); 
+                            return fetch('/walletAddInteressado/2', {
+                                method: 'POST',
+                                headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                                },                                
+                                body: JSON.stringify( jsonInfos)                                
+                            }).then(function(res) {
+                                if (!res.ok) {
+                                alert('Something went wrong');
+                                }
+                            });
+                        });
+                    },
+
+                    onError: function (err) {
+                        console.log(err);
+                    }
+                    }).render('#paypal-button-container');
+                }
+                initPayPalButton();
                 </script>
         </div>
     </div>
