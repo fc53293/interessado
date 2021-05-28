@@ -32,7 +32,7 @@
                           <style>
                           .dropbtn {
                               
-                              background: url('/img/blankProfileImg.png') no-repeat;
+                              background: url('/img/{{$user[0]['imagem']}}') no-repeat;
                               background-size: 50px 50px;
                               color: white;
                               font-size: 16px;
@@ -140,7 +140,7 @@
         <!-- Cartão do gajo-->
         
         <div class="col-3 pt-2">
-            <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+            <div class="single_advisor_profile wow fadeInUp m-0" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <!-- Team Thumb-->
             @foreach ($data as $user)
               <!-- <div class="advisor_thumb"><img src="/img/blankProfileImg.png" alt="img profile"> -->
@@ -197,7 +197,7 @@
           <div class="row">
             <div class="col">
             
-              <h1 class="pt-3 profile-container__welcomeUser">Welcome, {{ $user['PrimeiroNome'] }}</h1>
+              
             @endforeach
             </div>
           </div>
@@ -228,7 +228,7 @@
                     <div class="form-group col">
                       <h2 class="p-2">Email:</h2>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control mt-2" id="inputPassword" name="mail" placeholder="CHANGE ME!" value="{{ $user['Email'] }}"> 
+                        <input type="email" class="form-control mt-2" id="inputPassword" name="mail" placeholder="CHANGE ME!" value="{{ $user['Email'] }}"> 
                       </div>
                     </div>
                   </div>
@@ -244,13 +244,13 @@
 
                     <div class="form-group col">
                       <h2 class="p-2">Morada:</h2>
-                      <div class="col-sm-6">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control mt-2" id="inputPassword" placeholder="CHANGE ME!" name="morada" value="{{ $user['Morada'] }}">
                       </div>
                     </div>
                     <div class="form-group col">
                       <h2 class="p-2">Data de Nascimento:</h2>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="date" class="form-control mt-2" id="inputNasci" placeholder="CHANGE ME!" name="dateNascimento" value="{{ $user['Nascimento'] }}" min="1900-01-01" max="{{$dataHoje}}">
                       </div>
                     </div>
@@ -260,7 +260,7 @@
                     <div class="form-group col">
                       <h2 class="p-2">NIF:</h2>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control mt-2" id="inputPassword" name="NIF" placeholder="CHANGE ME!" value=""> 
+                        <input type="number" class="form-control mt-2" id="inputPassword" name="NIF" placeholder="CHANGE ME!" value="{{ $user['NIF'] }}"> 
                       </div>
                     </div>
 
@@ -595,12 +595,7 @@
                     <li class="nav-item">
                       <a class="nav-link active" data-bs-toggle="tab" href="#home">Information</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="tab" href="#profile">Map</a>
-                    </li>
-                    <!--<li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="tab" href="#contact">Contact</a>
-                    </li>-->
+
                   </ul>
                   </div>
 

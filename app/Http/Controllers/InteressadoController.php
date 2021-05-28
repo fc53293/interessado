@@ -232,25 +232,12 @@ class InteressadoController extends Controller
             $proprerties = $proprerties->where('generoFemin',$search_data12);
 
         }
- 
-         // else if ($search_data3 == ""){
-         //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
-         //     ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
-         //     //->where('AreaMetros', '<',(int)$search_data3)
-         //     //->where('Preco', '<',(int)$search_data4)
-         //     ->paginate(1);
-         // }
-         // else{
-         //     $proprerties = Propriedade::where('TipoPropriedade', 'LIKE', '%'.$search_data1.'%')
-         //     ->where('Localizacao', 'LIKE', '%'.$search_data2.'%')
-         //     ->where('AreaMetros', '<',(int)$search_data3)
-         //     ->where('Preco', '<',(int)$search_data4)
-         //     ->get();
-         // }
-         //$proprerties->appends($request->all());
+
          $proprerties = $proprerties->paginate(1)->appends(request()->query());
          //return response()->json($dataLike);
-         return view('find_propriedade',compact('proprerties','dataLike','user'));
+         return view('find_propriedade',compact('proprerties','dataLike','user','search_data1','search_data2','search_data4'));
+        //  return redirect()->back()->with(compact('proprerties','dataLike','user'));
+
      }
 
     public function propertyInfo($id,$idUser)

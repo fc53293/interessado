@@ -12,10 +12,13 @@ function check_empty() {
     //Function To Display Popup
     function div_show() {
     document.getElementById('abc').style.display = "block";
+    document.getElementById('popupBotao').style.display = 'block'; 
+    document.getElementById('popupBotao').style.display = 'none'
     }
     //Function to Hide Popup
     function div_hide(){
     document.getElementById('abc').style.display = "none";
+    document.getElementById('popupBotao').style.display = 'block'; 
     }
 
     //Function To Display Popup2

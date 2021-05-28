@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
     <!--Plugin CSS file with desired skin-->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
@@ -137,6 +139,7 @@
                           }
                         }
                       }
+
                       </script>        
         </ul>
       </div>
@@ -159,7 +162,7 @@
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
-                                            id="exampleFormControlSelect1">
+                                            id="exampleFormControlSelect1" >
                                             <option name="query5" value="">Qualquer tipos de aluguer</option>
                                             <option name="query3" value="Quarto">Quarto</option>
                                             <option name="query4" value="Casa">Casa</option>
@@ -168,14 +171,13 @@
                                             aluguer</small>
                                     </div>
                                     <div class="col p-2">
-                                        <input type="text" class="form-control search-slt" placeholder="Local"
-                                            name="query2">
+                                        <input type="text" class="form-control search-slt" placeholder="Local" name="query2" value="{{$search_data2}}">
                                         <small id="emailHelp" class="p-1 form-text text-muted">Escolha uma
                                             localidade</small>
                                     </div>
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="nquartos"
-                                            id="exampleFormControlSelect1">
+                                            id="exampleFormControlSelect2">
                                             <option name="query5" value="">Numero de quartos</option>
                                             <option name="query3" value="1">1</option>
                                             <option name="query4" value="2">2</option>
@@ -186,7 +188,7 @@
                                         <small id="emailHelp" class="p-1 form-text text-muted">Selecionar o número de quartos</small>
                                     </div>
                                     <div class="col p-2">
-                                        <select class="form-control search-slt" name="areaMetros" id="exampleFormControlSelect1">
+                                        <select class="form-control search-slt" name="areaMetros" id="exampleFormControlSelect3">
                                             <option name="query5" value="">Qualquer área</option>
                                             <option name="query3" value="7">Até 7 m2</option>
                                             <option name="query4" value="10">Até 10 m2</option>
@@ -197,9 +199,11 @@
                                         <small id="emailHelp" class="p-1 form-text text-muted">Selecione o tamanho do
                                             seu aluguer</small>
                                     </div>
+                                
                                     <div class="slidecontainer">
-                                        <input type="range" min="50" max="2000" value="400" class="slider" id="myRange" name="lprice">
-                                        <p>Value: <span id="priceFilter"></span></p>
+                                       
+                                        <input type="range" min="50" max="2000" value={{$search_data4 ? $search_data4 : 400}} class="slider" id="myRange" name="lprice">
+                                        <p>Max Price: <span id="priceFilter"></span> €</p>
                                         <input type="hidden" id="priceFilter2"  >
                                     </div>
                                     <div class="col p-2">
@@ -250,9 +254,17 @@
                                                     <label for="vehicle2"> Feminino</label><br>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="vehicle2"> Fiaxa Etária</label><br>
+                                                    <label for="vehicle2"> Fiaxa Etária:</label><br>
+                                                    <input type="text" id="idades" class="form-control" readonly> 
                                                     <div id="slider-range"></div>
-                                                    
+                                                    <div class="form-group col-md-2"> 
+                
+                                                        <input type="text" id="faixaEtariaMin" name="faixaEtariaMin" class="form-control" value="18" readonly hidden> 
+                                                        </div>
+                                                        <div class="form-group col-md-2"> 
+                                                        
+                                                        <input type="text" id="faixaEtariaMax" name="faixaEtariaMax" class="form-control" value="23" readonly hidden> 
+                                                    </div>
                                                 </div>
                                     
                                         </div>
@@ -265,18 +277,34 @@
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
                             <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
                             <link rel="stylesheet" href="/resources/demos/style.css">
                             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
                             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
                             <script>
-                            $( function() {
-                                $( "#faixaEtariaMin" ).val( {{$proprerties[0]['faixaEtariaMin']}} );
-                                $( "#faixaEtariaMax" ).val( {{$proprerties[0]['faixaEtariaMax']}} );
+                                    escolha = (document.getElementById('exampleFormControlSelect1').value = "{{$search_data1}}");
+                                    console.log(escolha);
+                                    escolha.selected = true;
+                                    
+                                $( function() {
+                                    // @if (isset($search_data4)){
+                                    //     $('#myRange').value({{$search_data4}}).change();
+                                    // }@endif
+ 
+                                    // @if ($search_data1 == "Casa"){
+                                    //     
+                                    // }@elseif($search_data1 == "Quarto"){
+                                    //     $('select#exampleFormControlSelect1').val("Quarto").change();
+                                    // }
+                                    // @endif
+                                    
+
                                 $( "#slider-range" ).slider({
                                 range: true,
                                 min: 14,
                                 max: 88,
-                                values: [ {{$proprerties[0]['faixaEtariaMin']}}, {{$proprerties[0]['faixaEtariaMax']}} ],
+                                values: [ 18, 23 ],
                                 slide: function( event, ui ) {
                                     $( "#idades" ).val( ui.values[ 0 ] +" - "+ ui.values[ 1 ] );
                                     $( "#faixaEtariaMin" ).val( ui.values[ 0 ] );

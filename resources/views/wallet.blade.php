@@ -152,7 +152,7 @@
                
             </div>
             
-            <div class="btn-group text-center">
+            <div class="btn-group text-center" id="popupBotao">
                 <button type="button" class="btn btn-outline-primary" onclick="div_show();">Add Money</button>
             </div>
 
@@ -169,11 +169,12 @@
                     <div id="popupContact">
                         <!-- Contact Us Form -->
                         <!-- <form action="{{url('/walletAddInteressado/'.$info['IdUser']) }}"  id="formAddSaldo" method="POST" name="form"> -->
-                            <img id="close" src="/img/closeButton.png" onclick ="div_hide();">
-                            <div id="smart-button-container">
-                                <div style="text-align: center"><label for="description">Descrição: </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+                           
+                            <div class="p-2" id="smart-button-container">
+                                <img id="close" src="/img/closeButton.png" onclick ="div_hide()">
+                                <div style="text-align: center"><h3>Description</h3><input type="text" name="descriptionInput" id="description" maxlength="127" placeholder="Description" value=""></div>
                                 <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
-                                <div style="text-align: center"><label for="amount">Montante: </label><input name="amountInput" type="number" id="amount" value="" ><span> EUR</span></div>
+                                <div style="text-align: center"><h3>Amount</h3><input name="amountInput" type="number" id="amount" value="" placeholder="100€"><span></span></div>
                                 <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
                                 <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
                                 <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>

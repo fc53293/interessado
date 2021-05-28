@@ -429,13 +429,18 @@ h3 {
 
 /* POP UP Wallet Style */
 #abc {
-  width:100%;
-  top:0;
-  left:0;
-  display:none;
-  position:fixed;
-  background-color:rgb(232 242 251);
-  overflow:auto
+  display: none;
+  background-color: rgb(232 242 251);
+  width: 320px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  padding: 0px 20px 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  border-radius: 10px;
+  border: 4px solid white;
   }
 
   #abc2 {
@@ -450,33 +455,29 @@ h3 {
 }
 
 
-  #formAddSaldo > img#close {
-    position: absolute;
+  img#close {
+    position: relative;
     top: -10;
     cursor: pointer;
-    right: 20;
+    right: -138;
     }
 
     div#popupContact {
+      height: 413px;
       font-family: 'Raleway',sans-serif;
       display: flex;
       justify-content: center;
       align-content: center;
-      margin-top: 50%;
-      position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
 
     #formAddSaldo {
-    max-width:300px;
-    min-width:250px;
-    padding:10px 50px;
-    border:2px solid gray;
-    border-radius:10px;
-    font-family:raleway;
-    background-color:#fff
+      max-width:300px;
+      min-width:250px;
+      padding:10px 50px;
+      border:2px solid gray;
+      border-radius:10px;
+      font-family:raleway;
+      background-color:#fff
     }
  
     hr {
