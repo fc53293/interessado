@@ -270,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div class="col text-center mt-2 p-2">
-                                        <button type="submit" class="btn btn-outline-danger">Limpar Pesquisa</button>
+                                        <a href="{{ url('/findPropriedadeInteressado/2') }}"><button type="button"  class="btn btn-outline-danger">Limpar Pesquisa</button></a>
                                     </div>
                                     <div class="col text-center mt-2 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>

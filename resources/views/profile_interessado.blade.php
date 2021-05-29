@@ -534,6 +534,7 @@
 
                   <button type="submit" class="mt-3 btn btn-primary " >Make Changes!</button>
                 </form>
+                
             @endforeach
             <script>
                   var inputBirth = document.getElementById("inputNasci");
@@ -546,7 +547,7 @@
                   inputBirth.setAttribute("max",today); 
 
                     $('#formPerfil').submit(function(e) {
-                    //alert("ola");
+                    console.log({{$validadeNIF}});
                     e.preventDefault();
                     req = $.ajax({
                         type: 'POST',
@@ -563,6 +564,7 @@
                         //$('#totalAVGrating').fadeOut(500).fadeIn(500);
                         
                         $('.form-group').fadeOut(1000).fadeIn(1000);
+                        
                         // setTimeout(function(){
                         //     $('.amount').text(data.res+" €");
                         // }, 1000);

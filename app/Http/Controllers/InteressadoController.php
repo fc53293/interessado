@@ -103,6 +103,7 @@ class InteressadoController extends Controller
         //Verificamos se é numérico e tem comprimento 9
         if (!is_numeric($nif) || strlen($nif)!=9) {
             return response()->json('NIF Invalido');
+            $validadeNIF = False;
         } else {
             $nifSplit=str_split($nif);
             //O primeiro digíto tem de ser 1, 2, 3, 5, 6, 8 ou 9
@@ -123,11 +124,14 @@ class InteressadoController extends Controller
                 //Comparamos com o último dígito
                 if ($checkDigit==$nifSplit[8]) {
                     $data->NIF=$req->input('NIF');
+                    $validadeNIF = True;
                 } else {
                     return response()->json('NIF Invalido');
+                    $validadeNIF = False;
                 }
             } else {
                 return response()->json('NIF Invalido');
+                $validadeNIF = False;
             }
         }
 
@@ -135,7 +139,7 @@ class InteressadoController extends Controller
         $data->Telefone=$req->input('Telefone');
         $data->save();
         
-        return response()->json('Updated successfully.');
+        return compact('validadeNIF');
     }
 
     public function interessadoProfile($id)
@@ -143,8 +147,8 @@ class InteressadoController extends Controller
         $user = Utilizador::where('IdUser','=',$id)->get();
         $data = Utilizador::where('IdUser','=' ,$id)->where('TipoConta','=' ,'Interessado')->get();
         $dataHoje = Carbon::now();
-        //$data = Utilizador::find($id)->get();
-        return view('profile_interessado',compact('data','dataHoje','user'));
+        $validadeNIF = True;
+        return view('profile_interessado',compact('data','dataHoje','user','validadeNIF'));
     }
 
     public function findPropriedade(Request $request, $idUser)
