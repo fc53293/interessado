@@ -212,7 +212,7 @@
                   <div class="form-group row">
                     <div class="form-group col">
                       <h2 class="p-2" >Username: </h2>
-                      <div class="col-sm-3 ">
+                      <div class="col-sm-8 ">
                         <input type="text" class="form-control mt-2" id="inputPassword" name="nomeUser" value="{{ $user['Username'] }}">
                       </div>
                       
@@ -220,14 +220,14 @@
 
                     <div class="form-group col">
                       <h2 class="p-2">Primeiro Nome: </h2>
-                      <div class="col-sm-4">
+                      <div class="col-sm-8">
                         <input type="text" class="form-control mt-2" id="inputPassword" name="primeiroNome" value="{{ $user['PrimeiroNome'] }}">
                       </div>
                     </div>
 
                     <div class="form-group col">
                       <h2 class="p-2">Email:</h2>
-                      <div class="col-sm-6">
+                      <div class="col-sm-8">
                         <input type="email" class="form-control mt-2" id="inputPassword" name="mail" placeholder="CHANGE ME!" value="{{ $user['Email'] }}"> 
                       </div>
                     </div>
@@ -237,7 +237,7 @@
 
                     <div class="form-group col">
                         <h2 class="p-2">Último Nome: </h2>
-                        <div class="col-sm-4">
+                        <div class="col-sm-8">
                           <input type="text" class="form-control mt-2" id="inputPassword" name="ultimoNome" value="{{ $user['UltimoNome'] }}">
                         </div>
                     </div>

@@ -165,6 +165,9 @@ class InteressadoController extends Controller
          $search_data10 = $request->input('restricao2');
          $search_data11 = $request->input('restricao3');
          $search_data12 = $request->input('restricao4');
+         $search_data13 = $request->input('faixaEtariaMin');
+         $search_data14 = $request->input('faixaEtariaMax');
+
  
          $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$search_data2.'%');
          if (!$search_data1 && !$search_data2 && !$search_data3 && !$search_data4){
@@ -185,7 +188,12 @@ class InteressadoController extends Controller
              $proprerties = $proprerties->where('Preco', '<',(int)$search_data4);
  
          }
- 
+
+         if ($search_data3){
+            $proprerties = $proprerties->where('AreaMetros','<', $search_data3);
+
+        }
+
          if ($search_data5){
              $proprerties = $proprerties->where('NumeroQuartos',(int)$search_data5);
  
@@ -233,10 +241,23 @@ class InteressadoController extends Controller
 
         }
 
+        if ($search_data13){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('faixaEtariaMin','>=',$search_data13);
+
+        }
+
+        if ($search_data14){
+            //dd($search_data6);
+            $proprerties = $proprerties->where('faixaEtariaMax','<=',$search_data14);
+
+        }
+
          $proprerties = $proprerties->paginate(1)->appends(request()->query());
          //return response()->json($dataLike);
-         return view('find_propriedade',compact('proprerties','dataLike','user','search_data1','search_data2','search_data4'));
-        //  return redirect()->back()->with(compact('proprerties','dataLike','user'));
+         return view('find_propriedade',compact('proprerties','dataLike','user','search_data1','search_data2','search_data4','search_data5','search_data3',
+         'search_data6','search_data7','search_data8','search_data9','search_data10','search_data11','search_data12','search_data13','search_data14'));
+        //return redirect()->back()->with(compact('proprerties','dataLike','user'));
 
      }
 

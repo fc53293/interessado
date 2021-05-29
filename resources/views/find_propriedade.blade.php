@@ -209,18 +209,18 @@
                                     <div class="col p-2">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <input type="checkbox" id="vehicle1" name="oriSolar1" value="N" class="ckeckJust1">
+                                                <input type="checkbox" id="solar1" name="oriSolar1" value="N" class="ckeckJust1">
                                                 <label for="vehicle1"> N</label><br>
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="S" class="ckeckJust1">
+                                                <input type="checkbox" id="solar2" name="oriSolar1" value="S" class="ckeckJust1">
                                                 <label for="vehicle2"> S</label><br>
 
                                             </div>
 
                                             <div class="col-md-4">
                             
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="E" class="ckeckJust1">
+                                                <input type="checkbox" id="solar3" name="oriSolar1" value="E" class="ckeckJust1">
                                                 <label for="vehicle2"> E</label><br>
-                                                <input type="checkbox" id="vehicle2" name="oriSolar1" value="O" class="ckeckJust1">
+                                                <input type="checkbox" id="solar4" name="oriSolar1" value="O" class="ckeckJust1">
                                                 <label for="vehicle2"> O</label><br>
                                             </div>
                                             <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
@@ -231,15 +231,15 @@
                                     <div class="col p-2">
                                         <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="checkbox" id="vehicle1" name="extra1" value="1">
+                                                    <input type="checkbox" id="ext1" name="extra1" value="1">
                                                     <label for="vehicle1"> Internet</label><br>
-                                                    <input type="checkbox" id="vehicle2" name="extra2" value="1">
+                                                    <input type="checkbox" id="ext2" name="extra2" value="1">
                                                     <label for="vehicle2"> Limpeza</label><br>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="checkbox" id="vehicle1" name="restricao1" value="1">
+                                                    <input type="checkbox" id="rest1" name="restricao1" value="1">
                                                     <label for="vehicle1"> Fumadores</label><br>
-                                                    <input type="checkbox" id="vehicle2" name="restricao2" value="1">
+                                                    <input type="checkbox" id="rest2" name="restricao2" value="1">
                                                     <label for="vehicle2"> Animais</label><br>
                                                 </div>
                                             <small id="emailHelp" class="p-1 form-text text-muted">Selecione opções extra</small>
@@ -248,9 +248,9 @@
                                     <div class="col p-2">
                                         <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="checkbox" id="vehicle1" name="restricao3" value="1">
+                                                    <input type="checkbox" id="rest3" name="restricao3" value="1">
                                                     <label for="vehicle1"> Masculino</label><br>
-                                                    <input type="checkbox" id="vehicle2" name="restricao4" value="1">
+                                                    <input type="checkbox" id="rest4" name="restricao4" value="1">
                                                     <label for="vehicle2"> Feminino</label><br>
                                                 </div>
                                                 <div class="col-md-6">
@@ -269,7 +269,10 @@
                                     
                                         </div>
                                     </div>
-                                    <div class="col text-center mt-5 p-2">
+                                    <div class="col text-center mt-2 p-2">
+                                        <button type="submit" class="btn btn-outline-danger">Limpar Pesquisa</button>
+                                    </div>
+                                    <div class="col text-center mt-2 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>
                                     </div>
                                 </div>
@@ -286,20 +289,44 @@
                                     escolha = (document.getElementById('exampleFormControlSelect1').value = "{{$search_data1}}");
                                     console.log(escolha);
                                     escolha.selected = true;
-                                    
-                                $( function() {
-                                    // @if (isset($search_data4)){
-                                    //     $('#myRange').value({{$search_data4}}).change();
-                                    // }@endif
- 
-                                    // @if ($search_data1 == "Casa"){
-                                    //     
-                                    // }@elseif($search_data1 == "Quarto"){
-                                    //     $('select#exampleFormControlSelect1').val("Quarto").change();
-                                    // }
-                                    // @endif
-                                    
 
+                                    escolha2 = (document.getElementById('exampleFormControlSelect2').value = "{{$search_data5}}");
+                                    console.log(escolha);
+                                    escolha2.selected = true;
+                                    
+                                    escolha3 = (document.getElementById('exampleFormControlSelect3').value = "{{$search_data3}}");
+                                    console.log(escolha);
+                                    escolha3.selected = true;
+                                    @if ($search_data6 && $search_data6 == "N")
+                                        $( "#solar1" ).prop( "checked", true );
+                                    @elseif ($search_data6 && $search_data6 == "S")
+                                        $( "#solar2" ).prop( "checked", true );
+                                    @elseif ($search_data6 && $search_data6 == "E")
+                                        $( "#solar3" ).prop( "checked", true );
+                                    @elseif ($search_data6 && $search_data6 == "O")
+                                        $( "#solar4" ).prop( "checked", true );
+                                    @endif
+
+                                    @if ($search_data7)
+                                        $( "#ext1" ).prop( "checked", true );
+                                    @endif
+                                    @if ($search_data8)
+                                        $( "#ext2" ).prop( "checked", true );
+                                    @endif
+                                    @if ($search_data9)
+                                        $( "#rest1" ).prop( "checked", true );
+                                    @endif
+                                    @if ($search_data10)
+                                        $( "#rest2" ).prop( "checked", true );
+                                    @endif
+                                    @if ($search_data11)
+                                        $( "#rest3" ).prop( "checked", true );
+                                    @endif
+                                    @if ($search_data12)
+                                        $( "#rest4" ).prop( "checked", true );
+                                    @endif
+                                $( function() {
+           
                                 $( "#slider-range" ).slider({
                                 range: true,
                                 min: 14,
