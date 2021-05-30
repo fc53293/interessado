@@ -259,11 +259,11 @@
                                                     <div id="slider-range"></div>
                                                     <div class="form-group col-md-2"> 
                 
-                                                        <input type="text" id="faixaEtariaMin" name="faixaEtariaMin" class="form-control" value="18" readonly hidden> 
+                                                        <input type="text" id="faixaEtariaMin" name="faixaEtariaMin" class="form-control" value={{$search_data13 ? $search_data13 : 18}} readonly hidden> 
                                                         </div>
                                                         <div class="form-group col-md-2"> 
                                                         
-                                                        <input type="text" id="faixaEtariaMax" name="faixaEtariaMax" class="form-control" value="23" readonly hidden> 
+                                                        <input type="text" id="faixaEtariaMax" name="faixaEtariaMax" class="form-control" value={{$search_data14 ? $search_data14 : 23}} readonly hidden> 
                                                     </div>
                                                 </div>
                                     
@@ -331,7 +331,7 @@
                                 range: true,
                                 min: 14,
                                 max: 88,
-                                values: [ 18, 23 ],
+                                values: [ {{$search_data13 ? $search_data13 : 18}}, {{$search_data14 ? $search_data14 : 23}} ],
                                 slide: function( event, ui ) {
                                     $( "#idades" ).val( ui.values[ 0 ] +" - "+ ui.values[ 1 ] );
                                     $( "#faixaEtariaMin" ).val( ui.values[ 0 ] );

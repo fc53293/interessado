@@ -479,6 +479,7 @@
                 });
             </script>
 
+
             <div class="row p-3 profile-container" id="parteBaixo">
                 <div class="col">
                     <div class="p-3">
@@ -522,17 +523,20 @@
                 </div>
             </div>
             <div class="row">
+            @php 
+            $data2 = $data; 
+            @endphp
             @for ($i = 0; $i < 12; $i++)
                 <div class="col-lg-2 col-md-3 col-xs-6 ">        
-                    <div class="shadow-sm p-3 mb-5 bg-white rounded h-75">
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded h-75" id="mesAluguer" name="{{$i}}">
                         <h2 align="center">{{ $data->format('F,Y') }}</h2>
                         <div id="boxInfo{{$i}}" align="center">
                         <script>
                         document.getElementById("boxInfo{{$i}}").innerHTML = 
                         "<h3><br>Disponivel<h3>" +
                         "<form action='/disponiveis/add/{{ $property[0]['IdPropriedade'] }}' name='_method' method='POST'>" +
-                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>" +
-                        "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
+                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>"
+                        // "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
                         </script>
                             @foreach ($arrendamentos as $arrendamento)
                                 @if ($arrendamento['MesContrato']==$data->format('m-y'))
@@ -557,8 +561,9 @@
                 <p hidden>{{ $data->addMonths(1) }}</p>
             @endfor
 
-
+            
         </div>
+        <button type='submit' class='btn btn-primary btn-sm'>Alugar</button>
     </div>
     <div id="abc2">
         <div id="popupContact">
@@ -578,4 +583,46 @@
     </div>
     </div>
     @endforeach
+
+    
+    <script>
+            $(document).ready(function(){
+                let inicio = null;
+                let fim = null;
+                
+                $("div#mesAluguer").mousedown(function(){
+                    if (inicio == null && fim == null){
+                        console.log($(this).attr('name'));
+                        $(this).removeClass( "bg-white" )
+                        $(this).css("background-color", "rgb(0, 51, 0,0.5)");
+                        inicio = $(this).attr('name');
+                    }
+                    else if (inicio != null && fim == null){
+                        console.log($(this).attr('name'));
+                        $(this).removeClass( "bg-white" )
+                        $(this).css("background-color", "rgb(0, 51, 0,0.5)");
+                        fim = $(this).attr('name');
+                        console.log(inicio)
+                        console.log(fim)
+                        
+                        for (i=0 ; i<=inicio ; i++){
+                            @php 
+                            $data2->addMonths(1)
+                            @endphp
+                        }
+                            for (i=parseInt(inicio)+1 ; i<fim ; i++){
+                                @php 
+                                $data2->addMonths(1)
+                                @endphp
+                                console.log("aqui "+"{{$data2->format('m-y')}}")
+                                $('[name="' + i + '"]').removeClass( "bg-white")
+                                $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
+             
+                            }
+                        
+                    }
+
+                })
+            });
+            </script>
 </body>
