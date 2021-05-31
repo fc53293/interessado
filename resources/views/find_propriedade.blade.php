@@ -388,6 +388,9 @@
                                         <div class="row p-2 position-relative" id="row4">
                                             <label class="fs-10"><strong>Metros quadrados: </strong>{{$propInfo['AreaMetros']}} m2</label>
                                         </div>
+                                        <div class="row p-2 position-relative" id="row4">
+                                            <label class="fs-10"><strong>Preço: </strong>{{$propInfo['Preco']}} €</label>
+                                        </div>
                                         <!--<div class="{{ $propInfo->IdPropriedade == 1 ? 'btn btn-primary' : 'btn btn-outline-primary' }}">
                                         <div class="row py-2 px-5" id="row5">
                                             <button type="button" class="{{ $ckeckLike == 'True' ? 'btn btn-primary' : 'btn btn-outline-primary' }}">Like!</button>

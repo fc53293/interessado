@@ -171,7 +171,7 @@
                             </h3>
                             <h1 class="infoCasa__Preco text-center p-3">{{$propInfo['Preco']}}€/mês</h1>
                         </div>
-                        <!-- <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST"> -->
+                        <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
