@@ -66,6 +66,8 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('/storeImg/{id}', 'InteressadoController@storeProfileImg');
 
+    Route::post('/newRentMonth/{idProp}/{idUser}', 'InteressadoController@newArrendamento');
+
 });
 
 //Testes:

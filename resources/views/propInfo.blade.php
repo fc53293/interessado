@@ -534,9 +534,9 @@
                         <script>
                         document.getElementById("boxInfo{{$i}}").innerHTML = 
                         "<h3><br>Disponivel<h3>" +
-                        "<form action='/disponiveis/add/{{ $property[0]['IdPropriedade'] }}' name='_method' method='POST'>" +
-                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>"
-                        // "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
+                        "<form action='/newRentMonth/{{$propInfo->IdPropriedade}}/{{$user[0]['IdUser']}}' name='_method' method='POST'>" +
+                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>" +
+                        "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
                         </script>
                             @foreach ($arrendamentos as $arrendamento)
                                 @if ($arrendamento['MesContrato']==$data->format('m-y'))
@@ -563,7 +563,7 @@
 
             
         </div>
-        <button type='submit' class='btn btn-primary btn-sm'>Alugar</button>
+        <!--<button type='submit' class='btn btn-primary btn-sm'>Alugar</button>-->
     </div>
     <div id="abc2">
         <div id="popupContact">
@@ -605,20 +605,31 @@
                         console.log(inicio)
                         console.log(fim)
                         
-                        for (i=0 ; i<=inicio ; i++){
-                            @php 
-                            $data2->addMonths(1)
-                            @endphp
+                        // for (i=0 ; i<=inicio ; i++){
+                        //     @php 
+                        //     $data2->addMonths(1)
+                        //     @endphp
+                        //     // console.log("aqui1 "+"{{$data2->format('m-y')}}")
+                        // }
+                        var months = [0,0,0,0,0,0,0,0,0,0,0,0];
+                        for (i=parseInt(inicio) ; i<=fim ; i++){
+                            months[i]=1;
                         }
-                            for (i=parseInt(inicio)+1 ; i<fim ; i++){
-                                @php 
-                                $data2->addMonths(1)
-                                @endphp
-                                console.log("aqui "+"{{$data2->format('m-y')}}")
-                                $('[name="' + i + '"]').removeClass( "bg-white")
-                                $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
-             
-                            }
+                        console.log(months);
+
+                        for (i=parseInt(inicio)+1 ; i<fim ; i++)
+                        {
+                            // @php 
+                            // $data2->addMonths(1);
+                            
+                            // @endphp
+
+                            console.log("-> "+"{{$data2->format('m-y')}}")
+                            
+                            $('[name="' + i + '"]').removeClass( "bg-white")
+                            $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
+
+                        }
                         
                     }
 

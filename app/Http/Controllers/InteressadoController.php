@@ -445,6 +445,16 @@ class InteressadoController extends Controller
 
     }
 
+    public function newArrendamento(Request $request, $idProp,$idUser){
+        $user = new Arrendamento();
+        $user->IdInquilino="2";
+        $user->IdPropriedade=$idProp;
+        $user->MesContrato=$request->input('Mes');
+        $user->save();
+
+        return redirect('propertyInfo/'.$idProp.'/user/2');
+    }
+
     public function sendMessage(Request $request)
     {
         
