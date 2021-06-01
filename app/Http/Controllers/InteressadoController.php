@@ -151,6 +151,14 @@ class InteressadoController extends Controller
         return view('profile_interessado',compact('data','dataHoje','user','validadeNIF'));
     }
 
+    public function pesquisaRapida(Request $request)
+    {
+        $attrFind = $request->input();
+        $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$attrFind.'%');
+
+        return view('profile_interessado',compact('proprerties'));
+    }
+    
     public function findPropriedade(Request $request, $idUser)
     {
         $user = Utilizador::where('IdUser','=',$idUser)->get();

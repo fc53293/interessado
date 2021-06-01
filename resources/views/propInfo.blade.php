@@ -173,6 +173,7 @@
                         </div>
                         <form class="foodstars" action="{{url('/rateProperty/'.$propInfo['IdPropriedade'])}}" id="addStar" method="POST">
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
+                            <label >Meu Rating:  </label>
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="star" value="5" classe="fa"><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                                     
@@ -188,7 +189,7 @@
                             <div class="mt-3 p-2 star-icon d-flex justify-content-center">
                                 @if ($avgStar!="")
                                 <div class="star-icon d-flex justify-content-center">
-                                    <label >Rating: </label> <h3 id="totalAVGrating"></h3>
+                                    <label >Rating Médio:  </label> <h3 id="totalAVGrating"></h3>
                                     @for ($i=0;$i<$avgStar;$i++)
                                     <i class="fa fa-star" data-rating="2" style="font-size:20px;color:#ff9f00;"></i>
                                     @endfor

@@ -346,7 +346,8 @@
                             <!-- Fim Search Form -->
                         </div>
                         <div class="col-9">
-                            <h1 class="px-2 py-4 font-effect__blue">RESULTADOS:</h1>
+                            <h1 class="px-2 py-4 font-effect__blue">Pesquisa de Alojamentos:</h1>
+                            <h2 class="px-2 py-4 font-effect__blue">RESULTADOS:</h2>
 
                             @if(isset($proprerties))
 
