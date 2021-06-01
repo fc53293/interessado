@@ -68,6 +68,10 @@ Route::group(['prefix' => ''], function () {
 
     Route::post('/newRentMonth/{idProp}/{idUser}', 'InteressadoController@newArrendamento');
 
+    Route::get('findFast/{idUser}', 'InteressadoController@pesquisaRapida');
+
+    Route::get('findFast2/{idUser}', 'InteressadoController@pesquisaRapida2');
+
 });
 
 //Testes:

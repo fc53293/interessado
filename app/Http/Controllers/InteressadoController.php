@@ -151,12 +151,61 @@ class InteressadoController extends Controller
         return view('profile_interessado',compact('data','dataHoje','user','validadeNIF'));
     }
 
-    public function pesquisaRapida(Request $request)
+    public function pesquisaRapida(Request $r, $idUser)
     {
-        $attrFind = $request->input();
-        $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$attrFind.'%');
 
-        return view('profile_interessado',compact('proprerties'));
+        $attrFind = $r->input('fastLcal');
+        $user = Utilizador::where('IdUser','=',$idUser)->get();
+        $dataLike = Likes::where('IdUser',$idUser)->get();
+        // dd($attrFind);
+        $search_data1 = "";
+        $search_data2= "";
+        $search_data3= "";
+        $search_data4= "";
+        $search_data5= "";
+        $search_data6= "";
+        $search_data7= "";
+        $search_data8= "";
+        $search_data9= "";
+        $search_data10= "";
+        $search_data11= "";
+        $search_data12= "";
+        $search_data13= "";
+        $search_data14= "";
+
+        $proprerties = Propriedade::where('Localizacao', 'LIKE', '%'.$attrFind.'%');
+        $proprerties = $proprerties->paginate(1)->appends(request()->query());
+        
+        return view('find_propriedade',compact('proprerties','dataLike','user','search_data1','search_data2','search_data4','search_data5','search_data3',
+        'search_data6','search_data7','search_data8','search_data9','search_data10','search_data11','search_data12','search_data13','search_data14'));
+    }
+    public function pesquisaRapida2(Request $r, $idUser)
+    {
+
+        $attrFind = $r->input('fastTipo');
+        $user = Utilizador::where('IdUser','=',$idUser)->get();
+        $dataLike = Likes::where('IdUser',$idUser)->get();
+        // dd($attrFind);
+        $search_data1 = "";
+        $search_data2= "";
+        $search_data3= "";
+        $search_data4= "";
+        $search_data5= "";
+        $search_data6= "";
+        $search_data7= "";
+        $search_data8= "";
+        $search_data9= "";
+        $search_data10= "";
+        $search_data11= "";
+        $search_data12= "";
+        $search_data13= "";
+        $search_data14= "";
+
+        $proprerties = Propriedade::where('TipoPropriedade',$attrFind);
+        $proprerties = $proprerties->paginate(1)->appends(request()->query());
+        
+        return view('find_propriedade',compact('proprerties','dataLike','user','search_data1','search_data2','search_data4','search_data5','search_data3',
+        'search_data6','search_data7','search_data8','search_data9','search_data10','search_data11','search_data12','search_data13','search_data14'));
     }
     
     public function findPropriedade(Request $request, $idUser)

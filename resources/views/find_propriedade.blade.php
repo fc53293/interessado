@@ -171,7 +171,7 @@
                                             aluguer</small>
                                     </div>
                                     <div class="col p-2">
-                                        <input type="text" class="form-control search-slt" placeholder="Local" name="query2" value="{{$search_data2}}">
+                                        <input type="text" class="form-control search-slt" placeholder="Local" name="query2" value="{{$search_data2 ? $search_data2 : ''}}">
                                         <small id="emailHelp" class="p-1 form-text text-muted">Escolha uma
                                             localidade</small>
                                     </div>
@@ -381,10 +381,12 @@
                                             <label class="fs-10"><strong>ID PROPRIEDADE: </strong>{{$propInfo['IdPropriedade']}}</label>
                                         </div>
                                         <div class="row p-2 position-relative" id="row2">
-                                            <label class="fs-10"><strong>TIPO PROPRIEDADE: </strong>{{$propInfo['TipoPropriedade']}}</label>
+                                            <label class="fs-10"><strong>TIPO PROPRIEDADE: </strong><a href="" id="fastTipo">{{$propInfo['TipoPropriedade']}}</a></label>
+                                            <form action="/findFast2/2" id="formFast2"><input type="hidden" name="fastTipo" value="{{$propInfo['TipoPropriedade']}}"></form>
                                         </div>
                                         <div class="row p-2 position-relative" id="row3">
-                                            <label class="fs-10"><strong>LOCALIZAÇÃO: </strong>{{$propInfo['Localizacao']}}</label>
+                                            <label class="fs-10"><strong>LOCALIZAÇÃO: </strong><a href="" id="fastLocal">{{$propInfo['Localizacao']}}</a></label>
+                                            <form action="/findFast/2" id="formFast1"><input type="hidden" name="fastLcal" value="{{$propInfo['Localizacao']}}"></form>
                                         </div>
                                         <div class="row p-2 position-relative" id="row4">
                                             <label class="fs-10"><strong>Metros quadrados: </strong>{{$propInfo['AreaMetros']}} m2</label>
@@ -477,5 +479,40 @@
         </div>
     </div>
     <!-- END Banner -->
+    <script>
+                    
+                    $('#fastLocal').click(function(e) {
+                    //alert("ola");
+                    $("#formFast1").submit();
+                    e.preventDefault();
+                    req = $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'JSON',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+                    
+                    });
 
+                    $('#fastTipo').click(function(e) {
+                    //alert("ola");
+                    $("#formFast2").submit();
+                    e.preventDefault();
+                    req = $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'JSON',
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+                    
+                    });
+                </script>
 </body>
