@@ -544,6 +544,9 @@
                                 <script>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Alugado</h3><h3>Inquilino: {{ $arrendamento['IdInquilino']}}</h3>"
+                                
+                                $('[name="' + {{$i}} + '"]').removeClass( "bg-white")
+                                $('[name="' + {{$i}} + '"]').css("background-color", "rgb(225, 0, 0,0.3)");
                                 </script>
                                     
                                 @endif
@@ -553,6 +556,7 @@
                                 <script>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Indisponivel</h3>"
+                                
                                 </script>
                                 @endif
                             @endforeach        

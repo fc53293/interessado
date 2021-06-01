@@ -503,11 +503,17 @@ class InteressadoController extends Controller
     }
 
     public function newArrendamento(Request $request, $idProp,$idUser){
-        $user = new Arrendamento();
-        $user->IdInquilino="2";
-        $user->IdPropriedade=$idProp;
-        $user->MesContrato=$request->input('Mes');
-        $user->save();
+
+        $checkExist = Arrendamento::where('IdPropriedade', $idProp)->where('MesContrato',$request->input('Mes'))->first();
+
+        if ($checkExist === null){
+            $user = new Arrendamento();
+            $user->IdInquilino="2";
+            $user->IdPropriedade=$idProp;
+            $user->MesContrato=$request->input('Mes');
+            $user->save();
+        }
+
 
         return redirect('propertyInfo/'.$idProp.'/user/2');
     }
