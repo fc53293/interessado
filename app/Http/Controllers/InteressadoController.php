@@ -512,6 +512,8 @@ class InteressadoController extends Controller
             $user->IdPropriedade=$idProp;
             $user->MesContrato=$request->input('Mes');
             $user->save();
+        }else{
+            dd('This property is not available');
         }
 
 

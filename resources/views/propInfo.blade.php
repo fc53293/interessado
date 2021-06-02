@@ -523,7 +523,9 @@
                     </script>
                 </div>
             </div>
+            
             <div class="row">
+
             @php 
             $data2 = $data; 
             @endphp
@@ -546,7 +548,7 @@
                                 "<br><h3>Alugado</h3><h3>Inquilino: {{ $arrendamento['IdInquilino']}}</h3>"
                                 
                                 $('[name="' + {{$i}} + '"]').removeClass( "bg-white")
-                                $('[name="' + {{$i}} + '"]').css("background-color", "rgb(225, 0, 0,0.3)");
+                                $('[name="' + {{$i}} + '"]').css("background-color", "rgba(225, 0, 0,0.4)");
                                 </script>
                                     
                                 @endif
@@ -564,8 +566,9 @@
                     </div>
                 </div>
                 <p hidden>{{ $data->addMonths(1) }}</p>
+                
             @endfor
-
+            
             
         </div>
         <!--<button type='submit' class='btn btn-primary btn-sm'>Alugar</button>-->
@@ -596,20 +599,26 @@
                 let fim = null;
                 
                 $("div#mesAluguer").mousedown(function(){
+            
                     if (inicio == null && fim == null){
-                        console.log($(this).attr('name'));
-                        $(this).removeClass( "bg-white" )
-                        $(this).css("background-color", "rgb(0, 51, 0,0.5)");
-                        inicio = $(this).attr('name');
+                        // console.log($(this).css("background-color") == "rgba(225, 0, 0, 0.4)");
+                        if ($(this).css("background-color") != "rgba(225, 0, 0, 0.4)"){
+                            console.log($(this).attr('name'));
+                            $(this).removeClass( "bg-white" )
+                            $(this).css("background-color", "rgb(0, 51, 0,0.5)");
+                            inicio = $(this).attr('name');
+                        }
+                
                     }
                     else if (inicio != null && fim == null){
-                        console.log($(this).attr('name'));
-                        $(this).removeClass( "bg-white" )
-                        $(this).css("background-color", "rgb(0, 51, 0,0.5)");
-                        fim = $(this).attr('name');
-                        console.log(inicio)
-                        console.log(fim)
-                        
+                        // console.log($(this).attr('name'));
+                        if ($(this).css("background-color") != "rgba(225, 0, 0, 0.4)"){
+                            $(this).removeClass( "bg-white" )
+                            $(this).css("background-color", "rgb(0, 51, 0,0.5)");
+                            fim = $(this).attr('name');
+                            console.log(inicio)
+                            console.log(fim)
+                        }
                         // for (i=0 ; i<=inicio ; i++){
                         //     @php 
                         //     $data2->addMonths(1)
@@ -618,7 +627,9 @@
                         // }
                         var months = [0,0,0,0,0,0,0,0,0,0,0,0];
                         for (i=parseInt(inicio) ; i<=fim ; i++){
-                            months[i]=1;
+                            if ($('[name="' + i + '"]').css("background-color") != "rgba(225, 0, 0, 0.4)"){
+                                months[i]=1;
+                            }
                         }
                         console.log(months);
 
@@ -630,10 +641,10 @@
                             // @endphp
 
                             console.log("-> "+"{{$data2->format('m-y')}}")
-                            
-                            $('[name="' + i + '"]').removeClass( "bg-white")
-                            $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
-
+                            if ($('[name="' + i + '"]').css("background-color") != "rgba(225, 0, 0, 0.4)"){
+                                $('[name="' + i + '"]').removeClass( "bg-white")
+                                $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
+                            }
                         }
                         
                     }
