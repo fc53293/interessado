@@ -118,6 +118,7 @@
                         toggle between hiding and showing the dropdown content */
                         function myFunction() {
                             document.getElementById("myDropdown").classList.toggle("show");
+                            
                         }
 
                         // Close the dropdown if the user clicks outside of it
@@ -133,6 +134,37 @@
                             }
                             }
                         }
+                        
+                            //var entra = null;
+                            $(document).ready(function() {
+                                $("form").submit(function(e) {
+                                    //alert("aqui");
+                                    e.preventDefault();
+                                    req = $.ajax({
+                                        type: 'POST',
+                                        cache: false,
+                                        dataType: 'JSON',
+                                        url: $("#mesAlugar").attr('action'),
+                                        data: $(this).serialize(),
+                                        success: function(data) {
+                                            console.log(data);
+                                            
+                                        }
+                                    });
+
+                                    req.done(function(data){
+                                    
+                                        $('#allCalendar').fadeOut(1000).fadeIn(1000);
+                                        
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 4000);
+                                    });
+                                });
+
+
+                            });
+                        
                         </script>        
             </ul>
         </div>
@@ -467,7 +499,7 @@
                     url: $(this).attr('action'),
                     data: $(this).serialize(),
                     success: function(data) {
-                    console.log(data);
+                    //console.log(data);
                     }
                 });
                 req.done(function(data){
@@ -524,7 +556,7 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row" id="allCalendar">
 
             @php 
             $data2 = $data; 
@@ -537,9 +569,9 @@
                         <script>
                         document.getElementById("boxInfo{{$i}}").innerHTML = 
                         "<h3><br>Disponivel<h3>" +
-                        "<form action='/newRentMonth/{{$propInfo->IdPropriedade}}/{{$user[0]['IdUser']}}' name='_method' method='POST'>" +
+                        "<form action='/newRentMonth/{{$propInfo->IdPropriedade}}/{{$user[0]['IdUser']}}' name='_method' method='POST' class='alugaMes' id='mesAlugar'>" +
                         "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>" +
-                        "<button type='submit' class='btn btn-primary btn-sm'>Alugar</button></form>"
+                        "<button type='submit' class='btn btn-primary btn-sm' id='buttonAlugarMes' >Alugar</button></form>"
                         </script>
                             @foreach ($arrendamentos as $arrendamento)
                                 @if ($arrendamento['MesContrato']==$data->format('m-y'))
@@ -555,11 +587,11 @@
                             @endforeach
                             @foreach ($indisponiveis as $indisponivel)
                                 @if ($indisponivel['Mes']==$data->format('m-y'))
-                                <script>
+                                <scripZZZZZZZZ>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Indisponivel</h3>"
                                 
-                                </script>
+                                </scripZZZZZZZZ>
                                 @endif
                             @endforeach        
                         </div>
@@ -591,10 +623,33 @@
     </div>
     </div>
     @endforeach
+    // <script>
+    // $(document).ready(function () {
+    //     $("#mesAlugar").submit(function(e) {
+    //         alert("pila");
+    //         e.preventDefault(); // avoid to execute the actual submit of the form.
 
+    //         var form = $(this);
+    //         var url = form.attr('action');
+
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             data: form.serialize(), // serializes the form's elements.
+    //             success: function(data)
+    //             {
+    //                 alert(data); // show response from the php script.
+    //             }
+    //             });
+
+
+    //     });
+    // });
+    // </script>
     
     <script>
             $(document).ready(function(){
+
                 let inicio = null;
                 let fim = null;
                 
@@ -603,7 +658,7 @@
                     if (inicio == null && fim == null){
                         // console.log($(this).css("background-color") == "rgba(225, 0, 0, 0.4)");
                         if ($(this).css("background-color") != "rgba(225, 0, 0, 0.4)"){
-                            console.log($(this).attr('name'));
+                            //console.log($(this).attr('name'));
                             $(this).removeClass( "bg-white" )
                             $(this).css("background-color", "rgb(0, 51, 0,0.5)");
                             inicio = $(this).attr('name');
@@ -616,8 +671,8 @@
                             $(this).removeClass( "bg-white" )
                             $(this).css("background-color", "rgb(0, 51, 0,0.5)");
                             fim = $(this).attr('name');
-                            console.log(inicio)
-                            console.log(fim)
+                            console.log("ini "+inicio)
+                            console.log("fim"+fim)
                         }
                         // for (i=0 ; i<=inicio ; i++){
                         //     @php 
@@ -633,23 +688,44 @@
                         }
                         console.log(months);
 
+
                         for (i=parseInt(inicio)+1 ; i<fim ; i++)
                         {
                             // @php 
                             // $data2->addMonths(1);
-                            
                             // @endphp
+                            
 
                             console.log("-> "+"{{$data2->format('m-y')}}")
                             if ($('[name="' + i + '"]').css("background-color") != "rgba(225, 0, 0, 0.4)"){
                                 $('[name="' + i + '"]').removeClass( "bg-white")
                                 $('[name="' + i + '"]').css("background-color", "rgb(0, 51, 0,0.2)");
                             }
+                            
+
                         }
-                        
+                        //console.log(document.getElementsByName('1')[0]);
+                        for( var index = parseInt(inicio)+1; index < fim; index++ ) {
+                            //entra = index;
+                            //alert(entra);
+
+                            //document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0].submit();
+                            //$('[name='+index+']')[0].children[1].children[1].children[0].submit();
+                            
+                            //console.log(document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0]);
+                            console.log($('[name='+index+']')[0].children[1].children[1].children[0].children[1]);
+                            
+                            $('[name='+index+']')[0].children[1].children[1].children[0].children[1].click();
+                            
+                            
+              
+                        };
                     }
 
                 })
+
+
+                
             });
             </script>
 </body>

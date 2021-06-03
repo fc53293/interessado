@@ -370,7 +370,7 @@ class InteressadoController extends Controller
                 $user->IdUser=$userLoged;
                 $user->Username=$dataz->Username;
                 $user->IdPropriedade=$idProp;
-                $user->InicoiContrato=Carbon::now();
+                $user->InicioContrato=Carbon::now();
                 $user->FimContrato=Carbon::now()->addMonthsNoOverflow((int)$prop);
                 $user->save();
                 }
@@ -516,8 +516,8 @@ class InteressadoController extends Controller
             dd('This property is not available');
         }
 
-
-        return redirect('propertyInfo/'.$idProp.'/user/2');
+        return compact('user');
+        // return redirect('propertyInfo/'.$idProp.'/user/2');
     }
 
     public function sendMessage(Request $request)
