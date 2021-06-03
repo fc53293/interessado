@@ -173,9 +173,19 @@
     
 
     <!-- END Nav bar -->
-    
+
+
     <div class="banner-image d-flex justify-content-center align-items-center pt-5">
         <div class="container profile-container m-5">
+        
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/findPropriedadeInteressado/2">Find Property</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Prorperty Info</li>
+        </ol>
+        </nav>
+
             <div class="row p-3 profile-container" id="parteCima">
                 <div class="col align-middle" id="dataCasa">
                     <div class="row d-flex justify-content-center" id="dataCasa__imagens">

@@ -149,15 +149,21 @@
 
     <!-- Banner -->
     <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+    
         <div class="container">
+        
             <div class="row">
+            
                 <!--good-->
                 <div class="col profile-container">
                     <div class="row m-1">
+                    
                         <!-- main -->
                         <div class="col-3 pt-2">
+                        
                             <!-- Inicio Search Form-->
                             <br>
+                            
                             <form action="{{url('/findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
@@ -346,6 +352,12 @@
                             <!-- Fim Search Form -->
                         </div>
                         <div class="col-9">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Find Property</li>
+                            </ol>
+                        </nav>
                             <h1 class="px-2 py-4 font-effect__blue">Pesquisa de Alojamentos:</h1>
                             <h2 class="px-2 py-4 font-effect__blue">RESULTADOS:</h2>
 

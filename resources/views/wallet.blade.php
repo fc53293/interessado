@@ -28,7 +28,9 @@
 ?>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+
 <div class="container">
+
       <a class="navbar-brand" href="/senhorio/home">
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
@@ -36,8 +38,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="mx-auto"></div>
+      
+        <div class="mx-auto">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Wallet</li>
+          </ol>
+        </nav>
+        </div>
         <ul class="navbar-nav">
+        
 
                     <style>
                       .dropbtn {
@@ -136,11 +147,16 @@
         </ul>
       </div>
     </div>
+    
   </nav>
 
     <!-- Profile -->
     <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center pt-5 ">
+
+
+
         <div>
+        
             <div class="wallet-container text-center">
             <p class="page-title"><h2 class="font-effect__blue">MyUniRent Wallet</h2><i class="fa fa-user"></i></p>
             @foreach ($data as $info)
