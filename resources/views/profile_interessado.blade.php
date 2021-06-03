@@ -162,10 +162,11 @@
               </div>
           </div>
           <script>
+          console.log({{$user['imagem']}});
             var data = new FormData();
-            jQuery.each(jQuery('#file')[0].files, function(i, file) {
-                data.append('file-'+i, file);
-            });    
+            // jQuery.each(jQuery('#file')[0].files, function(i, file) {
+            //     data.append('file-'+i, file);
+            // });    
 
             $('#formFotoPerfil').submit(function(e) {
             alert("ola");
@@ -548,6 +549,9 @@
 
                     $('#formPerfil').submit(function(e) {
                     console.log({{$validadeNIF}});
+                    if ({{$validadeNIF}} == 1){
+                      alert("NIF Inválido!");
+                    }
                     e.preventDefault();
                     req = $.ajax({
                         type: 'POST',
@@ -562,9 +566,9 @@
                     
                     req.done(function(data){
                         //$('#totalAVGrating').fadeOut(500).fadeIn(500);
-                        
-                        $('.form-group').fadeOut(1000).fadeIn(1000);
-                        
+                        if ({{$validadeNIF}} != 1){
+                          $('.form-group').fadeOut(1000).fadeIn(1000);
+                        }
                         // setTimeout(function(){
                         //     $('.amount').text(data.res+" €");
                         // }, 1000);
