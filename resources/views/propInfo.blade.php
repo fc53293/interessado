@@ -603,7 +603,10 @@
             
             
         </div>
-        <!--<button type='submit' class='btn btn-primary btn-sm'>Alugar</button>-->
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type='submit' class='shadow-lg p-3 mb-5 rounded btn btn-primary' id='buttonAlugarTudo' onclick="rentAll()" >Alugar Tudo</button>
+        </div>
+
     </div>
     <div id="abc2">
         <div id="popupContact">
@@ -705,7 +708,7 @@
 
                         }
                         //console.log(document.getElementsByName('1')[0]);
-                        for( var index = parseInt(inicio)+1; index < fim; index++ ) {
+                        for( var index = parseInt(inicio)+0; index <= fim; index++ ) {
                             //entra = index;
                             //alert(entra);
 
@@ -727,5 +730,17 @@
 
                 
             });
+
+            function rentAll() {
+                alert("rent TUDO");
+                for( var index = 0; index <= 12; index++ ) {
+
+                    
+                    $('[name='+index+']')[0].children[1].children[1].children[0].children[1].click();
+                    
+                    
+        
+                };
+            }
             </script>
 </body>
