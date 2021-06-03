@@ -350,7 +350,7 @@
 
                         <div class="px-3">
                             <form action="{{url('/startNewRent/'.$propInfo['IdPropriedade'].'/user/2')}}" method="post" name="form">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="div_show2();check_money({{'$result'}});">Alugar!</button>
+                                <!-- <button type="button" class="btn btn-primary btn-lg" onclick="div_show2();check_money({{'$result'}});">Alugar!</button> -->
                             </form>
                         </div>
                     </div>
