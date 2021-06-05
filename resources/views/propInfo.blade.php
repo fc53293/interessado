@@ -597,6 +597,9 @@
                     </script>
                 </div>
             </div>
+
+        <div class="row p-3 profile-container" id="parteBaixo">
+            <h1>Booking:</h1>
             <p>Selecione o <b>primeiro</b> e <b>último</b> mês de aluguer! <img src="/img/clickIcon.png" alt="" width="40" height="40"></p>
             <div class="row" id="allCalendar">
                             
@@ -605,15 +608,15 @@
             @endphp
             @for ($i = 0; $i < 12; $i++)
                 <div class="col-lg-2 col-md-3 col-xs-6 ">        
-                    <div class="shadow-sm p-3 mb-5 bg-white rounded h-75" id="mesAluguer" name="{{$i}}">
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded" id="mesAluguer" name="{{$i}}">
                         <h2 align="center">{{ $data->format('F,Y') }}</h2>
                         <div id="boxInfo{{$i}}" align="center">
                         <script>
                         document.getElementById("boxInfo{{$i}}").innerHTML = 
                         "<h3><br>Disponivel<h3>" +
                         "<form action='/newRentMonth/{{$propInfo->IdPropriedade}}/{{$user[0]['IdUser']}}' name='_method' method='POST' class='alugaMes' id='mesAlugar'>" +
-                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>" +
-                        "<button type='submit' class='btn btn-primary btn-sm' id='buttonAlugarMes' >Alugar</button></form>"
+                        "<input type='text' name='Mes' value={{ $data->format('m-y') }} hidden>"+
+                        "<button type='submit' class='btn btn-primary btn-sm' id='buttonAlugarMes' hidden>Alugar</button></form>"
                         </script>
                             @foreach ($arrendamentos as $arrendamento)
                                 @if ($arrendamento['MesContrato']==$data->format('m-y'))
@@ -645,9 +648,10 @@
             
             
         </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
+   
+        <!--<div class="d-grid gap-2 col-6 mx-auto">
             <button type='submit' class='shadow-lg p-3 mb-5 rounded btn btn-primary' id='buttonAlugarTudo' onclick="finishRent()" >Alugar Tudo</button>
-        </div>
+        </div>-->
 
     </div>
     <div id="abc2">
@@ -668,6 +672,7 @@
     </div>
     </div>
     @endforeach
+    
     // <script>
     // $(document).ready(function () {
     //     $("#mesAlugar").submit(function(e) {
