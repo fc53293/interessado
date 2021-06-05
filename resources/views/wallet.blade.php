@@ -108,20 +108,52 @@
                       .dropdown a:hover {background-color: #ddd;}
 
                       .show {display: block;}
+
+                      .float-container {
+                            
+                            padding: 20px;
+                        }
+
+                        .float-child {
+                            width: 50%;
+                            float: left;
+                            padding: 20px;
+                            
+                        }
+
+                        #aVoltaDoNome{
+                            
+
+                        }  
                       </style>
 
-                      <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn"></button>
-                        <div id="myDropdown" class="dropdown-content">
-                          <p class="outro">Hi, {{$data[0]['PrimeiroNome']}}!</p>
-                          <a href="{{ url('/homeInteressado') }}">Home</a>
-                          <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
-                          <a href="{{ url('/chat') }}">Messages</a>
-                          <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
-                          <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
-                          <a href="#">Sign Out</a>
+                  <div class="float-container">
+
+                        <div class="float-child" id="aVoltaDoNome">
+                            <div class="green">
+                                <h5>{{$data[0]['PrimeiroNome']}}</h5>
+                            </div>
                         </div>
-                      </div>
+
+                        <div class="float-child">
+                            <div class="blue">
+                                <div class="dropdown">
+                            
+                                    <button onclick="myFunction()" class="dropbtn"></button>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <p class="outro">Hi, {{$data[0]['PrimeiroNome']}}!</p>
+                                        <a href="{{ url('/homeInteressado') }}">Home</a>
+                                        <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                                        <a href="{{ url('/chat') }}">Messages</a>
+                                        <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
+                                        <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                                        <a href="#">Sign Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                       <script>
                       /* When the user clicks on the button, 

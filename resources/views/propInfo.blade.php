@@ -98,19 +98,51 @@
                         .dropdown a:hover {background-color: #ddd;}
 
                         .show {display: block;}
+
+                        #mesAluguer{
+                            cursor: pointer;
+                        }
+
+                        .float-container {
+                            
+                            padding: 20px;
+                        }
+
+                        .float-child {
+                            width: 50%;
+                            float: left;
+                            padding: 20px;
+                            
+                        }
+
                         </style>
 
-                        <div class="dropdown">
-                            <button onclick="myFunction()" class="dropbtn"></button>
-                            <div id="myDropdown" class="dropdown-content">
-                            <p class="outro">Hi, {{$user[0]['PrimeiroNome']}}!</p>
-                            <a href="{{ url('/homeInteressado') }}">Home</a>
-                            <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
-                            <a href="{{ url('/chat') }}">Messages</a>
-                            <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
-                            <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
-                            <a href="#">Sign Out</a>
+                        <div class="float-container">
+
+                        <div class="float-child" id="aVoltaDoNome">
+                            <div class="green">
+                                <h5>{{$user[0]['PrimeiroNome']}}</h5>
                             </div>
+                        </div>
+
+                        <div class="float-child">
+                            <div class="blue">
+                                <div class="dropdown">
+                            
+                                    <button onclick="myFunction()" class="dropbtn"></button>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <p class="outro">Hi, {{$user[0]['PrimeiroNome']}}!</p>
+                                        <a href="{{ url('/homeInteressado') }}">Home</a>
+                                        <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                                        <a href="{{ url('/chat') }}">Messages</a>
+                                        <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
+                                        <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                                        <a href="#">Sign Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         </div>
 
                         <script>
@@ -179,17 +211,17 @@
         <div class="container profile-container m-5">
         
         <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="/findPropriedadeInteressado/2">Find Property</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Prorperty Info</li>
-        </ol>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/findPropriedadeInteressado/2">Find Property</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Property {{$property[0]['IdPropriedade']}} Info </li>
+            </ol>
         </nav>
 
             <div class="row p-3 profile-container" id="parteCima">
                 <div class="col align-middle" id="dataCasa">
                     <div class="row d-flex justify-content-center" id="dataCasa__imagens">
-                        <img class="img-fluid mt-2" id="imgCasa" src="/img/QUARTO.jpg"
+                        <img class="img-fluid mt-2" id="imgCasa" src="/img/room1.jpg"
                             style="max-width: 700px; width:100%;  border-radius: 50px !important;">
                             
                         @foreach($property as $propInfo) 
@@ -565,9 +597,9 @@
                     </script>
                 </div>
             </div>
-            
+            <p>Selecione o <b>primeiro</b> e <b>último</b> mês de aluguer! <img src="/img/clickIcon.png" alt="" width="40" height="40"></p>
             <div class="row" id="allCalendar">
-
+                            
             @php 
             $data2 = $data; 
             @endphp
@@ -597,11 +629,11 @@
                             @endforeach
                             @foreach ($indisponiveis as $indisponivel)
                                 @if ($indisponivel['Mes']==$data->format('m-y'))
-                                <scripZZZZZZZZ>
+                                <script>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Indisponivel</h3>"
                                 
-                                </scripZZZZZZZZ>
+                                </script>
                                 @endif
                             @endforeach        
                         </div>
@@ -614,7 +646,7 @@
             
         </div>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button type='submit' class='shadow-lg p-3 mb-5 rounded btn btn-primary' id='buttonAlugarTudo' onclick="rentAll()" >Alugar Tudo</button>
+            <button type='submit' class='shadow-lg p-3 mb-5 rounded btn btn-primary' id='buttonAlugarTudo' onclick="finishRent()" >Alugar Tudo</button>
         </div>
 
     </div>
@@ -717,22 +749,29 @@
                             
 
                         }
-                        //console.log(document.getElementsByName('1')[0]);
-                        for( var index = parseInt(inicio)+0; index <= fim; index++ ) {
-                            //entra = index;
-                            //alert(entra);
+                        setTimeout(function() {
+                            console.log("");
+                        
 
-                            //document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0].submit();
-                            //$('[name='+index+']')[0].children[1].children[1].children[0].submit();
-                            
-                            //console.log(document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0]);
-                            console.log($('[name='+index+']')[0].children[1].children[1].children[0].children[1]);
-                            
-                            $('[name='+index+']')[0].children[1].children[1].children[0].children[1].click();
-                            
-                            
-              
-                        };
+                            if (confirm('Tem a certeza que pretende avançar?')) {
+                                for( var index = parseInt(inicio)+0; index <= fim; index++ ) {
+                                    //entra = index;
+                                    //alert(entra);
+
+                                    //document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0].submit();
+                                    //$('[name='+index+']')[0].children[1].children[1].children[0].submit();
+                                    
+                                    //console.log(document.getElementsByName(index)[0].getElementsByClassName('alugaMes')[0]);
+                                    console.log($('[name='+index+']')[0].children[1].children[1].children[0].children[1]);
+                                    
+                                    $('[name='+index+']')[0].children[1].children[1].children[0].children[1].click();
+        
+                                };
+                            } else {
+                                location.reload();
+                            }
+
+                        }, 250);
                     }
 
                 })
@@ -740,6 +779,10 @@
 
                 
             });
+
+            function finishRent() {
+                    alert("fado");
+            }
 
             function rentAll() {
                 alert("rent TUDO");
