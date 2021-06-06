@@ -1,4 +1,8 @@
-
+<?php
+   
+   session_start();
+   
+?>
 
 <head>
     <!DOCTYPE html>
@@ -143,10 +147,10 @@
                                     <div id="myDropdown" class="dropdown-content">
                                         <p class="outro">Hi, {{$data[0]['PrimeiroNome']}}!</p>
                                         <a href="{{ url('/homeInteressado') }}">Home</a>
-                                        <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
                                         <a href="{{ url('/chat') }}">Messages</a>
-                                        <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
-                                        <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                                        <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
+                                        <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
                                         <a href="#">Sign Out</a>
                                     </div>
                                 </div>

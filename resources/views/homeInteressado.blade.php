@@ -1,3 +1,8 @@
+<?php
+   
+   session_start();
+   $_SESSION['user']=5;
+?>
 
 <head>
     <html lang="en">
@@ -42,13 +47,13 @@ $userAtual = 2;
                         <a class="nav-link text-black text-end" href="{{ url('/homeInteressado') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black text-end" href="{{ url('/walletInteressado/2') }}">Wallet</a>
+                        <a class="nav-link text-black text-end" href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black text-end" href="#">Sign Out</a>

@@ -1,3 +1,8 @@
+<?php
+   
+   session_start();
+   
+?>
 
 <head>
     <!DOCTYPE html>
@@ -139,10 +144,10 @@
                                     <div id="myDropdown" class="dropdown-content">
                                         <p class="outro">Hi, {{$user[0]['PrimeiroNome']}}!</p>
                                         <a href="{{ url('/homeInteressado') }}">Home</a>
-                                        <a href="{{ url('/interessadoProfile/2') }}">Profile</a>
+                                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
                                         <a href="{{ url('/chat') }}">Messages</a>
-                                        <a href="{{ url('/walletInteressado/2') }}">Wallet</a>
-                                        <a href="{{ url('/findPropriedadeInteressado/2') }}">Search</a>
+                                        <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
+                                        <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
                                         <a href="#">Sign Out</a>
                                     </div>
                                 </div>
@@ -198,7 +203,7 @@
                             <!-- Inicio Search Form-->
                             <br>
                             
-                            <form action="{{url('/findPropriedadeInteressado/2')}}" type="get" novalidate="novalidate">
+                            <form action="{{url('/findPropriedadeInteressado/'.$_SESSION['user'])}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
                                         <select class="form-control search-slt" name="tipoProp"
@@ -415,7 +420,7 @@
                                     @endforeach
                                 <div class="row">
                                     <div class="col h-25">
-                                        <a href="{{ url('/propertyInfo/' . $propInfo->IdPropriedade.'/user/2') }}">
+                                        <a href="{{ url('/propertyInfo/' . $propInfo->IdPropriedade.'/user/'.$_SESSION['user']) }}">
                                             <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
                                         </a>
                                     </div> 
