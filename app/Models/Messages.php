@@ -8,10 +8,11 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-class Message extends Model 
+
+
+class Messages extends Model 
 {
-    use HasFactory;
+    //use Authenticatable, Authorizable, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +20,8 @@ class Message extends Model
      * @var array
      */
 
-    //protected $table = 'messages';
-    protected $fillable = ['from', 'to', 'message','is_read'];
+    protected $table = 'Messages';
+    protected  $primaryKey = 'id';
+    public $incrementing = true;
+    public $timestamps=false;
 }

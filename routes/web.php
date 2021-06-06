@@ -72,6 +72,22 @@ Route::group(['prefix' => ''], function () {
 
     Route::get('findFast2/{idUser}', 'InteressadoController@pesquisaRapida2');
 
+    Route::post('/notifications/{id}', 'InteressadoController@markNotificationRead');
+
+    Route::get('/notifications/{id}', 'InteressadoController@getNotifications');
+  
+    Route::get('/chat', 'InteressadoController@chat');
+  
+    Route::get('/chat/searchUser/{name}', 'InteressadoController@searchUserChat');
+  
+    Route::post('/chat/message/', 'InteressadoController@postChatMessage');
+  
+    Route::get('/chat/messages/{sender}', 'InteressadoController@getAllMessages');
+  
+    Route::get('/chat/messages/{sender}/{receiver}', 'InteressadoController@getMessages');
+  
+    Route::get('/user/{id}', 'InteressadoController@getUserInfo');
+
 });
 
 //Testes:

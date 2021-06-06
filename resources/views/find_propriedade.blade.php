@@ -35,138 +35,131 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--Plugin JavaScript file-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
-        <div class="container">
-      <a class="navbar-brand" href="/homeInteressado">
+    <div class="container">
+      <a class="navbar-brand" href="/senhorio/home">
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Find Property</li>
+        </ol>
+    </nav>
+
       <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="mx-auto"></div>
+        
         <ul class="navbar-nav">
-
-                    <style>
-                      .dropbtn {
-                        
-                        background: url('/img/blankProfileImg.png') no-repeat;
-                        background-size: 50px 50px;
-                        color: white;
-                        font-size: 16px;
-                        border: none;
-                        cursor: pointer;
-                        border-radius: 50%;
-                        padding: 25px 25px;
-                        
-                      }
-
-                      .dropbtn:hover, .dropbtn:focus {
-                        background-color: #2980B9;
-                      }
-
-                      .dropdown {
-                        position: relative;
-                        
-                        display: inline-block;
-                      }
-
-                      .dropdown-content {
-                        right: 0px;
-                        top: 55px;
-                        display: none;
-                        position: absolute;
-                        background-color: #f1f1f1;
-                        min-width: 160px;
-                        overflow: auto;
-                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                        z-index: 1;
-                      }
-
-                      .dropdown-content a {
-                        color: black;
-                        padding: 12px 16px;
-                        text-decoration: none;
-                        display: block;
-                      }
-
-                      .outro {
-                        color: black;
-                        padding: 12px 16px;
-                        text-decoration: none;
-                        display: block;
-                        border-bottom: 1px outset rgba(0,0,0,0.2);
-                        text-align: right;
-                        margin: 0px;
-                      }
-
-                      
-
-                      .dropdown a:hover {background-color: #ddd;}
-
-                      .show {display: block;}
-
-                      .float-container {
-                            
-                            padding: 20px;
-                        }
-
-                        .float-child {
-                            width: 50%;
-                            float: left;
-                            padding: 20px;
-                            
-                        }
-
-                        #aVoltaDoNome{
-                            
-
-                        }  
-                      </style>
-
-                    <div class="float-container">
-
-                        <!-- <div class="float-child" id="aVoltaDoNome">
-                            <div class="green">
-                                <h5>{{$user[0]['PrimeiroNome']}}</h5>
-                            </div>
-                        </div> -->
-
-                        <div class="float-child">
-                            <div class="blue">
-                                <div class="dropdown">
-                            
-                                    <button onclick="myFunction()" class="dropbtn"></button>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <p class="outro">Hi, {{$user[0]['PrimeiroNome']}}!</p>
-                                        <a href="{{ url('/homeInteressado') }}">Home</a>
-                                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
-                                        <a href="{{ url('/chat') }}">Messages</a>
-                                        <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
-                                        <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
-                                        <a href="#">Sign Out</a>
-                                    </div>
-                                </div>
-                            </div>
+                      <div class="dropdown">
+                        <button class="notificationsButton notificationsEvent notificationMouseOver" onclick="notificationFunction()" id="dropNotifButton">
+                          <span><i class="bell fa fa-bell-o notificationsEvent"></i></span>
+                          <span class="badge notificationsEvent notificationMouseOver" id="countNoti"></span>
+                        </button>                        
+                        <div id="notificationDropdown" class="notificationDropdown">
+                          <p class="outro">Notifications</p>
+                          <div id="notificationsBody">                         
+                          </div>                         
                         </div>
+                      </div>
+                      <div class="dropdown">
+                        <button onclick="myFunction()" id="dropbtn" class="dropbtn mx-2">{{substr($user[0]['PrimeiroNome'], 0,1) . substr($user[0]['UltimoNome'], 0,1)}}</button>
+                        <script>document.getElementById("dropbtn").style.backgroundImage = `url("/img/{{$user[0]['imagem']}}")`</script>
+                        <div id="myDropdown" class="dropdown-content">
+                          <p class="outro">Hi, {{$user[0]['Username']}}!</p>
+                          <a href="{{ url('/homeInteressado') }}">Home</a>
+                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
+                        <a href="{{ url('/chat') }}">Chat</a>
+                        <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
+                        <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
+                          <a href="#">Sign Out</a>
+                        </div>
+                      </div>
 
-                    </div>
-                        
-
-                      
                       <script>
                       /* When the user clicks on the button, 
                       toggle between hiding and showing the dropdown content */
                       function myFunction() {
                         document.getElementById("myDropdown").classList.toggle("show");
                       }
+                      function notificationFunction() {
+                        document.getElementById("notificationDropdown").classList.toggle("show");
+                      }
+
+                      function markAsRead(id){
+                        $.post("/notifications/"+id, function(data, status){
+                          //console.log("Data: " + data + "\nStatus: " + status);
+                          if (status=="success"){
+                            console.log("Marcou")
+                          }
+                          else{
+                            console.log("Something went wrong")
+                          }
+                        });
+                      }
+                      
+                      setInterval(function(){
+                        $.get("/notifications/"+{{$user[0]['IdUser']}}, function(data, status){
+                                if (status=="success"){
+                                  document.getElementById("notificationsBody").innerHTML = ""
+                                      let counter = 0;
+                                      for(i in data[0]){
+                                        if (data[0][i]['seen']=="0"){
+                                          counter +=1;
+                     
+                                          if (data[0][i]['type']=='message'){
+                                            document.getElementById("notificationsBody").innerHTML +=
+                                            "<div class=notification>" +
+                                            "<div class=notificationTitle>" +
+                                              "<p>New "+data[0][i]['type']+"</p>" +
+                                              "<button class=notificationButton onclick=markAsRead("+data[0][i]['id']+")> "+
+                                              "<i class='fa fa-check' aria-hidden=true></i></button>" +
+                                            "</div>" +
+                                            "<div class=notificationBody>" +
+                                            "<p>You got a "+data[0][i]['type'] +
+                                            " from <a href=/chat?idChat="+data[0][i]['sentBy']+">user "+data[0][i]['sentBy']+"</a></p>"+
+                                            "<div class='notificationTime'>"+data[0][i]['date'].split(" ")[1].substring(0, 5);+"</div>" +
+                                            "</div></div>"
+                                          }
+                                          if (data[0][i]['type']=='booking' || data[0][i]['type']=='payment'){
+                                            document.getElementById("notificationsBody").innerHTML +=
+                                            "<div class=notification>" +
+                                            "<div class=notificationTitle>" +
+                                              "<p>New "+data[0][i]['type']+"</p>" +
+                                              "<button class=notificationButton onclick=markAsRead("+data[0][i]['id']+")> "+
+                                              "<i class='fa fa-check' aria-hidden=true></i></button>" +
+                                            "</div>" +
+                                            "<div class=notificationBody>" +
+                                            "<p>You got a "+data[0][i]['type'] +
+                                            " in <a href=/propriedade/"+data[0][i]['sentBy']+">property "+data[0][i]['sentBy']+"</a></p>"+
+                                            "<div class='notificationTime'>"+data[0][i]['date'].split(" ")[1].substring(0, 5);+"</div>" +
+                                            "</div></div>"
+                                          }                                                
+                                            
+                                        }
+                                      }
+                                      document.getElementById("countNoti").innerHTML = counter==0 ? "": counter;
+                                      document.getElementById("notificationsBody").innerHTML += counter==0 ? 
+                                      "<div class=notification><div class='notificationTitle pt-1'>No notifications</div></div>": "";
+                                    }
+                                else{
+                                    console.log("Something Went Wrong")
+                                }                            
+                              });                     
+                            }, 1000);
 
                       // Close the dropdown if the user clicks outside of it
                       window.onclick = function(event) {
+                        console.log(event.target)
                         if (!event.target.matches('.dropbtn')) {
                           var dropdowns = document.getElementsByClassName("dropdown-content");
                           var i;
@@ -177,8 +170,14 @@
                             }
                           }
                         }
-                      }
-
+                        if (!event.target.matches('.notificationsEvent') && (!event.target.matches('.notificationDropdown'))){
+                          var dropdown = document.getElementById("notificationDropdown");                          
+                          if (dropdown.classList.contains('show')) {
+                            dropdown.classList.toggle("show");
+                            }
+                          
+                        }
+                     }
                       </script>        
         </ul>
       </div>
@@ -397,12 +396,7 @@
                             <!-- Fim Search Form -->
                         </div>
                         <div class="col-9">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Find Property</li>
-                            </ol>
-                        </nav>
+
                             <h1 class="px-2 py-4 font-effect__blue">Pesquisa de Alojamentos:</h1>
                             <h2 class="px-2 py-4 font-effect__blue">RESULTADOS:</h2>
 

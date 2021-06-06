@@ -8,8 +8,9 @@ use App\Models\Interessado;
 use App\Models\Utilizador;
 use App\Models\Inquilino;
 use App\Models\HistoricoSaldo;
-use App\Models\Message;
+use App\Models\Messages;
 use App\Models\Likes;
+use App\Models\Notifications;
 use App\Models\Senhorio;
 use App\Models\Rating;
 use App\Models\Arrendamento;
@@ -592,6 +593,49 @@ class InteressadoController extends Controller
         $user = Utilizador::find($id);
         $user->imagem=$newImgName;
         $user->save();
+    }
+
+    public function chat(){
+        $id = '1';
+        $user = Utilizador::find($id);
+        return view('chat',['user'=>$user]);
+    }
+
+    public function searchUserChat($name){
+       $users = Utilizador::where('UserName','LIKE',"%".$name."%")->orWhere('PrimeiroNome','LIKE',"%".$name."%")->orWhere('UltimoNome','LIKE',"%".$name."%")->get();
+       return response()->json($users);
+    }
+
+    public function getMessages($sender, $receiver){
+        $messages = Messages::where('sender','=',$sender)->where('receiver','=',$receiver)->
+        orWhere('receiver','=',$sender)->where('sender','=',$receiver)->orderBy('id', 'ASC')->get();
+        return response()->json($messages);
+    }
+
+    public function getAllMessages($sender){
+        $messages = Messages::where('sender','=',$sender)
+        ->orWhere('receiver','=',$sender)
+        ->orderBy('id', 'DESC')
+        ->get();
+        return response()->json($messages);
+        //
+    }
+
+    public function postChatMessage(Request $req){
+        //dd($req->input('sender'), $req->input('receiver'), $req->input('message'));
+        $message = new Messages;
+        $message->sender=$req->input('sender');
+        $message->receiver=$req->input('receiver');
+        $message->message=$req->input('message');
+        $message->time=Carbon::now();
+        $message->save();
+        return response()->json($message);
+    }
+
+    public function getUserInfo($id){
+        $data = Utilizador::find($id);
+        return response()->json($data);
+        //
     }
 }
 ?>

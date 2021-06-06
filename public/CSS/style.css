@@ -736,3 +736,251 @@ label{
     .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
     .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
+/***** NAVBAR BUTTON *****/
+.notificationsButton {
+  border-width: 1px;
+  border-radius: 50%;
+  background-color: rgb(90, 104, 226);
+  color: white;
+  text-decoration: none;
+  height: 36px;
+  width: 36px;
+  padding: 0px 0px 1px 0px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  margin-right: 10px;
+  border-color: white;
+  top: 5px;
+}
+
+.notificationsButton:hover, .notificationMouseOver:hover{
+  background-color: rgb(255, 255, 255)!important;
+  color:black!important;
+  border-color: rgba(0, 0, 0, 0.616);
+  border-width: 2px;
+}
+
+.notificationsButton .badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  background-color: rgb(90, 104, 226);
+  color: white;
+}
+
+.notificationTime{
+  position: relative;
+  top: -30px;
+  right: -125px;
+  font-size: 11px;   
+}
+
+.notificationDropdown {
+  right: 0px;
+  top: 55px;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 175px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 300px;
+}
+
+.notificationDropdown a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.notification{
+  border-bottom: 1px outset rgba(0,0,0,0.2);
+  overflow: hidden;
+  height: auto;
+  
+}
+
+.notificationTitle{
+  font-style: italic;
+  height: 30px;
+  margin-left: 4px;
+  margin-top: 1px;
+}
+
+.notificationButton{
+  position: relative;
+  top: -35px;
+  right: -137px;
+  width: 10px;
+}
+
+.notificationButton i{
+  position: relative;
+  font-size: 70%;
+  left: -5px;
+}
+
+.notificationBody{
+  margin-left: 4px;
+  margin-top: -10px;
+  height: 45px;
+}
+
+.notificationBody a{
+  padding: 0;
+  display: inline;
+  text-decoration: underline;
+  overflow-y: hidden;
+}
+
+.notificationBody a:hover{
+  color: black;
+}
+
+.dropbtn {
+                    
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.658);
+  background-size: 50px 50px;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px 13px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  filter: invert(10%);
+}
+
+.dropdown {
+  position: relative;
+  
+  display: inline-block;
+}
+
+.dropdown-content {
+  right: 0px;
+  top: 55px;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.outro {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px outset rgba(0,0,0,0.2);
+  text-align: right;
+  margin: 0px;
+}
+
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+#searchResultImage{
+  max-width: 10%;
+  height: auto;
+}
+
+#sent{
+  max-width: 300px;
+  margin-right: 10px;
+  float: right;
+  clear: both;
+  border-radius: 15px 15px 0px 15px;
+  background-color: rgba(60, 129, 72, 0.055);
+}
+
+#received{
+  float:left;
+  border-radius: 0px 15px 15px 0px;
+  background-color: rgba(0, 82, 189, 0.055);
+}
+
+#chatTextBody{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#receivedChat{
+  max-width: 300px;
+  margin-left: 10px;
+  float:left;
+  clear: both;
+  
+}
+
+#sent{
+  float:right;
+  border-radius: 0px 15px 15px 0px;
+  background-color: rgba(0, 82, 189, 0.055);
+}
+
+#sentChat{
+  max-width: 300px;
+  margin-left: 10px;
+  float:right;
+  clear: both;
+  
+}
+
+#data{
+  margin-top: 10px;
+  font-size: 10px;   
+}
+
+#sent{
+  float:left;
+  border-radius: 0px 15px 15px 0px;
+  background-color: rgba(0, 82, 189, 0.055);
+}
+
+.div-to-display {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 10;
+}
+
+.moreInfo:hover > .div-to-display {
+    display: block
+}
+
+.breadcrumb{
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #eff7ff;
+  border-radius: 5px;
+  top: 70px;
+  right: 100px;
+}
