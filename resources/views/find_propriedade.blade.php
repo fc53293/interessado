@@ -206,33 +206,38 @@
                             <form action="{{url('/findPropriedadeInteressado/'.$_SESSION['user'])}}" type="get" novalidate="novalidate">
                                 <div class="form-row">
                                     <div class="col p-2">
+                                    <small id="emailHelp" class="p-1 form-text text-muted">Selecionar tipo de
+                                            aluguer</small>
                                         <select class="form-control search-slt" name="tipoProp"
                                             id="exampleFormControlSelect1" >
-                                            <option name="query5" value="">Qualquer tipos de aluguer</option>
+                                            <option name="query5" value="">Qualquer tipo</option>
                                             <option name="query3" value="Quarto">Quarto</option>
                                             <option name="query4" value="Casa">Casa</option>
                                         </select>
-                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecionar tipo de
-                                            aluguer</small>
+                                        
                                     </div>
                                     <div class="col p-2">
-                                        <input type="text" class="form-control search-slt" placeholder="Local" name="query2" value="{{$search_data2 ? $search_data2 : ''}}">
-                                        <small id="emailHelp" class="p-1 form-text text-muted">Escolha uma
+                                    <small id="emailHelp" class="p-1 form-text text-muted">Escolha uma
                                             localidade</small>
+                                        <input type="text" class="form-control search-slt" placeholder="Local" name="query2" value="{{$search_data2 ? $search_data2 : ''}}">
+                                        
                                     </div>
                                     <div class="col p-2">
+                                    <small id="emailHelp" class="p-1 form-text text-muted">Selecionar o número de quartos</small>
                                         <select class="form-control search-slt" name="nquartos"
                                             id="exampleFormControlSelect2">
-                                            <option name="query5" value="">Numero de quartos</option>
+                                            <option name="query5" value="">Qualquer número</option>
                                             <option name="query3" value="1">1</option>
                                             <option name="query4" value="2">2</option>
                                             <option name="query4" value="3">3</option>
                                             <option name="query4" value="4">4</option>
                                             <option name="query4" value="5">5</option>
                                         </select>
-                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecionar o número de quartos</small>
+                                       
                                     </div>
                                     <div class="col p-2">
+                                    <small id="emailHelp" class="p-1 form-text text-muted">Selecione o tamanho do
+                                            seu aluguer</small>
                                         <select class="form-control search-slt" name="areaMetros" id="exampleFormControlSelect3">
                                             <option name="query5" value="">Qualquer área</option>
                                             <option name="query3" value="7">Até 7 m2</option>
@@ -241,10 +246,9 @@
                                             <option name="query5" value="100">Até 100</option>
                                             <option name="query5" value="200">Até 200</option>
                                         </select>
-                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecione o tamanho do
-                                            seu aluguer</small>
+                                        
                                     </div>
-                                
+                                    <br>
                                     <div class="slidecontainer">
                                        
                                         <input type="range" min="50" max="2000" value={{$search_data4 ? $search_data4 : 400}} class="slider" id="myRange" name="lprice">
@@ -253,6 +257,7 @@
                                     </div>
                                     <div class="col p-2">
                                         <div class="row">
+                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
                                             <div class="col-md-4">
                                                 <input type="checkbox" id="solar1" name="oriSolar1" value="N" class="ckeckJust1">
                                                 <label for="vehicle1"> N</label><br>
@@ -268,13 +273,14 @@
                                                 <input type="checkbox" id="solar4" name="oriSolar1" value="O" class="ckeckJust1">
                                                 <label for="vehicle2"> O</label><br>
                                             </div>
-                                            <small id="emailHelp" class="p-1 form-text text-muted">Selecione a orientação solar que deseja</small>
+                                            
 
                                         </div>
                                     </div>
 
                                     <div class="col p-2">
                                         <div class="row">
+                                        <small id="emailHelp" class="p-1 form-text text-muted">Selecione opções extra</small>
                                                 <div class="col-md-6">
                                                     <input type="checkbox" id="ext1" name="extra1" value="1">
                                                     <label for="vehicle1"> Internet</label><br>
@@ -287,7 +293,7 @@
                                                     <input type="checkbox" id="rest2" name="restricao2" value="1">
                                                     <label for="vehicle2"> Animais</label><br>
                                                 </div>
-                                            <small id="emailHelp" class="p-1 form-text text-muted">Selecione opções extra</small>
+                                            
                                         </div>
                                     </div>
                                     <div class="col p-2">
@@ -376,7 +382,7 @@
                                 range: true,
                                 min: 14,
                                 max: 88,
-                                values: [ {{$search_data13 ? $search_data13 : 18}}, {{$search_data14 ? $search_data14 : 23}} ],
+                                values: [ {{$search_data13 ? $search_data13 : 18}}, {{$search_data14 ? $search_data14 : 36}} ],
                                 slide: function( event, ui ) {
                                     $( "#idades" ).val( ui.values[ 0 ] +" - "+ ui.values[ 1 ] );
                                     $( "#faixaEtariaMin" ).val( ui.values[ 0 ] );
@@ -423,6 +429,11 @@
                                         <a href="{{ url('/propertyInfo/' . $propInfo->IdPropriedade.'/user/'.$_SESSION['user']) }}">
                                             <img class="rounded float-start img-fluid position-relative" src="/img/room1.jpg" alt="" id="propertyImgOnResults" >
                                         </a>
+                                        <div class="col text-center mt-2 p-2">
+                                            <a href="{{ url('/propertyInfo/' . $propInfo->IdPropriedade.'/user/'.$_SESSION['user']) }}">
+                                                <button type="submit" class="btn btn-primary wrn-btn" style="margin-top: 10px;">+ Info</button>
+                                            </a>
+                                        </div>
                                     </div> 
                                     <div class="col">
                                         <div class="row">

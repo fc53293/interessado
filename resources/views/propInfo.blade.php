@@ -639,7 +639,8 @@
                                 <script>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Indisponivel</h3>"
-                                
+                                $('[name="' + {{$i}} + '"]').removeClass( "bg-white")
+                                $('[name="' + {{$i}} + '"]').css("background-color", "rgba(225, 0, 0,0.6)");
                                 </script>
                                 @endif
                             @endforeach        
