@@ -41,7 +41,7 @@
     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
         <div class="container">
-      <a class="navbar-brand" href="/senhorio/home">
+      <a class="navbar-brand" href="/homeInteressado">
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
       <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,11 +130,11 @@
 
                     <div class="float-container">
 
-                        <div class="float-child" id="aVoltaDoNome">
+                        <!-- <div class="float-child" id="aVoltaDoNome">
                             <div class="green">
                                 <h5>{{$user[0]['PrimeiroNome']}}</h5>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="float-child">
                             <div class="blue">
@@ -315,7 +315,7 @@
                                         </div>
                                     </div>
                                     <div class="col text-center mt-2 p-2">
-                                        <a href="{{ url('/findPropriedadeInteressado/2') }}"><button type="button"  class="btn btn-outline-danger">Limpar Pesquisa</button></a>
+                                        <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}"><button type="button"  class="btn btn-outline-danger">Limpar Pesquisa</button></a>
                                     </div>
                                     <div class="col text-center mt-2 p-2">
                                         <button type="submit" class="btn btn-primary wrn-btn">Procurar</button>

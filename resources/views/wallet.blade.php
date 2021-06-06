@@ -35,7 +35,7 @@
 
 <div class="container">
 
-      <a class="navbar-brand" href="/senhorio/home">
+      <a class="navbar-brand" href="/homeInteressado">
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
       <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,11 +133,11 @@
 
                   <div class="float-container">
 
-                        <div class="float-child" id="aVoltaDoNome">
+                        <!-- <div class="float-child" id="aVoltaDoNome">
                             <div class="green">
                                 <h5>{{$data[0]['PrimeiroNome']}}</h5>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="float-child">
                             <div class="blue">
