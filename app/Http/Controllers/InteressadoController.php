@@ -29,10 +29,12 @@ class InteressadoController extends Controller
 
     public function createInquilino(Request $request)
     {
-        print_r($request->input());
         $order = new Inquilino;
-        $order->id=$request->input('id');
-        $order->email=$request->input('email');
+        $order->IdUser=$idUser;
+        $order->Username=$getUsername;
+        $order->IdPropriedade=$idProp;
+        $order->InicioContrato=Carbon::now();
+        $order->FimContrato=Carbon::now();
         $order->save();
        //$inquilino = Inquilino::create($request->all());
 
@@ -153,7 +155,7 @@ class InteressadoController extends Controller
                         $data->Telefone=$req->input('Telefone');
                         $validadePhone = True;
                     } else {
-                        echo "Invalid Phone number";
+                        return response()->json('Phone Number Invalido');
                         $validadePhone = False;
                     }
                 }
@@ -526,10 +528,13 @@ class InteressadoController extends Controller
 
     }
 
+
+
     public function newArrendamento(Request $request, $idProp,$idUser){
 
         $checkExist = Arrendamento::where('IdPropriedade', $idProp)->where('MesContrato',$request->input('Mes'))->first();
         $casaq = Propriedade::where('IdPropriedade', $idProp)->value('IdSenhorio');
+        $getUsername = Utilizador::where('IdUser',$idUser)->value('Username');
 
         if ($checkExist === null){
             $user = new Arrendamento();
@@ -622,9 +627,11 @@ class InteressadoController extends Controller
 
         $req->imgProfile->move('img',$newImgName);
 
-        $user = Utilizador::find(1);
+        $user = Utilizador::find($id);
         $user->imagem=$newImgName;
         $user->save();
+
+        return redirect('interessadoProfile/'.$id);
     }
 
     public function chat(){

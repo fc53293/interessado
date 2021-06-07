@@ -395,7 +395,7 @@
             <div class="d-flex flex-row justify-content-start">
                 <div class="p-2">
                     <form action="" method="post" name="form">
-                    <a href="{{ url('/chat') }}"><button type="button" class="btn btn-outline-primary">Contactar Proprietário</button></a>
+                    <a href="{{ url('/chat?idChat='.$propInfo['IdSenhorio']) }}"><button type="button" class="btn btn-outline-primary">Contactar Proprietário</button></a>
                     </form>
                 </div>
             </div>
