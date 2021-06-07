@@ -42,7 +42,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                <li class="breadcrumb-item active" aria-current="page">Wallet</li>
             </ol>
         </nav>
 
@@ -202,7 +202,7 @@
             <div class="txn-history">
                 <h2 class="font-effect__blue pb-3">History</h2>
                 @foreach($data2 as $info)
-                    <p class="txn-list">Payment to UniRent account<span class="{{ $info->Valor >= 0 ? 'credit-amount' : 'debit-amount' }}">{{ $info['Valor'] }} €</span></p>
+                    <p class="txn-list">{{$info['Descricao']}}<span class="{{ $info->Valor >= 0 ? 'credit-amount' : 'debit-amount' }}">{{ $info['Valor'] }} €</span></p>
 
                 @endforeach
             </div>
@@ -356,7 +356,7 @@
                             var data = new FormData();
                             data.append( "json", JSON.stringify( jsonInfos ) );
                             //$.post( '/senhorio/wallet/add', data ); 
-                            return fetch('/walletAddInteressado/2', {
+                            return fetch('/walletAddInteressado/'+{{$data[0]['IdUser']}}, {
                                 method: 'POST',
                                 headers: {
                                 'Accept': 'application/json',

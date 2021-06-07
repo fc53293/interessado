@@ -59,7 +59,7 @@
                         <div id="myDropdown" class="dropdown-content">
                           <p class="outro">Hi, {{$user[0]['Username']}}!</p>
                           <a href="{{ url('/homeInteressado') }}">Home</a>
-                        <a href="{{ url('/inquilinoProfile/'.$_SESSION['user']) }}">Profile</a>
+                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
                         <a href="{{ url('/chat') }}">Chat</a>
                         <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
                         <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>

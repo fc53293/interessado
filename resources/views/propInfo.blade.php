@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
@@ -39,10 +40,11 @@
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
 
-        <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/findPropriedadeInteressado/2">Find Property</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Property {{$property[0]['IdPropriedade']}} Info </li>
             </ol>
         </nav>
 
@@ -70,7 +72,7 @@
                         <div id="myDropdown" class="dropdown-content">
                           <p class="outro">Hi, {{$user[0]['Username']}}!</p>
                           <a href="{{ url('/homeInteressado') }}">Home</a>
-                        <a href="{{ url('/inquilinoProfile/'.$_SESSION['user']) }}">Profile</a>
+                        <a href="{{ url('/interessadoProfile/'.$_SESSION['user']) }}">Profile</a>
                         <a href="{{ url('/chat') }}">Chat</a>
                         <a href="{{ url('/walletInteressado/'.$_SESSION['user']) }}">Wallet</a>
                         <a href="{{ url('/findPropriedadeInteressado/'.$_SESSION['user']) }}">Search</a>
@@ -176,21 +178,49 @@
       </div>
     </div>
     </nav>
-    
+    <style>
+        #mesAluguer{
+        cursor: pointer;
+    }
+    </style>
 
     <!-- END Nav bar -->
 
+<script>
+                            //var entra = null;
+                            $(document).ready(function() {
+                                $("form").submit(function(e) {
+                                    //alert("aqui");
+                                    e.preventDefault();
+                                    req = $.ajax({
+                                        type: 'POST',
+                                        cache: false,
+                                        dataType: 'JSON',
+                                        url: $("#mesAlugar").attr('action'),
+                                        data: $(this).serialize(),
+                                        success: function(data) {
+                                            console.log(data);
+                                            
+                                        }
+                                    });
 
+                                    req.done(function(data){
+                                    
+                                        $('#allCalendar').fadeOut(1000).fadeIn(1000);
+                                        
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 4000);
+                                    });
+                                });
+
+
+                            });
+</script>
     <div class="banner-image d-flex justify-content-center align-items-center pt-5">
         <div class="container profile-container m-5">
         
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="/findPropriedadeInteressado/2">Find Property</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Property {{$property[0]['IdPropriedade']}} Info </li>
-            </ol>
-        </nav>
+
 
             <div class="row p-3 profile-container" id="parteCima">
                 <div class="col align-middle" id="dataCasa">
@@ -365,7 +395,7 @@
             <div class="d-flex flex-row justify-content-start">
                 <div class="p-2">
                     <form action="" method="post" name="form">
-                        <button type="submit" class="btn btn-outline-primary">Contactar Proprietário</button>
+                    <a href="{{ url('/chat') }}"><button type="button" class="btn btn-outline-primary">Contactar Proprietário</button></a>
                     </form>
                 </div>
             </div>
@@ -609,8 +639,7 @@
                                 <script>
                                 document.getElementById("boxInfo{{$i}}").innerHTML =
                                 "<br><h3>Indisponivel</h3>"
-                                $('[name="' + {{$i}} + '"]').removeClass( "bg-white")
-                                $('[name="' + {{$i}} + '"]').css("background-color", "rgba(225, 0, 0,0.6)");
+                                $('[name="' + {{$i}} + '"]').css("background-color", "rgba(225, 0, 0,0.4)");
                                 </script>
                                 @endif
                             @endforeach        

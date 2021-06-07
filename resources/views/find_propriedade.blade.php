@@ -46,17 +46,19 @@
         <img src="/img/logo/UniRent-V2.png" alt="" width="100">
       </a>
 
+
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Find Property</li>
         </ol>
-    </nav>
-
+    </nav><br><br><br>
       <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarNav">
+      
         <div class="mx-auto"></div>
         
         <ul class="navbar-nav">
