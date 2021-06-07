@@ -427,6 +427,8 @@ class InteressadoController extends Controller
 
     //Adiciona uma quantidade de saldo ao saldo atual do inquilino
     public function addSaldo($id, Request $amount){
+        dump($amount->getContent());
+        dump($amount->input());
         $user = Utilizador::find($id);
         $user->Saldo=$amount->input('amountToAdd')+$user->Saldo;
         $user->save();
@@ -636,6 +638,12 @@ class InteressadoController extends Controller
         $data = Utilizador::find($id);
         return response()->json($data);
         //
+    }
+
+    public function getNotifications($id)
+    {
+        $notifications = Notifications::where('userId', $id)->get();
+        return response()->json([$notifications]);
     }
 }
 ?>
