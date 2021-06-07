@@ -508,6 +508,7 @@ class InteressadoController extends Controller
     public function newArrendamento(Request $request, $idProp,$idUser){
 
         $checkExist = Arrendamento::where('IdPropriedade', $idProp)->where('MesContrato',$request->input('Mes'))->first();
+        $casaq = Propriedade::where('IdPropriedade', $idProp)->value('IdSenhorio');
 
         if ($checkExist === null){
             $user = new Arrendamento();
@@ -515,6 +516,14 @@ class InteressadoController extends Controller
             $user->IdPropriedade=$idProp;
             $user->MesContrato=$request->input('Mes');
             $user->save();
+
+            $notif = new Notifications();
+            $notif->UserId=$casaq;
+            $notif->type="booking";
+            $notif->seen=0;
+            $notif->sentBy=$idProp;
+            $notif->date=Carbon::now();
+            $notif->save();
         }else{
             dd('This property is not available');
         }
@@ -592,13 +601,13 @@ class InteressadoController extends Controller
 
         $req->imgProfile->move('img',$newImgName);
 
-        $user = Utilizador::find($id);
+        $user = Utilizador::find(1);
         $user->imagem=$newImgName;
         $user->save();
     }
 
     public function chat(){
-        $id = '1';
+        $id = '5';
         $user = Utilizador::find($id);
         return view('chat',['user'=>$user]);
     }
@@ -631,6 +640,15 @@ class InteressadoController extends Controller
         $message->message=$req->input('message');
         $message->time=Carbon::now();
         $message->save();
+
+        $user = new Notifications();
+        $user->UserId=$req->input('receiver');
+        $user->type="message";
+        $user->seen=0;
+        $user->sentBy=$req->input('sender');
+        $user->date=Carbon::now();
+        $user->save();
+
         return response()->json($message);
     }
 
@@ -644,6 +662,12 @@ class InteressadoController extends Controller
     {
         $notifications = Notifications::where('userId', $id)->get();
         return response()->json([$notifications]);
+    }
+
+    public function markNotificationRead($id)
+    {
+        $notification = Notifications::find($id)->update(['seen' => 1]);;
+        return response()->json(['res'=>$notification]);
     }
 }
 ?>

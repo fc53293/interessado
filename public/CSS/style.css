@@ -984,3 +984,7 @@ label{
   top: 70px;
   right: 100px;
 }
+
+#userList{
+  overflow-y: auto;
+}

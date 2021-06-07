@@ -181,7 +181,7 @@
             <div class="single_advisor_profile wow fadeInUp m-0" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <!-- Team Thumb-->
             @foreach ($data as $user)
-              <!-- <div class="advisor_thumb"><img src="/img/blankProfileImg.png" alt="img profile"> -->
+              
               <div class="advisor_thumb"><img src="/img/{{$user['imagem']}}" alt="img profile" width="259" height="400">
                 <!-- Social Info-->
                 <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
@@ -587,10 +587,10 @@
                   inputBirth.setAttribute("max",today); 
 
                     $('#formPerfil').submit(function(e) {
-                    console.log({{$validadeNIF}});
-                    if ({{$validadeNIF}} == 1){
+                    console.log("validade "+{{$validadeNIF}});
+                    @if ($validadeNIF == False)
                       alert("NIF Inválido!");
-                    }
+                    @endif
                     e.preventDefault();
                     req = $.ajax({
                         type: 'POST',
@@ -605,9 +605,12 @@
                     
                     req.done(function(data){
                         //$('#totalAVGrating').fadeOut(500).fadeIn(500);
-                        if ({{$validadeNIF}} != 1){
+                          console.log("aq"+data);
+                          if (data != "NIF Invalido"){
                           $('.form-group').fadeOut(1000).fadeIn(1000);
-                        }
+                          }else{
+                            alert("NIF Inválido!");
+                          }
                         // setTimeout(function(){
                         //     $('.amount').text(data.res+" €");
                         // }, 1000);
