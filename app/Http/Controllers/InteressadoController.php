@@ -137,10 +137,31 @@ class InteressadoController extends Controller
         }
 
         $data->Nacionalidade=$req->input('Nacionalidade');
-        $data->Telefone=$req->input('Telefone');
+        if (substr(trim($req->input('Telefone')), 0, 2) == '91') {
+            $data->Telefone=$req->input('Telefone');
+            $validadePhone = True;
+        } else {
+            if (substr(trim($req->input('Telefone')), 0, 2) == '92') {
+                $data->Telefone=$req->input('Telefone');
+                $validadePhone = True;
+            } else {
+                if (substr(trim($req->input('Telefone')), 0, 2) == '93') {
+                    $data->Telefone=$req->input('Telefone');
+                    $validadePhone = True;
+                } else {
+                    if (substr(trim($req->input('Telefone')), 0, 2) == '96') {
+                        $data->Telefone=$req->input('Telefone');
+                        $validadePhone = True;
+                    } else {
+                        echo "Invalid Phone number";
+                        $validadePhone = False;
+                    }
+                }
+            }
+        }
         $data->save();
         
-        return compact('validadeNIF');
+        return compact('validadeNIF','validadePhone');
     }
 
     public function interessadoProfile($id)
@@ -512,7 +533,7 @@ class InteressadoController extends Controller
 
         if ($checkExist === null){
             $user = new Arrendamento();
-            $user->IdInquilino="2";
+            $user->IdInquilino=$idUser;
             $user->IdPropriedade=$idProp;
             $user->MesContrato=$request->input('Mes');
             $user->save();

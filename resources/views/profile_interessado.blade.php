@@ -604,18 +604,21 @@
                     });
                     
                     req.done(function(data){
-                        //$('#totalAVGrating').fadeOut(500).fadeIn(500);
-                          console.log("aq"+data);
-                          if (data != "NIF Invalido"){
-                          $('.form-group').fadeOut(1000).fadeIn(1000);
-                          }else{
-                            alert("NIF Inválido!");
-                          }
-                        // setTimeout(function(){
-                        //     $('.amount').text(data.res+" €");
-                        // }, 1000);
-                        
-                        //alert("feito");
+                      //$('#totalAVGrating').fadeOut(500).fadeIn(500);
+                      console.log("-> "+data.validadeNIF);
+                      if (data != "NIF Invalido"){
+                      $('.form-group').fadeOut(1000).fadeIn(1000);
+                      }else{
+                          alert("NIF Inválido!");
+                      }
+
+                      if (data != "Phone Number Invalido"){
+                      $('.form-group').fadeOut(1000).fadeIn(1000);
+                      }else{
+                          alert("Phone Number Inválido!");
+                      }
+                      
+                      //alert("feito");
                     });
                     
 
