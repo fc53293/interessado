@@ -630,7 +630,7 @@
                   <div class="card-header">
                   <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" data-bs-toggle="tab" href="#home">Information</a>
+                      <a class="nav-link active" data-bs-toggle="tab" href="#home">Histórico</a>
                     </li>
 
                   </ul>
@@ -642,9 +642,7 @@
                         <!--<img class="img-thumbnail" src="/img/room1.jpg" alt="img profile" style="float:right" width="200" height="100">
                         <div class="d-inline-flex p-2">-->
                         <div class="row">
-                          <div class="col-sm-4"><h3 >Casa 1: </h3><img class="img-thumbnail" src="/img/room1.jpg" alt="img profile" width="200" height="100"></div>
-                          <div class="col-sm-4"><h3 >Casa 2: </h3><img class="img-thumbnail" src="/img/room1.jpg" alt="img profile" width="200" height="100"></div>
-                          <div class="col-sm-4"><h3 >Casa 3: </h3><img class="img-thumbnail" src="/img/room1.jpg" alt="img profile" width="200" height="100"></div>
+                        
                         </div>
             
                       </div>
